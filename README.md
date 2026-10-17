@@ -99,6 +99,24 @@ lowers the test log loss from 0.5069 to 0.5057, a 0.2% change. The remaining err
 all resolution, meaning the model lacks information, not calibration. The weak spot is home
 underdogs: when the model gives the home team 30-40% it has been winning about 43%.
 
+**Would betting on it have made money?** `simulate.py` replays finished games against the
+closing line with a flat $100 on every spread pick.
+
+| Period | Games | Model ATS record | Spread ROI | Vegas favourite ATS ROI |
+| --- | --- | --- | --- | --- |
+| Week 6, 2026 (Oct 6-10) | 58 | 38-20 (65.5%) | +25.2% (+$1,464) | -20.9% |
+| 2026 through week 7 | 458 | 225-227-6 (49.8%) | -4.8% (-$2,197) | +2.2% |
+| 2024-2025 (held out) | 1,799 | 908-888-3 (50.6%) | -3.4% (-$6,081) | -3.4% |
+
+Over two full seasons the model's spread picks win 50.6% of the time, below the 52.4% needed to
+break even at -110, and its return equals that of blindly betting the Vegas favourite, which is
+just the house edge. Filtering to the model's largest disagreements with the market makes it
+worse, not better. Week 6 of 2026 was one of the three best weeks out of 39, and most of its
+profit came from underdog picks in a week when underdogs covered 59% of games. Weekly results
+over 2024-2025 ranged from -$1,377 to +$1,523 with a standard deviation near $770, so one week
+says nothing. Full output: `data/simulate_week6.txt`, `data/simulate_2026.txt`,
+`data/simulate_2024_2025.txt`.
+
 **Today's test game: Ohio State at Indiana (Oct 17, 2026).**
 
 | Source | Favourite | Spread | Win probability |

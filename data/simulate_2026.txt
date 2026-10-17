@@ -1,0 +1,25 @@
+458 finished games with a betting line, Sat Aug 29 to Fri Oct 16, 2026. Flat stake $100 per bet.
+
+Straight up: model picked the winner in 357 of 458 (77.9%); the Vegas favourite won 380 of 458 (83.0%).
+
+Betting the model's picks:
+Spread, every game                         225-227-6 (49.8%)     -2,197 $ on   45,800 $ staked  ROI  -4.8%
+Spread, only when edge >= 3 points         151-170-4 (47.0%)     -3,235 $ on   32,500 $ staked  ROI -10.0%
+Spread, only when edge >= 5 points         113-132-3 (46.1%)     -2,906 $ on   24,800 $ staked  ROI -11.7%
+Spread, only when edge >= 7 points           77-98-2 (44.0%)     -2,758 $ on   17,700 $ staked  ROI -15.6%
+Moneyline, every game                        289-100 (74.3%)     -1,743 $ on   38,900 $ staked  ROI  -4.5%
+Moneyline, only when model disagrees w/ Vegas     17-40 (29.8%)     -1,459 $ on    5,700 $ staked  ROI -25.6%
+
+For comparison, blindly betting the Vegas favourite:
+Spread, every game                         242-210-6 (53.5%)     +1,027 $ on   45,800 $ staked  ROI  +2.2%
+Moneyline, every game                         312-77 (80.2%)       +244 $ on   38,900 $ staked  ROI  +0.6%
+
+Week by week (spread bets on every game):
+ season  week  bets  record  profit $
+   2026     1    99 38-59-2     -2402
+   2026     2    86   38-48     -1352
+   2026     3    75 39-35-1        66
+   2026     4    71 34-36-1      -522
+   2026     5    59 33-25-1       478
+   2026     6    58   38-20      1464
+   2026     7    10   5-4-1        71

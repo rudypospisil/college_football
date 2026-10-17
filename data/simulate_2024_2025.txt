@@ -1,0 +1,52 @@
+(54 finished games in the selection have no stored line and are skipped; fetch_odds.py can fill them.)
+
+1799 finished games with a betting line, Sat Aug 24 to Mon Jan 19, 2026. Flat stake $100 per bet.
+
+Straight up: model picked the winner in 1315 of 1799 (73.1%); the Vegas favourite won 1351 of 1799 (75.1%).
+
+Betting the model's picks:
+Spread, every game                         908-888-3 (50.6%)     -6,081 $ on  179,900 $ staked  ROI  -3.4%
+Spread, only when edge >= 3 points         566-577-2 (49.5%)     -6,179 $ on  114,500 $ staked  ROI  -5.4%
+Spread, only when edge >= 5 points         382-403-1 (48.7%)     -5,379 $ on   78,600 $ staked  ROI  -6.8%
+Spread, only when edge >= 7 points         267-262-1 (50.5%)     -1,768 $ on   53,000 $ staked  ROI  -3.3%
+Moneyline, every game                       1161-476 (70.9%)     -2,929 $ on  163,700 $ staked  ROI  -1.8%
+Moneyline, only when model disagrees w/ Vegas   100-136 (42.4%)       +669 $ on   23,600 $ staked  ROI  +2.8%
+
+For comparison, blindly betting the Vegas favourite:
+Spread, every game                         906-890-3 (50.4%)     -6,094 $ on  179,900 $ staked  ROI  -3.4%
+Moneyline, every game                       1197-440 (73.1%)     -5,614 $ on  163,700 $ staked  ROI  -3.4%
+
+Week by week (spread bets on every game):
+ season  week  bets  record  profit $
+   2024     1   126   61-65      -912
+   2024     2    77   34-43     -1297
+   2024     3    52   20-32     -1377
+   2024     4    54   29-25       240
+   2024     5    55   32-23       587
+   2024     6    48   20-28      -943
+   2024     7    52   20-32     -1365
+   2024     8    59   31-28       -30
+   2024     9    57   26-31      -807
+   2024    10    49   20-29     -1131
+   2024    11    50   21-29     -1048
+   2024    12    55   27-28      -320
+   2024    13    65   38-27       783
+   2024    14    66   37-29       475
+   2024    15     9     7-2       453
+   2024    16     1     0-1      -100
+   2025     1   137   67-70      -922
+   2025     2    82   43-39         8
+   2025     3    67   39-28       778
+   2025     4    61   30-31      -356
+   2025     5    53   33-20      1052
+   2025     6    51   25-26      -307
+   2025     7    56   28-28      -280
+   2025     8    60   35-25       743
+   2025     9    53   22-31     -1110
+   2025    10    52   24-28      -551
+   2025    11    52   35-17      1523
+   2025    12    59   29-30      -412
+   2025    13    64   30-34      -618
+   2025    14    67 41-23-3      1399
+   2025    15     9     4-5      -136
+   2025    16     1     0-1      -100
