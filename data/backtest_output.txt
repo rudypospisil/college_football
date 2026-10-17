@@ -1,0 +1,76 @@
+Loaded 14828 games, 14153 completed, seasons 2010-2026
+Grid search over 160 parameter combinations on seasons 2012-2023 ...
+
+Top 10 parameter sets (training seasons, lower log loss is better):
+ k  hfa  regress  mov  games  accuracy  brier  log_loss
+40   55   0.2000 True  10221    0.7432 0.1696    0.5069
+30   55   0.2000 True  10221    0.7426 0.1695    0.5070
+30   40   0.2000 True  10221    0.7428 0.1696    0.5070
+40   40   0.2000 True  10221    0.7432 0.1697    0.5070
+40   55   0.3300 True  10221    0.7411 0.1696    0.5074
+40   40   0.3300 True  10221    0.7407 0.1697    0.5076
+40   70   0.2000 True  10221    0.7423 0.1700    0.5082
+30   70   0.2000 True  10221    0.7442 0.1701    0.5082
+30   40   0.1000 True  10221    0.7426 0.1703    0.5084
+30   55   0.1000 True  10221    0.7446 0.1703    0.5085
+
+Chosen parameters: {"k": 40.0, "hfa": 55.0, "regress": 0.2, "mov": true, "elo_per_point": 19.85}
+(1 point of spread ~ 19.85 Elo points)
+
+Model vs. naive baseline (always pick the home team / constant home-win rate):
+                         split  games  accuracy  brier  log_loss  always_home_acc  always_home_brier
+               train 2012-2023  10221    0.7432 0.1696    0.5069           0.6190             0.2358
+TEST 2024-2025 (out of sample)   1853    0.7361 0.1714    0.5069           0.6379             0.2310
+    current season 2026 so far    458    0.7795 0.1474    0.4509           0.7140             0.2042
+
+Out-of-sample results by season:
+          games  accuracy  brier  log_loss
+season                                    
+2024   919.0000    0.7225 0.1782    0.5245
+2025   934.0000    0.7495 0.1646    0.4895
+
+FBS-vs-FBS games only (test seasons): {"games": 1606, "accuracy": 0.7017, "brier": 0.1921, "log_loss": 0.5628}
+
+Calibration on test seasons (predicted home-win probability vs. what happened):
+               games  predicted  actual
+p_home                                 
+(-0.001, 0.1]     33      0.070   0.212
+(0.1, 0.2]       100      0.151   0.200
+(0.2, 0.3]       149      0.250   0.309
+(0.3, 0.4]       146      0.352   0.432
+(0.4, 0.5]       170      0.450   0.424
+(0.5, 0.6]       204      0.553   0.515
+(0.6, 0.7]       225      0.650   0.676
+(0.7, 0.8]       216      0.748   0.731
+(0.8, 0.9]       213      0.851   0.826
+(0.9, 1.0]       397      0.959   0.965
+
+Current top 25 by Elo:
+ rank                      team    elo
+    1          Indiana Hoosiers 2022.8
+    2          Georgia Bulldogs 1958.6
+    3       Ohio State Buckeyes 1939.1
+    4          Miami Hurricanes 1936.3
+    5 Notre Dame Fighting Irish 1907.3
+    6      Alabama Crimson Tide 1846.8
+    7           Texas Longhorns 1840.6
+    8           Ole Miss Rebels 1827.7
+    9                 Utah Utes 1827.4
+   10    Texas Tech Red Raiders 1820.6
+   11               BYU Cougars 1809.5
+   12       James Madison Dukes 1797.9
+   13             Iowa Hawkeyes 1784.7
+   14              Oregon Ducks 1778.9
+   15               USC Trojans 1742.3
+   16           Missouri Tigers 1739.4
+   17          Arizona Wildcats 1732.2
+   18       Boise State Broncos 1723.9
+   19          Oklahoma Sooners 1723.4
+   20      Tennessee Volunteers 1712.0
+   21           Houston Cougars 1708.7
+   22                LSU Tigers 1707.8
+   23 Wake Forest Demon Deacons 1701.1
+   24          Duke Blue Devils 1691.1
+   25              SMU Mustangs 1689.2
+
+Saved parameters to /Volumes/RUDY_STUFF/PYTHON/Projects/sports/data/model_params.json
