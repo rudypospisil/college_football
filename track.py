@@ -36,7 +36,7 @@ EDGE_THRESHOLD = 3.0            # "confident" spread bets: model and Vegas diffe
 COLUMNS = [
     # recorded before kickoff
     "game_id", "model", "season", "week", "kickoff", "recorded_at", "away_team", "home_team", "neutral_site",
-    "rating_away", "rating_home", "p_home", "model_home_margin", "model_pick", "model_pick_prob",
+    "rating_away", "rating_home", "p_home", "model_home_margin", "adjustment", "model_pick", "model_pick_prob",
     "vegas_home_spread", "vegas_line", "vegas_pick",
     "home_moneyline", "away_moneyline", "home_spread_odds", "away_spread_odds",
     "spread_pick", "spread_edge", "model_params",
@@ -116,6 +116,7 @@ def build_row(model, g, now):
         "away_team": g.away_team, "home_team": g.home_team, "neutral_site": g.neutral_site,
         "rating_away": round(pred["rating_away"], 1), "rating_home": round(pred["rating_home"], 1),
         "p_home": round(pred["p_home"], 4), "model_home_margin": round(pred["pred_margin"], 1),
+        "adjustment": round(pred["adjustment"], 1) if pred.get("adjustment") else None,
         "model_pick": chosen["model_pick"], "model_pick_prob": chosen["model_pick_prob"],
         "vegas_home_spread": spread, "vegas_line": g.odds_details if isinstance(g.odds_details, str) else None,
         "vegas_pick": chosen["vegas_pick"],
@@ -143,8 +144,10 @@ def record(date, model_name=DEFAULT_MODEL, now=None):
 
     day = games[local_date(games["date"]) == date]
     future = day[(day["date"] > now) & (~day["completed"]) & (day["status"] == "Scheduled")]
-    already = future["game_id"].isin(log.loc[log["model"] == model.name, "game_id"])
     skipped_started = len(day) - len(future)
+    future = future[[model.applies_to(gid) for gid in future["game_id"]]]   # the overlay: adjusted games only
+    not_applicable = len(day) - skipped_started - len(future)
+    already = future["game_id"].isin(log.loc[log["model"] == model.name, "game_id"])
     rows = [build_row(model, g, now) for g in future[~already].sort_values("date").itertuples(index=False)]
 
     if rows:
@@ -283,6 +286,39 @@ def summary(log):
         summary_block(log[log["model"] == name])
 
 
+def overlay_report(log):
+    """The injury overlay against its base model on exactly the games that were adjusted."""
+    ov = log[(log["model"] == "overlay") & log["adjustment"].astype(float).fillna(0).ne(0)]
+    if ov.empty:
+        return
+    base_name = json.loads(ov.iloc[0]["model_params"]).get("base", "prior")
+    base = log[(log["model"] == base_name) & log["game_id"].isin(ov["game_id"])]
+    m = ov.merge(base, on="game_id", suffixes=("_ov", "_base"))
+    if m.empty:
+        return
+    print(f"\nInjury overlay vs {base_name} on the {len(m)} adjusted game(s):")
+    show = pd.DataFrame({
+        "date (ET)": pd.to_datetime(m["kickoff_ov"]).dt.tz_convert(LOCAL_TZ).dt.strftime("%Y-%m-%d"),
+        "matchup": m["away_team_ov"] + " at " + m["home_team_ov"],
+        "adj (home)": m["adjustment_ov"].astype(float).round(1),
+        f"{base_name} margin": m["model_home_margin_base"].astype(float).round(1),
+        "overlay margin": m["model_home_margin_ov"].astype(float).round(1),
+        "vegas": m["vegas_line_ov"],
+        "score": m.apply(lambda r: f"{int(r['away_score_ov'])}-{int(r['home_score_ov'])}" if r["settled_ov"] == True else "pending", axis=1),
+        f"{base_name} ATS": m["spread_result_base"].fillna("").str.upper(),
+        "overlay ATS": m["spread_result_ov"].fillna("").str.upper(),
+    })
+    print(show.to_string(index=False))
+    done = m[m["settled_ov"] == True]
+    if len(done):
+        for label, suf in ((base_name, "_base"), ("overlay", "_ov")):
+            su = done[f"pick_correct{suf}"].astype(bool)
+            ats = done[f"spread_result{suf}"]
+            print(f"  {label:8s} straight up {su.sum()}-{(~su).sum()}, against the spread {(ats == 'win').sum()}-{(ats == 'loss').sum()}"
+                  + (f"-{(ats == 'push').sum()}" if (ats == 'push').any() else "")
+                  + f", Brier {done[f'brier{suf}'].astype(float).mean():.3f}")
+
+
 def report():
     log = load_log()
     if log.empty:
@@ -305,6 +341,7 @@ def report():
         cols.insert(1, "model")
     print(show.sort_values(["kickoff", "game_id", "model"])[cols].rename(columns={"vegas_line": "vegas"}).to_string(index=False))
     summary(log)
+    overlay_report(log)
 
 
 def main():

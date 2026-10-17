@@ -10,10 +10,11 @@ from .prior import PriorMarginModel
 from .efficiency import EfficiencyModel
 from .ensemble import EnsembleModel
 from .market import MarketModel
+from .overlay import OverlayModel
 
 MODELS = {EloModel.name: EloModel, MarginModel.name: MarginModel, PriorMarginModel.name: PriorMarginModel,
           EfficiencyModel.name: EfficiencyModel, EnsembleModel.name: EnsembleModel,
-          MarketModel.name: MarketModel}
+          MarketModel.name: MarketModel, OverlayModel.name: OverlayModel}
 DEFAULT_MODEL = EloModel.name
 
 

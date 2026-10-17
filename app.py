@@ -225,6 +225,24 @@ def cfbd_refresh():
     run("fetch_cfbd.py", "--seasons", str(current_season()))
 
 
+def adjustment():
+    """Enter an injury/news adjustment; the overlay model's pick for that game is locked in."""
+    if not need_data():
+        return
+    team = ask("Team (e.g. Ohio State)")
+    points = ask("Points (positive favours the team, e.g. -1.5 for a key injury)")
+    reason = ask("Reason")
+    if not (team and points and reason):
+        print("Need team, points and reason.")
+        return
+    source = ask("Source (optional)")
+    date = ask("Game date (YYYY-MM-DD)", today())
+    args = ["add", "--team", team, "--points", points, "--reason", reason, "--date", date]
+    if source:
+        args += ["--source", source]
+    run("adjust.py", *args) and run("adjust.py", "list", "--date", date)
+
+
 def compare():
     """Every registered model, side by side, on the held-out seasons and the current one."""
     if need_data():
@@ -254,6 +272,7 @@ MENU = [
     ("11", "Back-fill lines", "fetch closing lines for finished games (needed by option 10)", backfill_lines),
     ("12", "Compare models", "accuracy, Brier, log loss and margin error for every model vs. Vegas", compare),
     ("13", "CFBD refresh", "re-download this season's CollegeFootballData sets (recruiting, efficiency, lines)", cfbd_refresh),
+    ("14", "Injury adjustment", "enter points for an injury or news item; locks in the overlay model's pick", adjustment),
 ]
 ACTIONS = {key: fn for key, _, _, fn in MENU}
 

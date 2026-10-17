@@ -56,6 +56,11 @@ class RatingModel:
         rating-to-points scale. Return {} if the model has none."""
         return {}
 
+    def applies_to(self, game_id):
+        """Whether track.py should log this model's pick for a game (the injury overlay says
+        yes only for games with an adjustment)."""
+        return True
+
     # ------------------------------------------------------------------ shared
     def classify_fbs(self, games):
         """Decide which teams are FBS in each season from the schedule itself.

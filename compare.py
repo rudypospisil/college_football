@@ -51,6 +51,8 @@ def main():
     games = load_games()
     preds = {}
     for name, cls in MODELS.items():
+        if name == "overlay":            # identical to its base model on past games
+            continue
         params = load_params(name)
         preds[name] = cls(**params).fit(games)
         print(f"{name:8s} params: {params or 'defaults'}")

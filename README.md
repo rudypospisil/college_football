@@ -55,6 +55,7 @@ cached files in `data/seasons/` for past seasons.
 | `models/market.py` | Market-shading model (`market`): the Vegas line as the baseline, adjusted by a fitted fraction of our rating's disagreement with it. |
 | `clv.py` | Closing line value: picks a side against each game's opening line and measures whether the closing line moved toward it. The honest test of a betting edge. |
 | `fetch_injuries.py` | Snapshots ESPN's college football injury feed into `data/injuries/injuries.csv` (no history exists, so it accumulates from the first run). |
+| `models/overlay.py`, `adjust.py` | Injury overlay (`overlay`): the prior model plus point adjustments entered before kickoff; graded against the prior model on the adjusted games. |
 | `backtest.py` | Grid-searches a model's parameters on 2012-2023, then reports accuracy, Brier score, log loss and calibration on the held-out 2024-2025 seasons. Saves the winning parameters to `data/params/<model>.json`. |
 | `predict.py` | Replays all games to date with a model's saved parameters and prints predictions. |
 | `track.py` | Logs each model's predictions before kickoff, grades them after the games, and summarises the record per model (`data/predictions.csv`). |
@@ -333,6 +334,34 @@ option runs it each week, so a record builds from the first run. The practical u
 position-based adjustment to a model's margin (a starting quarterback out is worth several points,
 a running back or lineman a fraction of one), first as a manual overlay, later estimated from the
 accumulated snapshots.
+
+## Injury overlay
+
+The models know scores, efficiency and last season's roster. They do not know that a starting
+quarterback is out this week. `adjust.py` lets you add that yourself, and the tracker grades
+whether your reads helped:
+
+```bash
+.venv/bin/python adjust.py add --team "Ohio State" --points -1.5 \
+    --reason "RB Ja'Kobi Jackson out (leg); OL shuffling" --source "game preview"
+.venv/bin/python adjust.py list
+.venv/bin/python adjust.py remove --row 0        # before kickoff only
+```
+
+Positive points favour the team. Each row (game, team, points, reason, source, time entered) goes
+to `data/adjustments.csv`. The `overlay` model is the prior model plus the net adjustment for a
+game, with the win probability recomputed, and it applies only to games with an adjustment, so its
+rows in the prediction log are exactly the games you touched. Adding an adjustment locks in the
+overlay's pick for that game immediately, which is why it must happen before kickoff; the report
+(menu option 8) then shows the overlay and the prior model side by side on those games.
+
+Rules of thumb for points, roughly what sportsbooks move lines by: a starting quarterback 4 to 7
+depending on the backup, a top running back or receiver 1 to 2, a starting lineman or top pass
+rusher 0.5 to 1 each, a kicker 0.5. Halve it for "questionable" and keep a team's total under
+about 7. The weekly injury snapshots in `data/injuries/` will eventually let these values be
+estimated from results instead of assumed. Remember that the market model already carries whatever
+the line has priced, so an overlay mainly matters for the standalone models and for news you learn
+before the opening line moves.
 
 ## Adding a model
 
