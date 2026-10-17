@@ -26,12 +26,19 @@ def score(frame, label):
             "log_loss": m["log_loss"], "margin_mae": (frame["margin"] - frame["pred_margin"]).abs().mean()}
 
 
-def vegas_rows(frame):
-    """Score the closing spread as if it were a model: favourite = pick, margin = -spread.
-    Win probability from the spread uses a normal with sigma 16.5 points."""
+def vegas_sigma(pred, through=2023):
+    """Noise level for the closing line, fitted like the models': std of margin minus the line's
+    margin on training-season games with a line."""
+    t = pred[(pred["season"] >= 2012) & (pred["season"] <= through)].dropna(subset=["odds_spread"])
+    return float((t["margin"] + t["odds_spread"]).std())
+
+
+def vegas_rows(frame, sigma):
+    """Score the closing spread as if it were a model: favourite = pick, margin = -spread,
+    win probability from a normal with the fitted sigma."""
     v = frame.dropna(subset=["odds_spread"]).copy()
     v["pred_margin"] = -v["odds_spread"]
-    v["p_home"] = 0.5 * (1 + np.vectorize(__import__("math").erf)(v["pred_margin"] / (16.5 * np.sqrt(2))))
+    v["p_home"] = 0.5 * (1 + np.vectorize(__import__("math").erf)(v["pred_margin"] / (sigma * np.sqrt(2))))
     return v
 
 
@@ -47,6 +54,8 @@ def main():
         params = load_params(name)
         preds[name] = cls(**params).fit(games)
         print(f"{name:8s} params: {params or 'defaults'}")
+    sigma_v = vegas_sigma(next(iter(preds.values())))
+    print(f"Vegas closing line scored with sigma {sigma_v:.2f} (fitted on training seasons)")
 
     for season in args.seasons:
         rows, with_line = [], None
@@ -59,7 +68,7 @@ def main():
             rows.append(score(lined, f"{name} (games with a line)"))
             with_line = lined if with_line is None else with_line
         if with_line is not None and len(with_line):
-            rows.append(score(vegas_rows(with_line), "Vegas closing line"))
+            rows.append(score(vegas_rows(with_line, sigma_v), "Vegas closing line"))
         print(f"\nSeason {season}:")
         print(pd.DataFrame(rows).to_string(index=False, float_format=lambda x: f"{x:.4f}"))
 
@@ -75,7 +84,7 @@ def main():
         for name, pred in preds.items():
             fl = pred[pred["season"].isin(held)].dropna(subset=["odds_spread"])
             rows.append(score(fl, f"{name} (games with a line)"))
-        rows.append(score(vegas_rows(lined), "Vegas closing line"))
+        rows.append(score(vegas_rows(lined, sigma_v), "Vegas closing line"))
         print(f"\nHeld-out seasons {held[0]}-{held[-1]} pooled:")
         print(pd.DataFrame(rows).to_string(index=False, float_format=lambda x: f"{x:.4f}"))
 

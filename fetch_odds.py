@@ -10,6 +10,7 @@ Usage:
     python fetch_odds.py --seasons 2026 --weeks 6
     python fetch_odds.py --seasons 2024 2025         # several minutes per season
     python fetch_odds.py --seasons 2026 --refresh    # replace lines already stored
+    python fetch_odds.py --from-cfbd --seasons 2013 2014 ... 2025   # past seasons from CFBD's cached lines
 
 Progress is saved every 50 games, so it is safe to interrupt and rerun.
 """
@@ -19,7 +20,7 @@ import time
 import pandas as pd
 import requests
 
-from common import SEASON_DIR, current_season, rebuild_games, write_csv
+from common import CFBD_DIR, SEASON_DIR, current_season, rebuild_games, write_csv
 
 ODDS_URL = ("https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/"
             "events/{id}/competitions/{id}/odds")
@@ -136,14 +137,54 @@ def backfill_season(season, weeks=None, refresh=False, pause=0.15):
     return filled
 
 
+CFBD_PROVIDERS = ["DraftKings", "ESPN Bet", "Bovada", "consensus", "Caesars", "Caesars Sportsbook",
+                  "William Hill (New Jersey)", "numberfire", "teamrankings", "SugarHouse", "Westgate", "Pinnacle"]
+
+
+def fill_from_cfbd(season):
+    """Overwrite the betting columns of finished games with CollegeFootballData's cached lines
+    (data/cfbd/lines_<season>.csv), one sportsbook per game in CFBD_PROVIDERS order. CFBD's
+    lines come from named books with opening numbers too, which makes them the better source for
+    past seasons; ESPN's per-game odds are kept for the current season, where the weekly
+    scoreboard supplies DraftKings lines with prices."""
+    path = SEASON_DIR / f"{season}.csv"
+    lines_path = CFBD_DIR / f"lines_{season}.csv"
+    if not path.exists() or not lines_path.exists():
+        print(f"Season {season}: missing {path.name if not path.exists() else lines_path.name}")
+        return 0
+    df = pd.read_csv(path, dtype={"game_id": str, "home_id": str, "away_id": str})
+    lines = pd.read_csv(lines_path, dtype={"id": str}).dropna(subset=["spread"])
+    lines = lines[lines["spread"].abs() < 70]
+    lines["rank"] = lines["provider"].map({p: i for i, p in enumerate(CFBD_PROVIDERS)}).fillna(99)
+    best = lines.sort_values(["id", "rank"]).drop_duplicates("id").set_index("id")
+    done = df["completed"] & df["game_id"].isin(best.index)
+    ids = df.loc[done, "game_id"]
+    df.loc[done, "odds_spread"] = best.loc[ids, "spread"].to_numpy()
+    df.loc[done, "odds_details"] = best.loc[ids, "formatted_spread"].to_numpy()
+    df.loc[done, "over_under"] = best.loc[ids, "over_under"].to_numpy()
+    df.loc[done, "home_moneyline"] = best.loc[ids, "home_moneyline"].to_numpy()
+    df.loc[done, "away_moneyline"] = best.loc[ids, "away_moneyline"].to_numpy()
+    df.loc[done, ["home_spread_odds", "away_spread_odds"]] = float("nan")   # CFBD has no spread prices
+    df.loc[done, "odds_checked"] = True
+    write_csv(df, path)
+    books = best.loc[ids, "provider"].value_counts().to_dict()
+    print(f"Season {season}: {int(done.sum())} of {int(df['completed'].sum())} finished games lined from CFBD {books}")
+    return int(done.sum())
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--seasons", type=int, nargs="*", default=[current_season()])
     parser.add_argument("--weeks", type=int, nargs="*")
     parser.add_argument("--refresh", action="store_true")
+    parser.add_argument("--from-cfbd", action="store_true",
+                        help="fill lines for finished games from data/cfbd/lines_<season>.csv instead of ESPN (no API calls)")
     args = parser.parse_args()
     for season in args.seasons:
-        backfill_season(season, args.weeks, args.refresh)
+        if args.from_cfbd:
+            fill_from_cfbd(season)
+        else:
+            backfill_season(season, args.weeks, args.refresh)
     games = rebuild_games()
     with_lines = games["odds_spread"].notna() & games["completed"]
     print(f"\ngames.csv rebuilt: {int(with_lines.sum())} finished games now have a line "

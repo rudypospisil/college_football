@@ -149,6 +149,7 @@ def game_day():
     date = ask("Date (YYYY-MM-DD)", today())
     ok = run("fetch_data.py")
     ok = ok and run("fetch_odds.py", "--seasons", str(current_season()))
+    run("fetch_injuries.py")                      # snapshot ESPN's injury feed; failures here are not fatal
     for name in model_names():
         ok = ok and run("track.py", "record", "--date", date, "--model", name)
     ok and run("predict.py", "--date", date, "--model", model_names()[0])

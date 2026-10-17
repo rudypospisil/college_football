@@ -8,9 +8,12 @@ from .elo import EloModel
 from .margin import MarginModel
 from .prior import PriorMarginModel
 from .efficiency import EfficiencyModel
+from .ensemble import EnsembleModel
+from .market import MarketModel
 
 MODELS = {EloModel.name: EloModel, MarginModel.name: MarginModel, PriorMarginModel.name: PriorMarginModel,
-          EfficiencyModel.name: EfficiencyModel}
+          EfficiencyModel.name: EfficiencyModel, EnsembleModel.name: EnsembleModel,
+          MarketModel.name: MarketModel}
 DEFAULT_MODEL = EloModel.name
 
 

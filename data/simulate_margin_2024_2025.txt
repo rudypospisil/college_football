@@ -1,52 +1,52 @@
-(54 finished games in the selection have no stored line and are skipped; fetch_odds.py can fill them.)
+(14 finished games in the selection have no stored line and are skipped; fetch_odds.py can fill them.)
 
-Model: margin. 1799 finished games with a betting line, Sat Aug 24 to Mon Jan 19, 2026. Flat stake $100 per bet.
+Model: margin. 1839 finished games with a betting line, Sat Aug 24 to Mon Jan 19, 2026. Flat stake $100 per bet.
 
-Straight up: model picked the winner in 1335 of 1799 (74.2%); the Vegas favourite won 1351 of 1799 (75.1%).
+Straight up: model picked the winner in 1369 of 1839 (74.4%); the Vegas favourite won 1385 of 1839 (75.3%).
 
 Betting the model's picks:
-Spread, every game                         922-874-3 (51.3%)     -3,550 $ on  179,900 $ staked  ROI  -2.0%
-Spread, only when edge >= 3 points         491-453-1 (52.0%)       -638 $ on   94,500 $ staked  ROI  -0.7%
-Spread, only when edge >= 5 points           294-267 (52.4%)       +165 $ on   56,100 $ staked  ROI  +0.3%
-Spread, only when edge >= 7 points           186-144 (56.4%)     +2,556 $ on   33,000 $ staked  ROI  +7.7%
-Moneyline, every game                       1183-454 (72.3%)     -2,035 $ on  163,700 $ staked  ROI  -1.2%
-Moneyline, only when model disagrees w/ Vegas    92-106 (46.5%)     +1,016 $ on   19,800 $ staked  ROI  +5.1%
+Spread, every game                         930-881-28 (51.4%)     -3,554 $ on  183,900 $ staked  ROI  -1.9%
+Spread, only when edge >= 3 points         495-465-14 (51.6%)     -1,500 $ on   97,400 $ staked  ROI  -1.5%
+Spread, only when edge >= 5 points         308-284-8 (52.0%)       -400 $ on   60,000 $ staked  ROI  -0.7%
+Spread, only when edge >= 7 points         188-151-3 (55.5%)     +1,991 $ on   34,200 $ staked  ROI  +5.8%
+Moneyline, every game                       1198-470 (71.8%)     -2,669 $ on  166,800 $ staked  ROI  -1.6%
+Moneyline, only when model disagrees w/ Vegas    99-115 (46.3%)       +966 $ on   21,400 $ staked  ROI  +4.5%
 
 For comparison, blindly betting the Vegas favourite:
-Spread, every game                         906-890-3 (50.4%)     -6,094 $ on  179,900 $ staked  ROI  -3.4%
-Moneyline, every game                       1197-440 (73.1%)     -5,614 $ on  163,700 $ staked  ROI  -3.4%
+Spread, every game                         919-892-28 (50.7%)     -5,669 $ on  183,900 $ staked  ROI  -3.1%
+Moneyline, every game                       1214-454 (72.8%)     -6,368 $ on  166,800 $ staked  ROI  -3.8%
 
 Week by week (spread bets on every game):
  season  week  bets  record  profit $
-   2024     1   126   68-58       418
-   2024     2    77   37-40      -663
-   2024     3    52   31-21       789
-   2024     4    54   25-29      -550
-   2024     5    55   32-23       586
-   2024     6    48   24-24      -205
-   2024     7    52   21-31     -1184
-   2024     8    59   28-31      -621
-   2024     9    57   27-30      -575
-   2024    10    49   26-23        -3
-   2024    11    50   23-27      -663
-   2024    12    55   22-33     -1273
-   2024    13    65   41-24      1361
-   2024    14    66   34-32      -146
-   2024    15     9     4-5      -139
+   2024     1   132 68-62-2       -18
+   2024     2    78   38-40      -545
+   2024     3    63   33-30         0
+   2024     4    64   32-32      -291
+   2024     5    55 28-25-2        45
+   2024     6    49 24-23-2      -118
+   2024     7    52 20-29-3     -1082
+   2024     8    59 27-31-1      -645
+   2024     9    57 27-28-2      -345
+   2024    10    49 26-22-1       164
+   2024    11    50 24-25-1      -318
+   2024    12    55   23-32     -1109
+   2024    13    65   42-23      1518
+   2024    14    67 34-31-2        -9
+   2024    15     9     4-5      -136
    2024    16     1     1-0        91
-   2025     1   137   65-72     -1296
-   2025     2    82   45-37       419
-   2025     3    67   40-27       972
-   2025     4    61   31-30      -177
-   2025     5    53   29-24       256
-   2025     6    51   20-31     -1256
-   2025     7    56   20-36     -1835
-   2025     8    60   33-27       340
-   2025     9    53   26-27      -364
-   2025    10    52   25-27      -428
-   2025    11    52   34-18      1281
-   2025    12    59   35-24       719
-   2025    13    64   36-28       530
-   2025    14    67 34-30-3       111
-   2025    15     9     4-5      -138
-   2025    16     1     1-0        93
+   2025     1   142   69-73     -1027
+   2025     2    83   46-37       482
+   2025     3    70   39-31       445
+   2025     4    62   31-31      -282
+   2025     5    53 31-20-2       818
+   2025     6    51   20-31     -1282
+   2025     7    56 21-32-3     -1291
+   2025     8    60   33-27       300
+   2025     9    53 24-27-2      -518
+   2025    10    52   23-29      -809
+   2025    11    52   31-21       718
+   2025    12    59   35-24       782
+   2025    13    64 37-26-1       764
+   2025    14    67 34-29-4       191
+   2025    15     9     4-5      -136
+   2025    16     1     1-0        91

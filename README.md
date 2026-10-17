@@ -51,6 +51,10 @@ cached files in `data/seasons/` for past seasons.
 | `fetch_cfbd.py` | Downloads recruiting, returning production, per-game efficiency, lines and games from CollegeFootballData.com (free key in `.env`) and maps ESPN to CFBD team ids. |
 | `models/prior.py` | The margin model with a preseason prior regressed on last season's rating, recruiting, four-class talent and returning production. |
 | `models/efficiency.py` | The prior model fit to a blend of actual margins and efficiency margins from CFBD's predicted points added per play. Registered as `eff`; a documented null result. |
+| `models/ensemble.py` | Weighted average of other models' margins (`ens`). Tiny gain: the members' errors are 94-99.9% correlated. |
+| `models/market.py` | Market-shading model (`market`): the Vegas line as the baseline, adjusted by a fitted fraction of our rating's disagreement with it. |
+| `clv.py` | Closing line value: picks a side against each game's opening line and measures whether the closing line moved toward it. The honest test of a betting edge. |
+| `fetch_injuries.py` | Snapshots ESPN's college football injury feed into `data/injuries/injuries.csv` (no history exists, so it accumulates from the first run). |
 | `backtest.py` | Grid-searches a model's parameters on 2012-2023, then reports accuracy, Brier score, log loss and calibration on the held-out 2024-2025 seasons. Saves the winning parameters to `data/params/<model>.json`. |
 | `predict.py` | Replays all games to date with a model's saved parameters and prints predictions. |
 | `track.py` | Logs each model's predictions before kickoff, grades them after the games, and summarises the record per model (`data/predictions.csv`). |
@@ -190,12 +194,15 @@ does to a scores-only model, and the log is how you find out rather than guess.
 
 `simulate.py` uses the prediction the model would have made before each game (its pregame
 ratings, replayed in date order) and the closing line stored for that game, then grades a flat
-stake on every pick: spread bets on the model's side, spread bets only when the edge is at least
+stake on every pick. Lines for 2013-2025 come from CollegeFootballData's cached sportsbook lines
+(`fetch_odds.py --from-cfbd`); ESPN's per-game odds are used only for the current season, because
+its history stores prices in place of spreads for some seasons. Every season passes a sanity check
+(favourites win 74-80% straight up, average miss 12-13 points). It grades: spread bets on the model's side, spread bets only when the edge is at least
 3, 5 or 7 points, moneyline bets on the model's favourite, and moneyline bets only when the model
 disagrees with the Vegas favourite. Blindly betting the Vegas favourite is shown alongside as the
 house-edge baseline. Lines for past games come from ESPN's per-game odds endpoint, which keeps
-the closing DraftKings line (ESPN BET for older seasons), so `fetch_odds.py` can also fill in
-2024 and 2025 for a two-season test.
+the closing DraftKings line for the current season; `fetch_odds.py --from-cfbd` fills every
+season since 2013 from CollegeFootballData's lines, so the replay covers 13 seasons.
 
 Read the results with the sample size in mind. One week is about 60 bets, where a 6-game swing
 is pure luck. The 52.4% cover rate needed to break even at -110 is the bar, and a scores-only
@@ -222,15 +229,18 @@ kickoff of its week, and a perturbation test confirms a game never influences it
 ### Elo vs. margin vs. the market
 
 `python compare.py` scores every registered model on the held-out 2024-2025 seasons; the Vegas
-closing line is scored the same way on the 1,799 games that have one.
+closing line is scored the same way on the 1,839 games that have one, with its own noise level
+fitted on the training seasons so the probability scores are comparable.
 
 | Model | Accuracy | Brier | Log loss | Avg. margin miss | ATS 2024-25 |
 | --- | --- | --- | --- | --- | --- |
-| Elo | 73.1% | 0.174 | 0.514 | 13.3 pts | 50.6% |
-| Margin | 74.2% | 0.167 | 0.496 | 12.6 pts | 51.3% |
-| Prior (margin + recruiting/returning prior) | 74.3% | 0.167 | 0.494 | 12.5 pts | 50.2% |
-| Efficiency (prior + 25% PPA blend) | 74.4% | 0.167 | 0.495 | 12.5 pts | 50.2% |
-| Vegas closing line | 75.1% | 0.162 | 0.483 | 11.9 pts | |
+| Elo | 73.4% | 0.173 | 0.511 | 13.4 pts | 49.5% |
+| Margin | 74.4% | 0.165 | 0.491 | 12.7 pts | 51.4% |
+| Prior (margin + recruiting/returning prior) | 74.7% | 0.165 | 0.489 | 12.5 pts | 51.1% |
+| Efficiency (prior + 25% PPA blend) | 74.8% | 0.165 | 0.490 | 12.6 pts | 50.7% |
+| Ensemble (10% Elo, 80% prior, 10% efficiency) | 74.8% | 0.165 | 0.489 | 12.6 pts | 50.7% |
+| Market (Vegas line shaded by the prior model) | 75.2% | 0.161 | 0.478 | 11.9 pts | 50.1% |
+| Vegas closing line | 75.3% | 0.161 | 0.479 | 11.9 pts | 50.7% (favourites) |
 
 Each step closes part of the gap to the market. The margin model takes 0.7 points off Elo's
 average margin error; the prior model takes another 0.15 and helps most where it should, in weeks
@@ -239,10 +249,22 @@ fit on 2011-2023 only, says a one-standard-deviation edge in four-class recruiti
 3.7 points and the same edge in returning production 1.9 points, with last year's rating carrying
 a weight of 0.64.
 
-Against the spread none of the three clears the 52.4% break-even over 2024-2025, and their order
-(margin 51.3%, Elo 50.6%, prior 50.2%) does not follow their prediction quality, which is what an
-efficient market looks like: better calibration does not create an edge. In week 6 of 2026, where
-Elo had its +25% week, the margin model went 28-30 and the prior model 30-28.
+Against the closing spread none of them clears the 52.4% break-even over 2024-2025, and the order
+(margin 51.4%, prior 51.1%, Elo 49.5%) does not follow prediction quality, which is what an
+efficient market looks like: better calibration does not create an edge against the closer.
+Over all 13 seasons with lines (11,177 games, 2013-2025) the prior model goes 50.8% against the
+spread for -2.9% ROI, and even its 7-point-plus disagreements only reach 52.2%. In week 6 of
+2026, where Elo had its +25% week, the margin model went 28-30 and the prior model 30-28.
+
+### The market model
+
+`models/market.py` starts from the closing line and lets a regression decide how much our rating
+adds: `margin = -0.30 + 1.01 x Vegas margin + 0.16 x (prior margin - Vegas margin)`, fitted on
+2013-2023 games with a line. The market keeps essentially all the weight and our rating's
+disagreement with it gets 16%. On the held-out seasons the result is indistinguishable from the
+closing line itself (average miss 11.95 vs 11.94 points), which makes it the best predictor in
+the project and, by construction, useless against the closer (50.1% ATS). Its value is as the
+number to compare an opening line against: see the closing line value section.
 
 **Efficiency numbers did not help.** `models/efficiency.py` fits the same ridge regression to a
 blend of the actual margin and an efficiency margin built from CollegeFootballData's predicted
@@ -255,8 +277,8 @@ play-by-play efficiency is offset by what it strips out: turnovers, special team
 drives are partly skill. The model stays registered as a fourth entrant in the weekly log.
 
 Today's Ohio State at Indiana game shows the models' temperaments: Elo says Indiana by 7,
-the margin model Indiana by 2, the prior model Ohio State by 2.6, and the market Ohio State by 3.
-The efficiency model says Ohio State by 2.4. All four models' picks for today's 52 games are in the
+the margin model Indiana by 2, the prior model Ohio State by 2.6, the market model Ohio State by 3.3, and the market Ohio State by 3.
+The efficiency model says Ohio State by 2.4. All six models' picks for today's 52 games are in the
 prediction log, so option 8 will show the head-to-head record as soon as the games are settled.
 
 ## CollegeFootballData.com data
@@ -273,6 +295,44 @@ free tier allows 1,000 calls a month, so the script makes one call per season pe
 never re-downloads a cached season unless you name it: `python fetch_cfbd.py --seasons 2026`
 refreshes the current season (games, efficiency and lines change weekly). Weather data needs a
 paid tier and is not used.
+
+## Closing line value: the one test that matters for betting
+
+`clv.py` takes each game's opening spread from CFBD's lines files, has the model pick a side
+against that opener, and then asks what the closing line did. If the market moves toward the
+model's side after it would have bet, the model knew something the market learned later. This
+shows up in weeks, not seasons, and is far less noisy than win-loss records.
+
+| 2024-2025 | Bets | Close moved toward us / away | Mean CLV | Record vs opener | Record vs closer |
+| --- | --- | --- | --- | --- | --- |
+| Prior model, every game | 1,795 | 50% / 32% | +0.83 pts | 51.8% | 49.3% |
+| Prior, disagree with opener by 3+ pts | 797 | 55% / 26% | +1.45 pts | 54.1% | 50.3% |
+| Prior, disagree by 8+ pts | 173 | 64% / 24% | +3.05 pts | 62.4% | |
+| Market model, disagree with opener by 2+ pts | 41 | 76% / 17% | +5.46 pts | 74.4% | 51.2% |
+
+Read together with the replay results this is a coherent picture: the model has real information
+relative to the opening number, the market absorbs it during the week, and by kickoff there is
+nothing left. An edge that exists only against openers is small in practice (books post openers
+with low limits and move them fast), but it is the first positive betting signal in this project,
+and it is the metric to watch as the tracker accumulates weeks.
+
+## Ensemble
+
+`models/ensemble.py` averages member models' margins; the default is 10% Elo, 80% prior, 10%
+efficiency, chosen by training-season log loss among genuine mixes. Held-out Brier improves from
+0.1636 to 0.1634, which is what averaging models whose errors correlate at 0.94 to 0.999 can do.
+It stays registered because members with different information (the market model, a future
+offense/defense model) would make it useful.
+
+## Injuries
+
+College football has no official injury report; the SEC, Big Ten, ACC and Big 12 publish
+game-day availability reports, and ESPN aggregates reported injuries into a feed with no history.
+`fetch_injuries.py` snapshots that feed into `data/injuries/injuries.csv` and the game-day menu
+option runs it each week, so a record builds from the first run. The practical use is a
+position-based adjustment to a model's margin (a starting quarterback out is worth several points,
+a running back or lineman a fraction of one), first as a manual overlay, later estimated from the
+accumulated snapshots.
 
 ## Adding a model
 
@@ -299,8 +359,9 @@ and `compare.py` (menu option 12) puts all of them in one table.
   travel or scheme, all of which the betting market prices in.
 * Preseason ratings are just last year's ratings regressed toward the mean; recruiting
   rankings and returning production would sharpen the first few weeks of a season.
-* The weekly scoreboard only carries lines for the current week; `fetch_odds.py` back-fills
-  closing lines for finished games one request at a time.
+* The weekly scoreboard only carries lines for the current week; past seasons' lines come from
+  CollegeFootballData (`fetch_odds.py --from-cfbd`). ESPN's own odds history is unreliable
+  before 2024.
 
 ## Ideas for the next version
 

@@ -1,0 +1,15 @@
+Model: market. 1795 bets vs the opening line, seasons [2024, 2025], min edge 0 (books: {'DraftKings': 1397, 'ESPN Bet': 349, 'Bovada': 49})
+
+Closing line value: mean +0.75 points per bet; the close moved toward us in 48.9% of bets, away in 32.7%, unchanged in 18.4%.
+Record vs opener: 910-869-16 (51.2%); break-even at -110 is 52.4%.
+Record vs closer: 867-901-27 (49.0%); break-even at -110 is 52.4%.
+
+By size of our disagreement with the opener:
+               bets  mean_clv  clv_positive  cover_rate_vs_opener
+edge                                                             
+(-0.001, 1.0]  1497     0.408         0.464                 0.497
+(1.0, 2.0]      257     2.004         0.595                 0.563
+(2.0, 3.0]       30     4.767         0.767                 0.714
+(3.0, 5.0]       11     7.364         0.727                 0.818
+
+Sanity check: the opener itself moved toward the eventual winner's side in 45.4% of games.

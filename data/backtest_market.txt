@@ -1,0 +1,71 @@
+Model: market. Loaded 14828 games, 14153 completed, seasons 2010-2026
+
+Chosen parameters: {"sigma": 15.97, "coef": [-0.3031, 1.0141, 0.1577]}
+
+Model vs. naive baseline (always pick the home team / constant home-win rate):
+                         split  games  accuracy  brier  log_loss  always_home_acc  always_home_brier
+               train 2012-2023  10221    0.7647 0.1564    0.4714           0.6190             0.2358
+TEST 2024-2025 (out of sample)   1853    0.7539 0.1597    0.4750           0.6379             0.2310
+    current season 2026 so far    458    0.8253 0.1199    0.3697           0.7140             0.2042
+
+Out-of-sample results by season:
+          games  accuracy  brier  log_loss
+season                                    
+2024   919.0000    0.7421 0.1629    0.4829
+2025   934.0000    0.7655 0.1564    0.4672
+
+FBS-vs-FBS games only (test seasons): {"games": 1606, "accuracy": 0.7217, "brier": 0.1791, "log_loss": 0.529}
+
+Calibration on test seasons (predicted home-win probability vs. what happened):
+               games  predicted  actual
+p_home                                 
+(-0.001, 0.1]     42      0.066   0.119
+(0.1, 0.2]        84      0.163   0.179
+(0.2, 0.3]       121      0.250   0.298
+(0.3, 0.4]       166      0.348   0.325
+(0.4, 0.5]       192      0.438   0.443
+(0.5, 0.6]       275      0.557   0.545
+(0.6, 0.7]       238      0.648   0.697
+(0.7, 0.8]       173      0.749   0.769
+(0.8, 0.9]       195      0.850   0.892
+(0.9, 1.0]       367      0.964   0.992
+
+Model vs. Vegas on test-season games with a stored point spread:
+{
+  "games_with_line": 1839,
+  "vegas_accuracy": 0.7531,
+  "model_accuracy": 0.752,
+  "agreement": 0.9967,
+  "model_spread_mae": 11.948,
+  "vegas_spread_mae": 11.9424
+}
+
+Current top 25 (market):
+ rank                      team  rating
+    1       Ohio State Buckeyes    26.6
+    2 Notre Dame Fighting Irish    26.5
+    3          Georgia Bulldogs    25.5
+    4      Alabama Crimson Tide    24.8
+    5          Miami Hurricanes    24.7
+    6          Indiana Hoosiers    21.6
+    7           Texas Longhorns    21.5
+    8              Oregon Ducks    19.9
+    9                 Utah Utes    17.6
+   10                LSU Tigers    16.6
+   11           Ole Miss Rebels    14.7
+   12          Oklahoma Sooners    14.1
+   13    Texas Tech Red Raiders    13.7
+   14               USC Trojans    13.7
+   15      Tennessee Volunteers    13.6
+   16           Missouri Tigers    13.4
+   17               BYU Cougars    13.4
+   18          Texas A&M Aggies    13.3
+   19             Iowa Hawkeyes    12.9
+   20           Houston Cougars    12.3
+   21            Florida Gators    11.5
+   22               UCLA Bruins    10.9
+   23      Nebraska Cornhuskers    10.9
+   24  South Carolina Gamecocks    10.3
+   25       Michigan Wolverines    10.3
+
+Saved parameters to /Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/data/params/market.json
