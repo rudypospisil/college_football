@@ -45,7 +45,11 @@ cached files in `data/seasons/` for past seasons.
 | `common.py` | Shared paths, `load_games()`, atomic CSV writes and the per-model parameter files in `data/params/`. |
 | `models/base.py` | The interface every model implements (`fit`, `predict`, `rating`, `params`) plus shared FBS classification, rankings and team lookup. |
 | `models/elo.py` | The Elo model: ratings, home-field advantage, margin-of-victory updates, preseason regression, FCS pooling. |
+| `models/margin.py` | The margin model: weighted ridge regression on point differentials, refit weekly, with last season's ratings as a prior. |
 | `models/__init__.py` | The registry (`MODELS`); every script takes `--model <name>`. |
+| `compare.py` | Every registered model side by side on the held-out seasons, with the Vegas closing line scored the same way. |
+| `fetch_cfbd.py` | Downloads recruiting, returning production, per-game efficiency, lines and games from CollegeFootballData.com (free key in `.env`) and maps ESPN to CFBD team ids. |
+| `models/prior.py` | The margin model with a preseason prior regressed on last season's rating, recruiting, four-class talent and returning production. |
 | `backtest.py` | Grid-searches a model's parameters on 2012-2023, then reports accuracy, Brier score, log loss and calibration on the held-out 2024-2025 seasons. Saves the winning parameters to `data/params/<model>.json`. |
 | `predict.py` | Replays all games to date with a model's saved parameters and prints predictions. |
 | `track.py` | Logs each model's predictions before kickoff, grades them after the games, and summarises the record per model (`data/predictions.csv`). |
@@ -196,6 +200,68 @@ Read the results with the sample size in mind. One week is about 60 bets, where 
 is pure luck. The 52.4% cover rate needed to break even at -110 is the bar, and a scores-only
 model should not be expected to clear it over a full season.
 
+## How the margin model works
+
+`models/margin.py` treats each team's rating as points above an average FBS team and fits all
+ratings at once by weighted least squares on the season's point differentials:
+
+1. Before every week, solve for the ratings that best explain the margins so far, where
+   `margin = rating_home - rating_away + 3 (home field)`. Older games count less: a game
+   180 days old has half the weight of one played yesterday.
+2. A ridge penalty pulls each rating toward a prior, last season's final rating shrunk 20% toward
+   average, with the strength of two games' worth of evidence. In week 1 the ratings are the
+   prior; by midseason the games dominate.
+3. Win probability is the normal distribution applied to the predicted margin, with a noise
+   level of 16.9 points estimated from the training seasons.
+
+The grid search chose no cap on margins, a 180-day half-life, a 3-point home field and a light
+prior. Everything is walk-forward: a game's prediction uses only games played before the first
+kickoff of its week, and a perturbation test confirms a game never influences its own prediction.
+
+### Elo vs. margin vs. the market
+
+`python compare.py` scores every registered model on the held-out 2024-2025 seasons; the Vegas
+closing line is scored the same way on the 1,799 games that have one.
+
+| Model | Accuracy | Brier | Log loss | Avg. margin miss | ATS 2024-25 |
+| --- | --- | --- | --- | --- | --- |
+| Elo | 73.1% | 0.174 | 0.514 | 13.3 pts | 50.6% |
+| Margin | 74.2% | 0.167 | 0.496 | 12.6 pts | 51.3% |
+| Prior (margin + recruiting/returning prior) | 74.3% | 0.167 | 0.494 | 12.5 pts | 50.2% |
+| Vegas closing line | 75.1% | 0.162 | 0.483 | 11.9 pts | |
+
+Each step closes part of the gap to the market. The margin model takes 0.7 points off Elo's
+average margin error; the prior model takes another 0.15 and helps most where it should, in weeks
+1-4 of a season (Brier 0.136 vs. 0.137 for margin and 0.145 for Elo). Its preseason regression,
+fit on 2011-2023 only, says a one-standard-deviation edge in four-class recruiting talent is worth
+3.7 points and the same edge in returning production 1.9 points, with last year's rating carrying
+a weight of 0.64.
+
+Against the spread none of the three clears the 52.4% break-even over 2024-2025, and their order
+(margin 51.3%, Elo 50.6%, prior 50.2%) does not follow their prediction quality, which is what an
+efficient market looks like: better calibration does not create an edge. In week 6 of 2026, where
+Elo had its +25% week, the margin model went 28-30 and the prior model 30-28.
+
+Today's Ohio State at Indiana game shows the three models' temperaments: Elo says Indiana by 7,
+the margin model Indiana by 2, the prior model Ohio State by 2.6, and the market Ohio State by 3.
+All three models' picks for today's 52 games are in the prediction log, so option 8 will show
+the head-to-head record as soon as the games are settled.
+
+## CollegeFootballData.com data
+
+`fetch_cfbd.py` downloads season-level datasets from CollegeFootballData.com into `data/cfbd/`:
+every game with CFBD's team ids and its own pregame Elo, per-game predicted points added (an
+efficiency measure), betting lines from several sportsbooks back to 2013, recruiting class
+rankings, and returning production. It also builds `team_map.csv`, which links ESPN and CFBD
+team ids by matching games on date and score (no name matching).
+
+It needs a free API key from collegefootballdata.com. Put it in a file named `.env` next to the
+scripts, as `CFBD_API_KEY=...`. That file is in `.gitignore` and must never be committed. The
+free tier allows 1,000 calls a month, so the script makes one call per season per dataset and
+never re-downloads a cached season unless you name it: `python fetch_cfbd.py --seasons 2026`
+refreshes the current season (games, efficiency and lines change weekly). Weather data needs a
+paid tier and is not used.
+
 ## Adding a model
 
 Every model is a class in `models/` that subclasses `RatingModel` (see `models/base.py`) and
@@ -212,7 +278,8 @@ is listed in `MODELS` in `models/__init__.py`. It needs four things:
 Once registered, `--model <name>` works everywhere: `backtest.py` tunes and evaluates it on the
 same held-out seasons as Elo, `track.py record` logs its picks alongside Elo's each week, and
 `simulate.py` replays it against the same closing lines. The game-day menu option records
-every registered model, so a new idea is judged on identical games from its first Saturday.
+every registered model, so a new idea is judged on identical games from its first Saturday,
+and `compare.py` (menu option 12) puts all of them in one table.
 
 ## Limitations
 

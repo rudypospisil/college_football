@@ -216,6 +216,20 @@ def what_if():
     run("simulate.py", *args)
 
 
+def cfbd_refresh():
+    """Refresh this season's CollegeFootballData downloads (needs the key in .env)."""
+    if not (ROOT / ".env").exists() and not os.environ.get("CFBD_API_KEY"):
+        print("\nNo CollegeFootballData key found. Put CFBD_API_KEY=... in a .env file next to app.py.")
+        return
+    run("fetch_cfbd.py", "--seasons", str(current_season()))
+
+
+def compare():
+    """Every registered model, side by side, on the held-out seasons and the current one."""
+    if need_data():
+        run("compare.py")
+
+
 def backfill_lines():
     """Fetch closing lines for finished games that do not have one yet."""
     if not need_data():
@@ -237,6 +251,8 @@ MENU = [
     ("9", "Backtest", "re-tune a model's parameters and report out-of-sample accuracy", backtest),
     ("10", "What if I had bet?", "grade flat bets on a model's picks for a past week or season", what_if),
     ("11", "Back-fill lines", "fetch closing lines for finished games (needed by option 10)", backfill_lines),
+    ("12", "Compare models", "accuracy, Brier, log loss and margin error for every model vs. Vegas", compare),
+    ("13", "CFBD refresh", "re-download this season's CollegeFootballData sets (recruiting, efficiency, lines)", cfbd_refresh),
 ]
 ACTIONS = {key: fn for key, _, _, fn in MENU}
 

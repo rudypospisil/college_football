@@ -1,0 +1,313 @@
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: divide by zero encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: overflow encountered in matmul
+  resid = y - X @ coef
+/Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/models/prior.py:118: RuntimeWarning: invalid value encountered in matmul
+  resid = y - X @ coef
+Model: prior. Loaded 14828 games, 14153 completed, seasons 2010-2026
+Grid search over 36 parameter combinations on seasons 2012-2023 ...
+
+Top 10 parameter sets (training seasons, lower log loss is better):
+   lam  half_life    hfa    cap  games  accuracy  brier  log_loss
+4.0000   365.0000 2.5000 0.0000  10221    0.7593 0.1606    0.4844
+4.0000   365.0000 3.0000 0.0000  10221    0.7596 0.1606    0.4845
+4.0000   180.0000 2.5000 0.0000  10221    0.7595 0.1606    0.4847
+4.0000   180.0000 3.0000 0.0000  10221    0.7588 0.1607    0.4848
+4.0000   120.0000 2.5000 0.0000  10221    0.7589 0.1608    0.4852
+4.0000   120.0000 3.0000 0.0000  10221    0.7587 0.1608    0.4852
+2.0000   120.0000 2.5000 0.0000  10221    0.7589 0.1613    0.4859
+2.0000   120.0000 3.0000 0.0000  10221    0.7578 0.1614    0.4860
+2.0000   180.0000 2.5000 0.0000  10221    0.7582 0.1615    0.4862
+2.0000   180.0000 3.0000 0.0000  10221    0.7586 0.1615    0.4862
+
+Chosen parameters: {"lam": 4.0, "half_life": 365.0, "hfa": 2.5, "cap": 0.0, "sigma": 16.58}
+
+Model vs. naive baseline (always pick the home team / constant home-win rate):
+                         split  games  accuracy  brier  log_loss  always_home_acc  always_home_brier
+               train 2012-2023  10221    0.7593 0.1604    0.4839           0.6190             0.2358
+TEST 2024-2025 (out of sample)   1853    0.7491 0.1636    0.4860           0.6379             0.2310
+    current season 2026 so far    458    0.8013 0.1352    0.4218           0.7140             0.2042
+
+Out-of-sample results by season:
+          games  accuracy  brier  log_loss
+season                                    
+2024   919.0000    0.7378 0.1688    0.4984
+2025   934.0000    0.7602 0.1585    0.4738
+
+FBS-vs-FBS games only (test seasons): {"games": 1606, "accuracy": 0.7167, "brier": 0.1834, "log_loss": 0.5403}
+
+Calibration on test seasons (predicted home-win probability vs. what happened):
+               games  predicted  actual
+p_home                                 
+(-0.001, 0.1]     26      0.073   0.115
+(0.1, 0.2]        60      0.160   0.150
+(0.2, 0.3]       134      0.253   0.254
+(0.3, 0.4]       181      0.353   0.381
+(0.4, 0.5]       195      0.454   0.410
+(0.5, 0.6]       256      0.552   0.527
+(0.6, 0.7]       240      0.650   0.667
+(0.7, 0.8]       224      0.747   0.826
+(0.8, 0.9]       202      0.852   0.866
+(0.9, 1.0]       335      0.961   0.991
+
+Model vs. Vegas on test-season games with a stored point spread:
+{
+  "games_with_line": 1799,
+  "vegas_accuracy": 0.751,
+  "model_accuracy": 0.7432,
+  "agreement": 0.9044,
+  "model_spread_mae": 12.4706,
+  "vegas_spread_mae": 11.8966
+}
+
+Current top 25 (prior):
+ rank                      team  rating
+    1       Ohio State Buckeyes    26.6
+    2 Notre Dame Fighting Irish    26.5
+    3          Georgia Bulldogs    25.5
+    4      Alabama Crimson Tide    24.8
+    5          Miami Hurricanes    24.7
+    6          Indiana Hoosiers    21.6
+    7           Texas Longhorns    21.5
+    8              Oregon Ducks    19.9
+    9                 Utah Utes    17.6
+   10                LSU Tigers    16.6
+   11           Ole Miss Rebels    14.7
+   12          Oklahoma Sooners    14.1
+   13    Texas Tech Red Raiders    13.7
+   14               USC Trojans    13.7
+   15      Tennessee Volunteers    13.6
+   16           Missouri Tigers    13.4
+   17               BYU Cougars    13.4
+   18          Texas A&M Aggies    13.3
+   19             Iowa Hawkeyes    12.9
+   20           Houston Cougars    12.3
+   21            Florida Gators    11.5
+   22               UCLA Bruins    10.9
+   23      Nebraska Cornhuskers    10.9
+   24  South Carolina Gamecocks    10.3
+   25       Michigan Wolverines    10.3
+
+Saved parameters to /Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/data/params/prior.json

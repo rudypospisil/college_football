@@ -13,6 +13,7 @@ SEASON_DIR = DATA_DIR / "seasons"     # one CSV of games per season (raw cache)
 GAMES_CSV = DATA_DIR / "games.csv"    # all seasons combined
 PARAMS_DIR = DATA_DIR / "params"      # tuned parameters, one JSON per model
 LOG_PATH = DATA_DIR / "predictions.csv"
+CFBD_DIR = DATA_DIR / "cfbd"          # CollegeFootballData.com downloads (fetch_cfbd.py)
 LOCAL_TZ = "US/Eastern"               # college football schedules are published in Eastern time
 
 
@@ -60,3 +61,16 @@ def save_params(model_name, params):
     PARAMS_DIR.mkdir(parents=True, exist_ok=True)
     params_path(model_name).write_text(json.dumps(params, indent=2))
     return params_path(model_name)
+
+
+def cfbd_api_key():
+    """CollegeFootballData.com key from the CFBD_API_KEY environment variable or the .env file
+    next to this module (.env is ignored by git; never commit the key)."""
+    import os
+    key = os.environ.get("CFBD_API_KEY")
+    env_file = ROOT / ".env"
+    if not key and env_file.exists():
+        for line in env_file.read_text().splitlines():
+            if line.startswith("CFBD_API_KEY="):
+                key = line.split("=", 1)[1].strip().strip('"')
+    return key or None

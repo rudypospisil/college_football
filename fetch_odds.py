@@ -23,8 +23,11 @@ from common import SEASON_DIR, current_season, rebuild_games, write_csv
 
 ODDS_URL = ("https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/"
             "events/{id}/competitions/{id}/odds")
-# Prefer the book the weekly scoreboard uses (DraftKings), then ESPN BET, then anything else.
-PROVIDER_PRIORITY = {"100": 0, "58": 1, "1004": 2}
+# Prefer the book the weekly scoreboard uses (DraftKings), then ESPN BET, then well-known books
+# and the consensus line that ESPN carried in earlier seasons, then anything else.
+PROVIDER_PRIORITY = {"100": 0, "58": 1}
+NAME_PRIORITY = ["draftkings", "espn bet", "caesars sportsbook", "caesars", "consensus", "westgate",
+                 "bovada", "william hill", "5dimes", "betonline", "numberfire", "teamrankings"]
 ODDS_COLUMNS = ["odds_details", "odds_spread", "over_under",
                 "home_moneyline", "away_moneyline", "home_spread_odds", "away_spread_odds"]
 
@@ -59,7 +62,16 @@ def side_values(side):
 def choose_provider(items):
     usable = [i for i in items if "live" not in (i.get("provider", {}).get("name") or "").lower()
               and (i.get("spread") is not None or i.get("details"))]
-    usable.sort(key=lambda i: PROVIDER_PRIORITY.get(str(i.get("provider", {}).get("id")), 9))
+    def rank(item):
+        pid = str(item.get("provider", {}).get("id"))
+        pname = (item.get("provider", {}).get("name") or "").lower()
+        if pid in PROVIDER_PRIORITY:
+            return PROVIDER_PRIORITY[pid]
+        for n, key in enumerate(NAME_PRIORITY):
+            if pname == key or pname.startswith(key):
+                return 2 + n
+        return 99
+    usable.sort(key=rank)
     return usable[0] if usable else None
 
 

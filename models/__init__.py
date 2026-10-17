@@ -5,8 +5,10 @@ its picks with track.py and replays it with simulate.py.
 """
 from common import load_params
 from .elo import EloModel
+from .margin import MarginModel
+from .prior import PriorMarginModel
 
-MODELS = {EloModel.name: EloModel}
+MODELS = {EloModel.name: EloModel, MarginModel.name: MarginModel, PriorMarginModel.name: PriorMarginModel}
 DEFAULT_MODEL = EloModel.name
 
 
