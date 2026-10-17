@@ -1,0 +1,76 @@
+58 finished games with a betting line, Tue Oct 06 to Sat Oct 10, 2026. Flat stake $100 per bet.
+
+Straight up: model picked the winner in 41 of 58 (70.7%); the Vegas favourite won 39 of 58 (67.2%).
+
+Betting the model's picks:
+Spread, every game                             38-20 (65.5%)     +1,464 $ on    5,800 $ staked  ROI +25.2%
+Spread, only when edge >= 3 points             19-15 (55.9%)       +220 $ on    3,400 $ staked  ROI  +6.5%
+Spread, only when edge >= 5 points             14-11 (56.0%)       +162 $ on    2,500 $ staked  ROI  +6.5%
+Spread, only when edge >= 7 points              5-10 (33.3%)       -549 $ on    1,500 $ staked  ROI -36.6%
+Moneyline, every game                          39-17 (69.6%)         -7 $ on    5,600 $ staked  ROI  -0.1%
+Moneyline, only when model disagrees w/ Vegas       4-2 (66.7%)       +253 $ on      600 $ staked  ROI +42.2%
+
+For comparison, blindly betting the Vegas favourite:
+Spread, every game                             24-34 (41.4%)     -1,214 $ on    5,800 $ staked  ROI -20.9%
+Moneyline, every game                          37-19 (66.1%)       -550 $ on    5,600 $ staked  ROI  -9.8%
+
+Game by game:
+     date                                                   matchup score                         model pick      vegas                           spread bet  ATS  ATS $   ML   ML $
+Tue 10-06               Southern Miss Golden Eagles at Troy Trojans 34-55                   Troy Trojans 75%  TROY -9.5                   Troy Trojans (0.1)  WIN   89.0  WIN   24.0
+Wed 10-07       Jacksonville State Gamecocks at Kennesaw State Owls 27-26   Jacksonville State Gamecocks 58%    JXST -3            Kennesaw State Owls (0.1)  WIN   87.0  WIN   68.0
+Wed 10-07 New Mexico State Aggies at Florida International Panthers  3-22 Florida International Panthers 72%     FIU -7 Florida International Panthers (1.4)  WIN   93.0  WIN   38.0
+Thu 10-08                    Sam Houston Bearkats at Liberty Flames  3-35                 Liberty Flames 89%  LIB -13.5                 Liberty Flames (5.1)  WIN   91.0  WIN   17.0
+Thu 10-08      Missouri State Bears at Western Kentucky Hilltoppers 13-34   Western Kentucky Hilltoppers 54%  MOST -1.5   Western Kentucky Hilltoppers (3.0)  WIN   89.0  WIN   98.0
+Thu 10-08                   South Florida Bulls at UTSA Roadrunners 24-31               UTSA Roadrunners 63%  UTSA -5.5            South Florida Bulls (0.8) LOSS -100.0  WIN   43.0
+Thu 10-08        South Alabama Jaguars at Arkansas State Red Wolves 56-49      Arkansas State Red Wolves 56%    ARST -3          South Alabama Jaguars (0.8)  WIN   95.0 LOSS -100.0
+Fri 10-09           Florida State Seminoles at Louisville Cardinals 20-44           Louisville Cardinals 70%     LOU -4           Louisville Cardinals (3.3)  WIN   89.0  WIN   52.0
+Fri 10-09                       Iowa Hawkeyes at Washington Huskies 41-24                  Iowa Hawkeyes 56%    WASH -3                  Iowa Hawkeyes (5.2)  WIN   89.0  WIN  130.0
+Fri 10-09             Washington State Cougars at Utah State Aggies 16-17       Washington State Cougars 50%     USU -4       Washington State Cougars (4.1)  WIN   93.0 LOSS -100.0
+Fri 10-09                Wyoming Cowboys at San José State Spartans 16-13        San José State Spartans 62%  SJSU -4.5                Wyoming Cowboys (0.0)  WIN   91.0 LOSS -100.0
+Fri 10-09                        Iowa State Cyclones at BYU Cougars 10-24                    BYU Cougars 82%  BYU -11.5                    BYU Cougars (2.0)  WIN   93.0  WIN   21.0
+Sat 10-10         Sacramento State Hornets at Bowling Green Falcons 10-38          Bowling Green Falcons 67%  BGSU -9.5       Sacramento State Hornets (3.4) LOSS -100.0  WIN   31.0
+Sat 10-10                   Tulane Green Wave at Army Black Knights 17-20             Army Black Knights 50%  ARMY -5.5              Tulane Green Wave (5.4)  WIN   87.0  WIN   49.0
+Sat 10-10                  Indiana Hoosiers at Nebraska Cornhuskers 20-17               Indiana Hoosiers 86%    IU -9.5               Indiana Hoosiers (6.1) LOSS -100.0  WIN   28.0
+Sat 10-10            Wake Forest Demon Deacons at NC State Wolfpack 38-14              NC State Wolfpack 52%    WAKE -4              NC State Wolfpack (4.8) LOSS -100.0 LOSS -100.0
+Sat 10-10           North Carolina Tar Heels at Pittsburgh Panthers 21-17            Pittsburgh Panthers 83%  PITT -3.5           Pittsburgh Panthers (10.2) LOSS -100.0 LOSS -100.0
+Sat 10-10                     UCF Knights at Oklahoma State Cowboys 28-42         Oklahoma State Cowboys 52% OKST -10.5                    UCF Knights (9.8) LOSS -100.0  WIN   25.0
+Sat 10-10            Arizona Wildcats at West Virginia Mountaineers 52-31               Arizona Wildcats 78%  ARIZ -3.5               Arizona Wildcats (7.5)  WIN   95.0  WIN   57.0
+Sat 10-10                       Texas A&M Aggies at Missouri Tigers  6-27                Missouri Tigers 66%   MIZ -4.5                Missouri Tigers (1.4)  WIN   91.0  WIN   49.0
+Sat 10-10             Ball State Cardinals at Northwestern Wildcats 14-45          Northwestern Wildcats 96%   NU -34.5           Ball State Cardinals (6.9)  WIN   91.0  WIN    0.0
+Sat 10-10                South Carolina Gamecocks at Florida Gators 38-19                 Florida Gators 77%  FLA -10.5                 Florida Gators (0.3) LOSS -100.0 LOSS -100.0
+Sat 10-10                        Rice Owls at East Carolina Pirates 12-28          East Carolina Pirates 86%    ECU -10          East Carolina Pirates (6.0)  WIN   93.0  WIN   26.0
+Sat 10-10           Old Dominion Monarchs at App State Mountaineers  10-3         App State Mountaineers 59%   APP -8.5          Old Dominion Monarchs (5.4)  WIN   93.0 LOSS -100.0
+Sat 10-10            Miami (OH) RedHawks at Massachusetts Minutemen 20-19            Miami (OH) RedHawks 62%    M-OH -6        Massachusetts Minutemen (1.6)  WIN   93.0  WIN   44.0
+Sat 10-10     Kent State Golden Flashes at Western Michigan Broncos  7-38       Western Michigan Broncos 86%  WMU -13.5       Western Michigan Broncos (2.6)  WIN   87.0  WIN   17.0
+Sat 10-10                Central Michigan Chippewas at Ohio Bobcats 14-31                   Ohio Bobcats 71%  OHIO -2.5                   Ohio Bobcats (5.4)  WIN   89.0  WIN   74.0
+Sat 10-10                           Buffalo Bulls at Toledo Rockets  23-8                 Toledo Rockets 87%  TOL -18.5                  Buffalo Bulls (2.0)  WIN   93.0 LOSS -100.0
+Sat 10-10                     Eastern Michigan Eagles at Akron Zips 25-23        Eastern Michigan Eagles 61%   EMU -4.5                     Akron Zips (0.5)  WIN   91.0  WIN   49.0
+Sat 10-10                 Tulsa Golden Hurricane at Navy Midshipmen 26-34                Navy Midshipmen 81%    NAVY -3                Navy Midshipmen (9.6)  WIN   89.0  WIN   65.0
+Sat 10-10                 Charlotte 49ers at North Texas Mean Green 10-50         North Texas Mean Green 96%  UNT -27.5         North Texas Mean Green (0.8)  WIN   91.0  WIN    2.0
+Sat 10-10                               UCLA Bruins at Oregon Ducks 17-15                   Oregon Ducks 81%    ORE -10                   Oregon Ducks (2.8) LOSS -100.0 LOSS -100.0
+Sat 10-10           Duke Blue Devils at Georgia Tech Yellow Jackets 25-28               Duke Blue Devils 81%  DUKE -4.5               Duke Blue Devils (8.0) LOSS -100.0 LOSS -100.0
+Sat 10-10           Virginia Tech Hokies at California Golden Bears 20-25           Virginia Tech Hokies 69%   VT -11.5        California Golden Bears (4.5)  WIN   89.0 LOSS -100.0
+Sat 10-10            Stanford Cardinal at Notre Dame Fighting Irish  7-58      Notre Dame Fighting Irish 95%   ND -40.5             Stanford Cardinal (14.5) LOSS -100.0         NaN
+Sat 10-10                  Houston Cougars at Kansas State Wildcats 35-16          Kansas State Wildcats 56%   KSU -2.5                Houston Cougars (0.3)  WIN   95.0 LOSS -100.0
+Sat 10-10                  Ole Miss Rebels at Vanderbilt Commodores 52-17                Ole Miss Rebels 56%  MISS -9.5          Vanderbilt Commodores (7.5) LOSS -100.0  WIN   28.0
+Sat 10-10                       Texas Longhorns at Oklahoma Sooners 24-27                Texas Longhorns 77%   TEX -7.5                Texas Longhorns (3.2) LOSS -100.0 LOSS -100.0
+Sat 10-10       Illinois Fighting Illini at Michigan State Spartans 38-37       Illinois Fighting Illini 56%   ILL -2.5        Michigan State Spartans (0.4)  WIN   95.0  WIN   70.0
+Sat 10-10                              UConn Huskies at Temple Owls 34-20                    Temple Owls 55%   TEM -3.5                  UConn Huskies (1.9)  WIN   93.0 LOSS -100.0
+Sat 10-10               Tennessee Volunteers at Arkansas Razorbacks 24-17           Tennessee Volunteers 78% TENN -13.5            Arkansas Razorbacks (2.3)  WIN   95.0  WIN   17.0
+Sat 10-10                 Maryland Terrapins at Ohio State Buckeyes 16-45            Ohio State Buckeyes 98%  OSU -31.5            Ohio State Buckeyes (1.0) LOSS -100.0         NaN
+Sat 10-10            San Diego State Aztecs at Oregon State Beavers 14-66           Oregon State Beavers 51% ORST -14.5        San Diego State Aztecs (14.3) LOSS -100.0  WIN   14.0
+Sat 10-10 Coastal Carolina Chanticleers at Marshall Thundering Herd 27-21       Marshall Thundering Herd 83%  MRSH -4.5       Marshall Thundering Herd (9.5) LOSS -100.0 LOSS -100.0
+Sat 10-10                   North Dakota State Bison at UNLV Rebels  7-13                    UNLV Rebels 64%    NDSU -3                    UNLV Rebels (8.0)  WIN   83.0  WIN  120.0
+Sat 10-10                           Nevada Wolf Pack at UTEP Miners 30-13               Nevada Wolf Pack 55%    NEV -10                    UTEP Miners (8.1) LOSS -100.0  WIN   25.0
+Sat 10-10                           LSU Tigers at Kentucky Wildcats 34-35                     LSU Tigers 58%   LSU -9.5              Kentucky Wildcats (6.6)  WIN   91.0 LOSS -100.0
+Sat 10-10                             UAB Blazers at Memphis Tigers 13-38                 Memphis Tigers 79%  MEM -15.5                    UAB Blazers (4.1) LOSS -100.0  WIN   14.0
+Sat 10-10                  Georgia Bulldogs at Alabama Crimson Tide 20-17               Georgia Bulldogs 50%   ALA -2.5               Georgia Bulldogs (2.6)  WIN   89.0  WIN  105.0
+Sat 10-10                     Syracuse Orange at Virginia Cavaliers 25-28             Virginia Cavaliers 83%    UVA -14             Virginia Cavaliers (0.0) LOSS -100.0  WIN   18.0
+Sat 10-10                   USC Trojans at Penn State Nittany Lions 31-23                    USC Trojans 55%   USC -1.5                    USC Trojans (0.2)  WIN   91.0  WIN   83.0
+Sat 10-10            Air Force Falcons at Northern Illinois Huskies  28-7              Air Force Falcons 79%      AF -7              Air Force Falcons (4.6)  WIN   98.0  WIN   37.0
+Sat 10-10        Louisiana Ragin' Cajuns at Louisiana Tech Bulldogs 31-32        Louisiana Tech Bulldogs 51%      LT -3        Louisiana Ragin' Cajuns (2.6)  WIN   93.0  WIN   65.0
+Sat 10-10                              Kansas Jayhawks at Utah Utes 24-41                      Utah Utes 93% UTAH -15.5                      Utah Utes (6.9)  WIN   87.0  WIN   13.0
+Sat 10-10           Minnesota Golden Gophers at Purdue Boilermakers 13-41       Minnesota Golden Gophers 75%  MINN -2.5       Minnesota Golden Gophers (7.0) LOSS -100.0 LOSS -100.0
+Sat 10-10            James Madison Dukes at Georgia Southern Eagles 27-24            James Madison Dukes 86%     JMU -7            James Madison Dukes (9.1) LOSS -100.0  WIN   35.0
+Sat 10-10      Hawai'i Rainbow Warriors at Arizona State Sun Devils 12-30       Arizona State Sun Devils 80%  ASU -20.5       Hawai'i Rainbow Warriors (8.4)  WIN   93.0  WIN    6.0
+Sat 10-10              Boise State Broncos at Fresno State Bulldogs 38-31            Boise State Broncos 53%  BOIS -8.5          Fresno State Bulldogs (7.3)  WIN   91.0  WIN   32.0

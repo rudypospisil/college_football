@@ -16,7 +16,9 @@ python3 -m venv .venv
 The menu shows the state of the data, the model and the prediction log, then offers the
 everyday tasks as numbered options. Option 1, "Game-day update", is the Saturday routine:
 refresh results and lines, settle finished games, lock in today's predictions, and print the
-slate. `python app.py 4` runs a single option without the menu, which is handy for scripts.
+slate. Option 10, "What if I had bet?", replays a past week or season and shows what flat bets on
+the model's picks would have returned. `python app.py 4` runs a single option without the menu,
+which is handy for scripts.
 Every option echoes the command line it runs, so the scripts below can also be used directly.
 
 ## Workflow
@@ -42,6 +44,8 @@ cached files in `data/seasons/` for past seasons.
 | `backtest.py` | Grid-searches the parameters on 2012-2023, then reports accuracy, Brier score, log loss and calibration on the held-out 2024-2025 seasons. Saves the winning parameters to `data/model_params.json`. |
 | `predict.py` | Replays all games to date with the saved parameters and prints predictions. |
 | `track.py` | Logs predictions before kickoff, grades them after the games, and summarises the record (`data/predictions.csv`). |
+| `fetch_odds.py` | Back-fills closing lines, moneylines and spread prices for finished games from ESPN's per-game odds endpoint. |
+| `simulate.py` | Replays past games with the model's pregame predictions and grades flat bets on its picks against the stored lines. |
 
 ## How the model works
 
@@ -147,14 +151,35 @@ investment for all bets and for bets with an edge of at least 3 points, and the 
 return. Expect the spread record to hover near 50%: that is what a market this efficient
 does to a scores-only model, and the log is how you find out rather than guess.
 
+## What if I had bet?
+
+```bash
+.venv/bin/python fetch_odds.py --seasons 2026             # one-time back-fill of closing lines
+.venv/bin/python simulate.py --season 2026 --week 6 --details
+.venv/bin/python simulate.py --season 2026                # season to date, week by week
+```
+
+`simulate.py` uses the prediction the model would have made before each game (its pregame
+ratings, replayed in date order) and the closing line stored for that game, then grades a flat
+stake on every pick: spread bets on the model's side, spread bets only when the edge is at least
+3, 5 or 7 points, moneyline bets on the model's favourite, and moneyline bets only when the model
+disagrees with the Vegas favourite. Blindly betting the Vegas favourite is shown alongside as the
+house-edge baseline. Lines for past games come from ESPN's per-game odds endpoint, which keeps
+the closing DraftKings line (ESPN BET for older seasons), so `fetch_odds.py` can also fill in
+2024 and 2025 for a two-season test.
+
+Read the results with the sample size in mind. One week is about 60 bets, where a 6-game swing
+is pure luck. The 52.4% cover rate needed to break even at -110 is the bar, and a scores-only
+model should not be expected to clear it over a full season.
+
 ## Limitations
 
 * Elo only sees final scores. It knows nothing about injuries, quarterbacks, weather,
   travel or scheme, all of which the betting market prices in.
 * Preseason ratings are just last year's ratings regressed toward the mean; recruiting
   rankings and returning production would sharpen the first few weeks of a season.
-* ESPN only stores betting lines for the current week, so the Vegas comparison covers
-  upcoming games, not history.
+* The weekly scoreboard only carries lines for the current week; `fetch_odds.py` back-fills
+  closing lines for finished games one request at a time.
 
 ## Ideas for the next version
 

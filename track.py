@@ -81,24 +81,31 @@ def local_date(series_utc):
 
 
 # ------------------------------------------------------------------------------ record
+def picks(home_team, away_team, p_home, pred_margin, spread):
+    """Turn a prediction plus the Vegas spread (home perspective) into the picks we grade:
+    the model's favourite, Vegas's favourite, and the side the model takes against the spread."""
+    out = {
+        "model_pick": home_team if p_home >= 0.5 else away_team,
+        "model_pick_prob": round(max(p_home, 1 - p_home), 4),
+        "vegas_pick": None, "spread_pick": None, "spread_edge": None,
+    }
+    if spread is None or pd.isna(spread):
+        return out
+    if spread != 0:
+        out["vegas_pick"] = home_team if spread < 0 else away_team
+    value = pred_margin + spread          # >0: the model thinks the home side beats the spread
+    out["spread_edge"] = round(abs(value), 1)
+    if value > 0:
+        out["spread_pick"] = home_team
+    elif value < 0:
+        out["spread_pick"] = away_team
+    return out
+
+
 def build_row(model, g, now):
     pred = model.predict(g.home_id, g.away_id, neutral=g.neutral_site)
-    home_fav = pred["p_home"] >= 0.5
     spread = g.odds_spread if isnum(g.odds_spread) else None
-
-    vegas_pick = None
-    if spread is not None and spread != 0:
-        vegas_pick = g.home_team if spread < 0 else g.away_team
-
-    # Positive value: the model thinks the home side beats the spread.
-    spread_pick, spread_edge = None, None
-    if spread is not None:
-        value = pred["pred_margin"] + spread
-        spread_edge = abs(value)
-        if value > 0:
-            spread_pick = g.home_team
-        elif value < 0:
-            spread_pick = g.away_team
+    chosen = picks(g.home_team, g.away_team, pred["p_home"], pred["pred_margin"], spread)
 
     return {
         "game_id": g.game_id, "season": g.season, "week": g.week,
@@ -106,15 +113,14 @@ def build_row(model, g, now):
         "away_team": g.away_team, "home_team": g.home_team, "neutral_site": g.neutral_site,
         "elo_away": round(pred["elo_away"], 1), "elo_home": round(pred["elo_home"], 1),
         "p_home": round(pred["p_home"], 4), "model_home_margin": round(pred["pred_margin"], 1),
-        "model_pick": g.home_team if home_fav else g.away_team,
-        "model_pick_prob": round(max(pred["p_home"], pred["p_away"]), 4),
+        "model_pick": chosen["model_pick"], "model_pick_prob": chosen["model_pick_prob"],
         "vegas_home_spread": spread, "vegas_line": g.odds_details if isinstance(g.odds_details, str) else None,
-        "vegas_pick": vegas_pick,
+        "vegas_pick": chosen["vegas_pick"],
         "home_moneyline": g.home_moneyline if isnum(g.home_moneyline) else None,
         "away_moneyline": g.away_moneyline if isnum(g.away_moneyline) else None,
         "home_spread_odds": g.home_spread_odds if isnum(g.home_spread_odds) else None,
         "away_spread_odds": g.away_spread_odds if isnum(g.away_spread_odds) else None,
-        "spread_pick": spread_pick, "spread_edge": round(spread_edge, 1) if spread_edge is not None else None,
+        "spread_pick": chosen["spread_pick"], "spread_edge": chosen["spread_edge"],
         "model_params": json.dumps(model.params(), sort_keys=True),
         "settled": False,
     }

@@ -150,6 +150,21 @@ def fetch_season(season, pause=0.25):
     return df
 
 
+def write_csv(df, path):
+    """Write via a temporary file so readers never see a half-written CSV."""
+    tmp = path.with_suffix(".tmp")
+    df.to_csv(tmp, index=False)
+    tmp.replace(path)
+
+
+def rebuild_games():
+    """Combine data/seasons/*.csv into data/games.csv (sorted by date)."""
+    frames = [pd.read_csv(p, dtype={"game_id": str, "home_id": str, "away_id": str}) for p in sorted(SEASON_DIR.glob("*.csv"))]
+    games = pd.concat(frames, ignore_index=True).sort_values(["date", "game_id"]).reset_index(drop=True)
+    write_csv(games, GAMES_CSV)
+    return games
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--seasons", type=int, nargs="*", help="specific seasons to fetch")
@@ -166,11 +181,9 @@ def main():
         if path.exists() and not args.refresh and season != this_season:
             print(f"Season {season}: cached ({path})")
             continue
-        fetch_season(season).to_csv(path, index=False)
+        write_csv(fetch_season(season), path)
 
-    frames = [pd.read_csv(p) for p in sorted(SEASON_DIR.glob("*.csv"))]
-    games = pd.concat(frames, ignore_index=True).sort_values(["date", "game_id"]).reset_index(drop=True)
-    games.to_csv(GAMES_CSV, index=False)
+    games = rebuild_games()
     print(f"\nWrote {len(games)} games across {games['season'].nunique()} seasons to {GAMES_CSV}")
 
 

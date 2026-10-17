@@ -110,6 +110,7 @@ def game_day():
     """The usual Saturday-morning routine in one go."""
     date = ask("Date (YYYY-MM-DD)", today())
     ok = run("fetch_data.py")
+    ok = ok and run("fetch_odds.py", "--seasons", str(current_season()))
     ok = ok and run("track.py", "record", "--date", date)
     ok and run("predict.py", "--date", date)
 
@@ -161,6 +162,33 @@ def backtest():
         run("backtest.py")
 
 
+def current_season():
+    now = dt.date.today()
+    return now.year if now.month >= 8 else now.year - 1
+
+
+def what_if():
+    """Replay finished games with lines and grade flat bets on the model's picks."""
+    if not need_data():
+        return
+    season = ask("Season", str(current_season()))
+    week = ask("Week number (blank = whole season)")
+    stake = ask("Stake per bet in dollars", "100")
+    args = ["--season", season, "--stake", stake]
+    if week:
+        args += ["--week", week, "--details"]
+    run("simulate.py", *args)
+
+
+def backfill_lines():
+    """Fetch closing lines for finished games that do not have one yet."""
+    if not need_data():
+        return
+    season = ask("Season to back-fill", str(current_season()))
+    print("One request per game; a full season takes a few minutes. Safe to interrupt and rerun.")
+    run("fetch_odds.py", "--seasons", season)
+
+
 MENU = [
     ("1", "Game-day update", "refresh data, record today's picks (settling old ones), show the slate", game_day),
     ("2", "Refresh data", "download this season's results and betting lines from ESPN", refresh),
@@ -171,6 +199,8 @@ MENU = [
     ("7", "Settle results", "grade finished games in the prediction log", settle),
     ("8", "Prediction record", "full history of picks, outcomes and bet results", report),
     ("9", "Backtest", "re-tune parameters and report out-of-sample accuracy", backtest),
+    ("10", "What if I had bet?", "grade flat bets on the model's picks for a past week or season", what_if),
+    ("11", "Back-fill lines", "fetch closing lines for finished games (needed by option 10)", backfill_lines),
 ]
 ACTIONS = {key: fn for key, _, _, fn in MENU}
 
@@ -183,8 +213,8 @@ def show_menu():
         print(f"  {line}")
     print()
     for key, title, desc, _ in MENU:
-        print(f"  {key}  {title:<20} {desc}")
-    print(f"  {'q':<3}{'Quit':<20}")
+        print(f"  {key:>2}  {title:<20} {desc}")
+    print(f"  {'q':>2}  {'Quit':<20}")
     print()
 
 
