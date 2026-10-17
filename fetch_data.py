@@ -12,19 +12,16 @@ Output:
     data/games.csv            all seasons combined, sorted by date
 """
 import argparse
-import datetime as dt
 import time
-from pathlib import Path
 
 import pandas as pd
 import requests
 
+from common import GAMES_CSV, SEASON_DIR, current_season, rebuild_games, write_csv
+
 BASE_URL = "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
 FBS_GROUP = 80           # ESPN group id for FBS
 FIRST_SEASON = 2010
-DATA_DIR = Path(__file__).parent / "data"
-SEASON_DIR = DATA_DIR / "seasons"
-GAMES_CSV = DATA_DIR / "games.csv"
 
 COLUMNS = [
     "game_id", "season", "season_type", "week", "date", "neutral_site", "conference_game",
@@ -35,12 +32,6 @@ COLUMNS = [
 
 session = requests.Session()
 session.headers["User-Agent"] = "cfb-elo-model/1.0 (personal research project)"
-
-
-def current_season(today=None):
-    """College football seasons are labelled by the year they start (Aug/Sep)."""
-    today = today or dt.date.today()
-    return today.year if today.month >= 8 else today.year - 1
 
 
 def get_json(params, retries=3):
@@ -148,21 +139,6 @@ def fetch_season(season, pause=0.25):
     df = df.drop_duplicates("game_id").sort_values(["date", "game_id"]).reset_index(drop=True)
     print(f"  -> {len(df)} games, {int(df['completed'].sum())} completed")
     return df
-
-
-def write_csv(df, path):
-    """Write via a temporary file so readers never see a half-written CSV."""
-    tmp = path.with_suffix(".tmp")
-    df.to_csv(tmp, index=False)
-    tmp.replace(path)
-
-
-def rebuild_games():
-    """Combine data/seasons/*.csv into data/games.csv (sorted by date)."""
-    frames = [pd.read_csv(p, dtype={"game_id": str, "home_id": str, "away_id": str}) for p in sorted(SEASON_DIR.glob("*.csv"))]
-    games = pd.concat(frames, ignore_index=True).sort_values(["date", "game_id"]).reset_index(drop=True)
-    write_csv(games, GAMES_CSV)
-    return games
 
 
 def main():

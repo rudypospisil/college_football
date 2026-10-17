@@ -1,6 +1,6 @@
 (54 finished games in the selection have no stored line and are skipped; fetch_odds.py can fill them.)
 
-1799 finished games with a betting line, Sat Aug 24 to Mon Jan 19, 2026. Flat stake $100 per bet.
+Model: elo. 1799 finished games with a betting line, Sat Aug 24 to Mon Jan 19, 2026. Flat stake $100 per bet.
 
 Straight up: model picked the winner in 1315 of 1799 (73.1%); the Vegas favourite won 1351 of 1799 (75.1%).
 

@@ -19,7 +19,7 @@ import time
 import pandas as pd
 import requests
 
-from fetch_data import SEASON_DIR, current_season, rebuild_games, write_csv
+from common import SEASON_DIR, current_season, rebuild_games, write_csv
 
 ODDS_URL = ("https://sports.core.api.espn.com/v2/sports/football/leagues/college-football/"
             "events/{id}/competitions/{id}/odds")

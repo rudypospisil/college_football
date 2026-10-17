@@ -1,4 +1,4 @@
-58 finished games with a betting line, Tue Oct 06 to Sat Oct 10, 2026. Flat stake $100 per bet.
+Model: elo. 58 finished games with a betting line, Tue Oct 06 to Sat Oct 10, 2026. Flat stake $100 per bet.
 
 Straight up: model picked the winner in 41 of 58 (70.7%); the Vegas favourite won 39 of 58 (67.2%).
 

@@ -1,40 +1,37 @@
 """
-Predict college football games with the Elo model.
+Predict college football games.
 
 Usage:
     python predict.py "Ohio State" "Indiana"            # away team first, then home team
     python predict.py "Ohio State" "Indiana" --neutral  # neutral-site game
-    python predict.py --date 2026-10-17                 # every scheduled game on a date, with Vegas lines
+    python predict.py --date 2026-10-17                 # every game on a date, with Vegas lines
     python predict.py --rankings                        # current top 25
+    python predict.py --model elo ...                   # choose a registered model (default: elo)
 
-Parameters come from data/model_params.json (written by backtest.py); defaults are used if missing.
+Parameters come from data/params/<model>.json (written by backtest.py); defaults are used if missing.
 """
 import argparse
 import datetime as dt
 import json
-from pathlib import Path
 
 import pandas as pd
 
-from elo import EloModel, load_games
+from common import LOCAL_TZ, load_games
+from models import DEFAULT_MODEL, add_model_argument, fitted_model
 
-PARAMS_PATH = Path(__file__).parent / "data" / "model_params.json"
 
-
-def load_model():
-    params = json.loads(PARAMS_PATH.read_text()) if PARAMS_PATH.exists() else {}
+def load_model(name=DEFAULT_MODEL):
+    """The named model, tuned and replayed on everything in data/games.csv."""
     games = load_games()
-    model = EloModel(**params)
-    model.fit(games)
-    return model, games
+    return fitted_model(name, games), games
 
 
 def describe(pred, vegas=None):
-    fav, dog = (pred["home"], pred["away"]) if pred["p_home"] >= 0.5 else (pred["away"], pred["home"])
+    fav = pred["home"] if pred["p_home"] >= 0.5 else pred["away"]
     p_fav = max(pred["p_home"], pred["p_away"])
     spread = abs(pred["pred_margin"])
     lines = [
-        f"{pred['away']} (Elo {pred['elo_away']:.0f}) at {pred['home']} (Elo {pred['elo_home']:.0f})",
+        f"{pred['away']} (rating {pred['rating_away']:.0f}) at {pred['home']} (rating {pred['rating_home']:.0f})",
         f"  Model: {fav} {p_fav:.1%} to win, projected spread {fav} -{spread:.1f}",
     ]
     if vegas:
@@ -43,7 +40,7 @@ def describe(pred, vegas=None):
 
 
 def predict_date(model, games, date):
-    day = games[(games["date"].dt.tz_convert("US/Eastern").dt.date == date)]
+    day = games[(games["date"].dt.tz_convert(LOCAL_TZ).dt.date == date)]
     if day.empty:
         print(f"No games found on {date} in data/games.csv (run fetch_data.py to refresh).")
         return
@@ -70,10 +67,11 @@ def main():
     parser.add_argument("--neutral", action="store_true", help="neutral site (no home-field advantage)")
     parser.add_argument("--date", help="predict all games on a date (YYYY-MM-DD, US/Eastern)")
     parser.add_argument("--rankings", action="store_true", help="print the current top 25")
+    add_model_argument(parser)
     args = parser.parse_args()
 
-    model, games = load_model()
-    print(f"Model parameters: {json.dumps(model.params())}\n")
+    model, games = load_model(args.model)
+    print(f"Model: {model.name}, parameters: {json.dumps(model.params())}\n")
 
     if args.rankings:
         print(model.rankings(25).to_string(index=False))

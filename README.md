@@ -1,9 +1,11 @@
-# College Football Elo Model
+# College Football Models
 
-A small, readable predictive model for college football (FBS) built with pandas and
-numpy. It downloads every FBS game since 2010 from ESPN's public scoreboard API,
-fits an Elo rating system, measures itself on seasons it never saw, and predicts
-upcoming games (win probability and point spread).
+Small, readable predictive models for college football (FBS) built with pandas and
+numpy. The project downloads every FBS game since 2010 from ESPN's public scoreboard API,
+fits a rating model (Elo today, more to come), measures it on seasons it never saw, predicts
+upcoming games (win probability and point spread), logs its picks, and replays past seasons
+against closing lines. Every model plugs into the same harness, so they are compared on
+identical games.
 
 ## Quick start
 
@@ -40,14 +42,17 @@ cached files in `data/seasons/` for past seasons.
 | --- | --- |
 | `app.py`, `run.sh` | Menu front end; starts with any Python and runs the scripts below with the `.venv` interpreter. |
 | `fetch_data.py` | Pulls game results week by week from ESPN (no API key needed) and caches them as CSV. |
-| `elo.py` | The model: ratings, home-field advantage, margin-of-victory updates, preseason regression, FCS pooling. |
-| `backtest.py` | Grid-searches the parameters on 2012-2023, then reports accuracy, Brier score, log loss and calibration on the held-out 2024-2025 seasons. Saves the winning parameters to `data/model_params.json`. |
-| `predict.py` | Replays all games to date with the saved parameters and prints predictions. |
-| `track.py` | Logs predictions before kickoff, grades them after the games, and summarises the record (`data/predictions.csv`). |
+| `common.py` | Shared paths, `load_games()`, atomic CSV writes and the per-model parameter files in `data/params/`. |
+| `models/base.py` | The interface every model implements (`fit`, `predict`, `rating`, `params`) plus shared FBS classification, rankings and team lookup. |
+| `models/elo.py` | The Elo model: ratings, home-field advantage, margin-of-victory updates, preseason regression, FCS pooling. |
+| `models/__init__.py` | The registry (`MODELS`); every script takes `--model <name>`. |
+| `backtest.py` | Grid-searches a model's parameters on 2012-2023, then reports accuracy, Brier score, log loss and calibration on the held-out 2024-2025 seasons. Saves the winning parameters to `data/params/<model>.json`. |
+| `predict.py` | Replays all games to date with a model's saved parameters and prints predictions. |
+| `track.py` | Logs each model's predictions before kickoff, grades them after the games, and summarises the record per model (`data/predictions.csv`). |
 | `fetch_odds.py` | Back-fills closing lines, moneylines and spread prices for finished games from ESPN's per-game odds endpoint. |
 | `simulate.py` | Replays past games with the model's pregame predictions and grades flat bets on its picks against the stored lines. |
 
-## How the model works
+## How the Elo model works
 
 1. Every FBS team starts at 1500. FCS opponents share one pooled "FCS" rating, so a win
    over an FCS team is worth about what it should be.
@@ -149,7 +154,8 @@ Rules that keep the record honest:
 
 * A game is only recorded while it is still scheduled and kickoff is in the future, and a
   recorded prediction is never overwritten. The Vegas line is captured at the same moment.
-* Each row stores the model parameters that produced it, so the record survives retuning.
+* Each row stores the model's name and the parameters that produced it, so the record survives
+  retuning and several models can be compared on the same games.
 * Grading uses the line that was recorded, not the closing line.
 
 What gets graded for each game:
@@ -189,6 +195,24 @@ the closing DraftKings line (ESPN BET for older seasons), so `fetch_odds.py` can
 Read the results with the sample size in mind. One week is about 60 bets, where a 6-game swing
 is pure luck. The 52.4% cover rate needed to break even at -110 is the bar, and a scores-only
 model should not be expected to clear it over a full season.
+
+## Adding a model
+
+Every model is a class in `models/` that subclasses `RatingModel` (see `models/base.py`) and
+is listed in `MODELS` in `models/__init__.py`. It needs four things:
+
+* `fit(games)`: replay the games in date order and return one row per finished game with the
+  prediction made *before* that game (`p_home`, `pred_margin`) next to the result.
+* `predict(home_id, away_id, neutral)`: probability and margin for an upcoming game.
+* `rating(team_id)` and `params()`: a number per team for the rankings, and the constructor
+  arguments so the model can be rebuilt from `data/params/<name>.json`.
+* Optionally `GRID`, the parameter grid `backtest.py` searches, and `post_fit_params()` for
+  anything fitted afterwards (Elo fits its points-per-rating scale this way).
+
+Once registered, `--model <name>` works everywhere: `backtest.py` tunes and evaluates it on the
+same held-out seasons as Elo, `track.py record` logs its picks alongside Elo's each week, and
+`simulate.py` replays it against the same closing lines. The game-day menu option records
+every registered model, so a new idea is judged on identical games from its first Saturday.
 
 ## Limitations
 

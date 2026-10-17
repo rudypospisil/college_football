@@ -1,24 +1,24 @@
 """
-Tune the Elo model's parameters on past seasons and measure how well it predicts
-seasons it has never seen.
+Tune a model's parameters on past seasons and measure how well it predicts seasons it has
+never seen.
 
 Usage:
-    python backtest.py              # grid search + out-of-sample report
-    python backtest.py --quick      # skip the grid search, use default parameters
+    python backtest.py                    # Elo: grid search + out-of-sample report
+    python backtest.py --model elo        # any registered model (see models/__init__.py)
+    python backtest.py --quick            # skip the grid search, use the model's defaults
 
-Writes the chosen parameters to data/model_params.json (used by predict.py).
+Writes the chosen parameters to data/params/<model>.json (used by predict.py and friends).
 """
 import argparse
 import itertools
 import json
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
-from elo import EloModel, load_games
+from common import load_games, save_params
+from models import MODELS, add_model_argument
 
-PARAMS_PATH = Path(__file__).parent / "data" / "model_params.json"
 BURN_IN_SEASONS = 2          # the first seasons only exist to warm up the ratings
 TEST_SEASONS = [2024, 2025]  # held out: never used to choose parameters
 
@@ -33,33 +33,21 @@ def metrics(pred):
     return {"games": len(pred), "accuracy": picked_right, "brier": brier, "log_loss": logloss}
 
 
-def fit_elo_per_point(pred):
-    """Least-squares fit of actual margin vs Elo difference (through the origin)."""
-    d, m = pred["elo_diff"].to_numpy(), pred["margin"].to_numpy()
-    slope = (d * m).sum() / (d * d).sum()      # points per Elo point
-    return 1.0 / slope
-
-
-def run(games, **params):
-    model = EloModel(**params)
+def run(model_cls, games, **params):
+    model = model_cls(**params)
     pred = model.fit(games)
     return model, pred
 
 
-def grid_search(games, train_seasons):
-    grid = {
-        "k": [20, 30, 40, 50, 60],
-        "hfa": [40, 55, 70, 85],
-        "regress": [0.1, 0.2, 0.33, 0.5],
-        "mov": [True, False],
-    }
+def grid_search(model_cls, games, train_seasons):
+    grid = model_cls.GRID
     results = []
     combos = list(itertools.product(*grid.values()))
     print(f"Grid search over {len(combos)} parameter combinations on seasons "
           f"{train_seasons[0]}-{train_seasons[-1]} ...")
     for values in combos:
         params = dict(zip(grid.keys(), values))
-        _, pred = run(games, **params)
+        _, pred = run(model_cls, games, **params)
         scored = pred[pred["season"].isin(train_seasons)]
         results.append({**params, **metrics(scored)})
     results = pd.DataFrame(results).sort_values("log_loss").reset_index(drop=True)
@@ -75,7 +63,7 @@ def calibration_table(pred, bins=(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9
 
 
 def vegas_comparison(pred):
-    """Where ESPN stored a closing/pregame spread, compare the model's pick to Vegas's pick."""
+    """Where a spread is stored, compare the model's pick and margin to Vegas's."""
     v = pred.dropna(subset=["odds_spread"]).copy()
     if v.empty:
         return None
@@ -96,30 +84,35 @@ def vegas_comparison(pred):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--quick", action="store_true", help="skip grid search, use defaults")
+    add_model_argument(parser)
+    parser.add_argument("--quick", action="store_true", help="skip grid search, use the model's defaults")
     args = parser.parse_args()
     pd.set_option("display.width", 160)
+    model_cls = MODELS[args.model]
 
     games = load_games()
     seasons = sorted(games["season"].unique())
     train_seasons = [s for s in seasons[BURN_IN_SEASONS:] if s < min(TEST_SEASONS)]
-    print(f"Loaded {len(games)} games, {int(games['completed'].sum())} completed, seasons {seasons[0]}-{seasons[-1]}")
+    print(f"Model: {args.model}. Loaded {len(games)} games, {int(games['completed'].sum())} completed, "
+          f"seasons {seasons[0]}-{seasons[-1]}")
 
-    if args.quick:
-        best = {"k": 25, "hfa": 60, "regress": 0.33, "mov": True}
+    if args.quick or not model_cls.GRID:
+        best = {k: v for k, v in model_cls().params().items() if k in model_cls.GRID}
     else:
-        results = grid_search(games, train_seasons)
+        results = grid_search(model_cls, games, train_seasons)
         print("\nTop 10 parameter sets (training seasons, lower log loss is better):")
         print(results.head(10).to_string(index=False, float_format=lambda x: f"{x:.4f}"))
-        best = results.iloc[0][["k", "hfa", "regress", "mov"]].to_dict()
-        best = {"k": float(best["k"]), "hfa": float(best["hfa"]), "regress": float(best["regress"]), "mov": bool(best["mov"])}
+        best = results.iloc[0][list(model_cls.GRID)].to_dict()
+        best = {k: (v.item() if hasattr(v, "item") else v) for k, v in best.items()}   # plain Python types for JSON
 
-    # Fit the spread conversion on the training seasons only, then re-run with it.
-    _, pred = run(games, **best)
-    best["elo_per_point"] = round(fit_elo_per_point(pred[pred["season"].isin(train_seasons)]), 2)
-    model, pred = run(games, **best)
+    # Anything the model fits after the grid search (e.g. Elo's rating-to-points scale) is
+    # fitted on the training seasons only, then the model is re-run with it.
+    model, pred = run(model_cls, games, **best)
+    best.update(model.post_fit_params(pred[pred["season"].isin(train_seasons)]))
+    model, pred = run(model_cls, games, **best)
     print(f"\nChosen parameters: {json.dumps(best)}")
-    print(f"(1 point of spread ~ {best['elo_per_point']} Elo points)")
+    if "elo_per_point" in best:
+        print(f"(1 point of spread ~ {best['elo_per_point']} Elo points)")
 
     # ---- out-of-sample report
     train = pred[pred["season"].isin(train_seasons)]
@@ -151,15 +144,14 @@ def main():
 
     vegas = vegas_comparison(test)
     if vegas:
-        print("\nModel vs. Vegas on test-season games where ESPN stored a point spread:")
+        print("\nModel vs. Vegas on test-season games with a stored point spread:")
         print(json.dumps({k: round(v, 4) if isinstance(v, float) else v for k, v in vegas.items()}, indent=2))
 
-    print("\nCurrent top 25 by Elo:")
+    print(f"\nCurrent top 25 ({args.model}):")
     print(model.rankings(25).to_string(index=False))
 
-    PARAMS_PATH.parent.mkdir(exist_ok=True)
-    PARAMS_PATH.write_text(json.dumps(best, indent=2))
-    print(f"\nSaved parameters to {PARAMS_PATH}")
+    path = save_params(args.model, best)
+    print(f"\nSaved parameters to {path}")
 
 
 if __name__ == "__main__":

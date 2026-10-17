@@ -1,4 +1,4 @@
-Loaded 14828 games, 14153 completed, seasons 2010-2026
+Model: elo. Loaded 14828 games, 14153 completed, seasons 2010-2026
 Grid search over 160 parameter combinations on seasons 2012-2023 ...
 
 Top 10 parameter sets (training seasons, lower log loss is better):
@@ -14,7 +14,7 @@ Top 10 parameter sets (training seasons, lower log loss is better):
 30   40   0.1000 True  10221    0.7426 0.1703    0.5084
 30   55   0.1000 True  10221    0.7446 0.1703    0.5085
 
-Chosen parameters: {"k": 40.0, "hfa": 55.0, "regress": 0.2, "mov": true, "elo_per_point": 19.85}
+Chosen parameters: {"k": 40, "hfa": 55, "regress": 0.2, "mov": true, "elo_per_point": 19.85}
 (1 point of spread ~ 19.85 Elo points)
 
 Model vs. naive baseline (always pick the home team / constant home-win rate):
@@ -45,32 +45,42 @@ p_home
 (0.8, 0.9]       213      0.851   0.826
 (0.9, 1.0]       397      0.959   0.965
 
-Current top 25 by Elo:
- rank                      team    elo
-    1          Indiana Hoosiers 2022.8
-    2          Georgia Bulldogs 1958.6
-    3       Ohio State Buckeyes 1939.1
-    4          Miami Hurricanes 1936.3
-    5 Notre Dame Fighting Irish 1907.3
-    6      Alabama Crimson Tide 1846.8
-    7           Texas Longhorns 1840.6
-    8           Ole Miss Rebels 1827.7
-    9                 Utah Utes 1827.4
-   10    Texas Tech Red Raiders 1820.6
-   11               BYU Cougars 1809.5
-   12       James Madison Dukes 1797.9
-   13             Iowa Hawkeyes 1784.7
-   14              Oregon Ducks 1778.9
-   15               USC Trojans 1742.3
-   16           Missouri Tigers 1739.4
-   17          Arizona Wildcats 1732.2
-   18       Boise State Broncos 1723.9
-   19          Oklahoma Sooners 1723.4
-   20      Tennessee Volunteers 1712.0
-   21           Houston Cougars 1708.7
-   22                LSU Tigers 1707.8
-   23 Wake Forest Demon Deacons 1701.1
-   24          Duke Blue Devils 1691.1
-   25              SMU Mustangs 1689.2
+Model vs. Vegas on test-season games with a stored point spread:
+{
+  "games_with_line": 1799,
+  "vegas_accuracy": 0.751,
+  "model_accuracy": 0.731,
+  "agreement": 0.8655,
+  "model_spread_mae": 13.2873,
+  "vegas_spread_mae": 11.8966
+}
 
-Saved parameters to /Volumes/RUDY_STUFF/PYTHON/Projects/sports/data/model_params.json
+Current top 25 (elo):
+ rank                      team  rating
+    1          Indiana Hoosiers  2022.8
+    2          Georgia Bulldogs  1958.6
+    3       Ohio State Buckeyes  1939.1
+    4          Miami Hurricanes  1936.3
+    5 Notre Dame Fighting Irish  1907.3
+    6      Alabama Crimson Tide  1846.8
+    7           Texas Longhorns  1840.6
+    8           Ole Miss Rebels  1827.7
+    9                 Utah Utes  1827.4
+   10    Texas Tech Red Raiders  1820.6
+   11               BYU Cougars  1809.5
+   12       James Madison Dukes  1797.9
+   13             Iowa Hawkeyes  1784.7
+   14              Oregon Ducks  1778.9
+   15               USC Trojans  1742.3
+   16           Missouri Tigers  1739.4
+   17          Arizona Wildcats  1732.2
+   18       Boise State Broncos  1723.9
+   19          Oklahoma Sooners  1723.4
+   20      Tennessee Volunteers  1712.0
+   21           Houston Cougars  1708.7
+   22                LSU Tigers  1707.8
+   23 Wake Forest Demon Deacons  1701.1
+   24          Duke Blue Devils  1691.1
+   25              SMU Mustangs  1689.2
+
+Saved parameters to /Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/data/params/elo.json

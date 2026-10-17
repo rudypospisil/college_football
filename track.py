@@ -1,15 +1,16 @@
 """
-Keep a historical record of the model's predictions and how they turned out.
+Keep a historical record of each model's predictions and how they turned out.
 
 Usage:
     python track.py record                 # lock in predictions for today's scheduled games
-    python track.py record --date 2026-10-18
+    python track.py record --date 2026-10-18 --model elo
     python track.py settle                 # after the games: fill in scores and grade every pick
-    python track.py report                 # print the whole log plus a summary
+    python track.py report                 # print the whole log plus a summary (per model)
 
 The log is data/predictions.csv. A game is only recorded while it is still scheduled and
 kickoff is in the future, a recorded prediction is never overwritten, and the Vegas line and
-prices are captured at the same moment so the grading is fair.
+prices are captured at the same moment so the grading is fair. Several models can record
+picks on the same games; each row carries the model's name and parameters.
 
 Each settled game is graded three ways:
   * straight-up pick   - did the model's favourite win? (Vegas's favourite graded alongside)
@@ -21,23 +22,21 @@ Each settled game is graded three ways:
 import argparse
 import datetime as dt
 import json
-from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
+from common import GAMES_CSV, LOCAL_TZ, LOG_PATH, load_games
+from models import DEFAULT_MODEL, add_model_argument
 from predict import load_model
 
-LOG_PATH = Path(__file__).parent / "data" / "predictions.csv"
-GAMES_PATH = Path(__file__).parent / "data" / "games.csv"
 DEFAULT_SPREAD_ODDS = -110      # used when ESPN did not publish a spread price
 EDGE_THRESHOLD = 3.0            # "confident" spread bets: model and Vegas differ by >= 3 points
-LOCAL_TZ = "US/Eastern"
 
 COLUMNS = [
     # recorded before kickoff
-    "game_id", "season", "week", "kickoff", "recorded_at", "away_team", "home_team", "neutral_site",
-    "elo_away", "elo_home", "p_home", "model_home_margin", "model_pick", "model_pick_prob",
+    "game_id", "model", "season", "week", "kickoff", "recorded_at", "away_team", "home_team", "neutral_site",
+    "rating_away", "rating_home", "p_home", "model_home_margin", "model_pick", "model_pick_prob",
     "vegas_home_spread", "vegas_line", "vegas_pick",
     "home_moneyline", "away_moneyline", "home_spread_odds", "away_spread_odds",
     "spread_pick", "spread_edge", "model_params",
@@ -46,6 +45,7 @@ COLUMNS = [
     "pick_correct", "vegas_pick_correct", "brier",
     "spread_result", "spread_profit", "moneyline_odds", "moneyline_result", "moneyline_profit",
 ]
+LEGACY_COLUMNS = {"elo_away": "rating_away", "elo_home": "rating_home"}   # log files written before models/
 
 
 # ----------------------------------------------------------------------------- helpers
@@ -63,7 +63,10 @@ def isnum(x):
 
 def load_log():
     if LOG_PATH.exists():
-        log = pd.read_csv(LOG_PATH, dtype={"game_id": str, "model_params": str})
+        log = pd.read_csv(LOG_PATH, dtype={"game_id": str, "model_params": str}).rename(columns=LEGACY_COLUMNS)
+        if "model" not in log.columns:
+            log["model"] = DEFAULT_MODEL
+        log["model"] = log["model"].fillna(DEFAULT_MODEL)
         for col in COLUMNS:
             if col not in log.columns:
                 log[col] = np.nan
@@ -73,7 +76,7 @@ def load_log():
 
 def save_log(log):
     LOG_PATH.parent.mkdir(exist_ok=True)
-    log.sort_values(["kickoff", "game_id"]).to_csv(LOG_PATH, index=False)
+    log.sort_values(["kickoff", "game_id", "model"]).to_csv(LOG_PATH, index=False)
 
 
 def local_date(series_utc):
@@ -108,10 +111,10 @@ def build_row(model, g, now):
     chosen = picks(g.home_team, g.away_team, pred["p_home"], pred["pred_margin"], spread)
 
     return {
-        "game_id": g.game_id, "season": g.season, "week": g.week,
+        "game_id": g.game_id, "model": model.name, "season": g.season, "week": g.week,
         "kickoff": g.date.isoformat(), "recorded_at": now.isoformat(timespec="minutes"),
         "away_team": g.away_team, "home_team": g.home_team, "neutral_site": g.neutral_site,
-        "elo_away": round(pred["elo_away"], 1), "elo_home": round(pred["elo_home"], 1),
+        "rating_away": round(pred["rating_away"], 1), "rating_home": round(pred["rating_home"], 1),
         "p_home": round(pred["p_home"], 4), "model_home_margin": round(pred["pred_margin"], 1),
         "model_pick": chosen["model_pick"], "model_pick_prob": chosen["model_pick_prob"],
         "vegas_home_spread": spread, "vegas_line": g.odds_details if isinstance(g.odds_details, str) else None,
@@ -126,13 +129,13 @@ def build_row(model, g, now):
     }
 
 
-def record(date, now=None):
+def record(date, model_name=DEFAULT_MODEL, now=None):
     now = now or pd.Timestamp.now(tz="UTC")
-    age_hours = (dt.datetime.now().timestamp() - GAMES_PATH.stat().st_mtime) / 3600
+    age_hours = (dt.datetime.now().timestamp() - GAMES_CSV.stat().st_mtime) / 3600
     if age_hours > 6:
         print(f"Warning: data/games.csv is {age_hours:.0f} hours old; run fetch_data.py for fresh lines.\n")
 
-    model, games = load_model()
+    model, games = load_model(model_name)
     log = load_log()
     log, n_settled = settle_frame(log, games)
     if n_settled:
@@ -140,7 +143,7 @@ def record(date, now=None):
 
     day = games[local_date(games["date"]) == date]
     future = day[(day["date"] > now) & (~day["completed"]) & (day["status"] == "Scheduled")]
-    already = future["game_id"].isin(log["game_id"])
+    already = future["game_id"].isin(log.loc[log["model"] == model.name, "game_id"])
     skipped_started = len(day) - len(future)
     rows = [build_row(model, g, now) for g in future[~already].sort_values("date").itertuples(index=False)]
 
@@ -150,7 +153,7 @@ def record(date, now=None):
         # re-read from CSV on every run anyway.
         log = new if log.empty else pd.concat([log.astype(object), new.astype(object)], ignore_index=True)
         save_log(log)
-    print(f"{date}: {len(day)} games on the schedule, {len(rows)} new predictions recorded, "
+    print(f"{date} [{model.name}]: {len(day)} games on the schedule, {len(rows)} new predictions recorded, "
           f"{int(already.sum())} already in the log, {skipped_started} skipped (started or finished).")
     if rows:
         show = pd.DataFrame(rows)
@@ -224,7 +227,7 @@ def settle_frame(log, games):
 
 
 def settle():
-    _, games = load_model()
+    games = load_games()
     log = load_log()
     log, n = settle_frame(log, games)
     pending = int((log["settled"] != True).sum())
@@ -248,9 +251,9 @@ def bet_line(frame, profit_col, result_col):
     return f"{wins}-{losses}" + (f"-{pushes}" if pushes else "") + f" ({rate:.1%}), {profit:+.2f} units on {len(bets)} bets, ROI {roi:+.1%}"
 
 
-def summary(log):
+def summary_block(log):
     done = log[log["settled"] == True]
-    print(f"\nRecord: {len(log)} predictions logged, {len(done)} settled, {len(log) - len(done)} pending.")
+    print(f"Record: {len(log)} predictions logged, {len(done)} settled, {len(log) - len(done)} pending.")
     if done.empty:
         return
     su = done["pick_correct"].astype(bool)
@@ -266,6 +269,18 @@ def summary(log):
             print(f"  edge >= {EDGE_THRESHOLD:.0f} points: {bet_line(strong, 'spread_profit', 'spread_result')}")
     if done["moneyline_result"].notna().any():
         print(f"Moneyline bets:      {bet_line(done, 'moneyline_profit', 'moneyline_result')}")
+
+
+def summary(log):
+    """One summary block per model (a single block when only one model has recorded picks)."""
+    models = sorted(log["model"].dropna().unique()) if len(log) else []
+    if len(models) <= 1:
+        print()
+        summary_block(log)
+        return
+    for name in models:
+        print(f"\n--- {name} ---")
+        summary_block(log[log["model"] == name])
 
 
 def report():
@@ -286,7 +301,9 @@ def report():
     show["ML"] = show["moneyline_result"].fillna("").str.upper()
     pd.set_option("display.width", 220)
     cols = ["date (ET)", "matchup", "model pick", "vegas_line", "spread bet", "score", "pick", "ATS", "ML"]
-    print(show.sort_values(["kickoff", "game_id"])[cols].rename(columns={"vegas_line": "vegas"}).to_string(index=False))
+    if show["model"].nunique() > 1:
+        cols.insert(1, "model")
+    print(show.sort_values(["kickoff", "game_id", "model"])[cols].rename(columns={"vegas_line": "vegas"}).to_string(index=False))
     summary(log)
 
 
@@ -295,13 +312,14 @@ def main():
     sub = parser.add_subparsers(dest="command", required=True)
     rec = sub.add_parser("record", help="log predictions for scheduled games")
     rec.add_argument("--date", help="YYYY-MM-DD in US/Eastern (default: today)")
+    add_model_argument(rec)
     sub.add_parser("settle", help="grade logged games that have finished")
     sub.add_parser("report", help="print the log and summary")
     args = parser.parse_args()
 
     if args.command == "record":
         date = dt.date.fromisoformat(args.date) if args.date else pd.Timestamp.now(tz=LOCAL_TZ).date()
-        record(date)
+        record(date, args.model)
     elif args.command == "settle":
         settle()
     elif args.command == "report":

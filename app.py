@@ -1,5 +1,5 @@
 """
-Menu-driven front end for the college football Elo model.
+Menu-driven front end for the college football models.
 
     python app.py          # interactive menu
     python app.py 4        # run one menu option and exit (handy for scripts)
@@ -20,7 +20,7 @@ VENV_PY = ROOT / ".venv" / "bin" / "python"
 PY = str(VENV_PY) if VENV_PY.exists() else sys.executable
 DATA = ROOT / "data"
 GAMES = DATA / "games.csv"
-PARAMS = DATA / "model_params.json"
+PARAMS_DIR = DATA / "params"
 LOG = DATA / "predictions.csv"
 
 
@@ -67,11 +67,43 @@ def today():
     return dt.date.today().isoformat()
 
 
+def current_season():
+    now = dt.date.today()
+    return now.year if now.month >= 8 else now.year - 1
+
+
 def need_data():
     if GAMES.exists():
         return True
     print("\nNo data yet. Run 'Refresh data' first.")
     return False
+
+
+_MODELS = None
+
+
+def model_names():
+    """Registered models, asked of the models package (which needs the venv interpreter)."""
+    global _MODELS
+    if _MODELS is None:
+        try:
+            out = subprocess.run([PY, "-c", "from models import MODELS, DEFAULT_MODEL; "
+                                  "print(DEFAULT_MODEL); print(' '.join(sorted(MODELS)))"],
+                                 cwd=ROOT, capture_output=True, text=True, timeout=60).stdout.split("\n")
+            default, names = out[0].strip(), out[1].split()
+            _MODELS = [default] + [n for n in names if n != default]
+        except (subprocess.SubprocessError, IndexError, OSError):
+            _MODELS = ["elo"]
+    return _MODELS
+
+
+def choose_model():
+    """Ask which model to use, but only when more than one is registered."""
+    names = model_names()
+    if len(names) == 1:
+        return names[0]
+    choice = ask(f"Model ({', '.join(names)})", names[0])
+    return choice if choice in names else names[0]
 
 
 # ------------------------------------------------------------------ status header
@@ -89,17 +121,23 @@ def status_lines():
         lines.append(f"Data : {n:,} games, last result {last}, refreshed {age_text(GAMES)}")
     else:
         lines.append("Data : none yet (run 'Refresh data')")
-    if PARAMS.exists():
-        p = json.loads(PARAMS.read_text())
-        lines.append(f"Model: K={p.get('k'):g}  home field={p.get('hfa'):g}  regress={p.get('regress'):g}  "
-                     f"{p.get('elo_per_point')} Elo per point")
+    tuned = sorted(p.stem for p in PARAMS_DIR.glob("*.json")) if PARAMS_DIR.exists() else []
+    if tuned:
+        parts = []
+        for name in tuned:
+            p = json.loads((PARAMS_DIR / f"{name}.json").read_text())
+            parts.append(f"{name} (" + ", ".join(f"{k}={v:g}" if isinstance(v, (int, float)) and not isinstance(v, bool) else f"{k}={v}"
+                                                   for k, v in p.items()) + ")")
+        lines.append("Model: " + "; ".join(parts))
     else:
         lines.append("Model: default parameters (run 'Backtest' to tune)")
     if LOG.exists():
         with LOG.open(newline="") as f:
             rows = list(csv.DictReader(f))
         settled = sum(r["settled"] == "True" for r in rows)
-        lines.append(f"Log  : {len(rows)} predictions, {settled} settled, {len(rows) - settled} pending")
+        models = sorted({r.get("model") or "elo" for r in rows})
+        lines.append(f"Log  : {len(rows)} predictions, {settled} settled, {len(rows) - settled} pending"
+                     + (f" ({', '.join(models)})" if len(models) > 1 else ""))
     else:
         lines.append("Log  : no predictions recorded yet")
     return lines
@@ -107,12 +145,13 @@ def status_lines():
 
 # ------------------------------------------------------------------ menu actions
 def game_day():
-    """The usual Saturday-morning routine in one go."""
+    """The usual Saturday-morning routine in one go: every registered model records its picks."""
     date = ask("Date (YYYY-MM-DD)", today())
     ok = run("fetch_data.py")
     ok = ok and run("fetch_odds.py", "--seasons", str(current_season()))
-    ok = ok and run("track.py", "record", "--date", date)
-    ok and run("predict.py", "--date", date)
+    for name in model_names():
+        ok = ok and run("track.py", "record", "--date", date, "--model", name)
+    ok and run("predict.py", "--date", date, "--model", model_names()[0])
 
 
 def refresh():
@@ -129,22 +168,22 @@ def matchup():
         print("Need both teams.")
         return
     neutral = ask("Neutral site? (y/N)", "n").lower().startswith("y")
-    run("predict.py", away, home, *(["--neutral"] if neutral else []))
+    run("predict.py", away, home, "--model", choose_model(), *(["--neutral"] if neutral else []))
 
 
 def slate():
     if need_data():
-        run("predict.py", "--date", ask("Date (YYYY-MM-DD)", today()))
+        run("predict.py", "--date", ask("Date (YYYY-MM-DD)", today()), "--model", choose_model())
 
 
 def rankings():
     if need_data():
-        run("predict.py", "--rankings")
+        run("predict.py", "--rankings", "--model", choose_model())
 
 
 def record():
     if need_data():
-        run("track.py", "record", "--date", ask("Date (YYYY-MM-DD)", today()))
+        run("track.py", "record", "--date", ask("Date (YYYY-MM-DD)", today()), "--model", choose_model())
 
 
 def settle():
@@ -158,23 +197,20 @@ def report():
 
 def backtest():
     if need_data():
-        print("Grid search over 160 parameter sets, about 10 seconds. Saves data/model_params.json.")
-        run("backtest.py")
-
-
-def current_season():
-    now = dt.date.today()
-    return now.year if now.month >= 8 else now.year - 1
+        model = choose_model()
+        print(f"Grid search for '{model}', usually under a minute. Saves data/params/{model}.json.")
+        run("backtest.py", "--model", model)
 
 
 def what_if():
-    """Replay finished games with lines and grade flat bets on the model's picks."""
+    """Replay finished games with lines and grade flat bets on a model's picks."""
     if not need_data():
         return
+    model = choose_model()
     season = ask("Season", str(current_season()))
     week = ask("Week number (blank = whole season)")
     stake = ask("Stake per bet in dollars", "100")
-    args = ["--season", season, "--stake", stake]
+    args = ["--model", model, "--season", season, "--stake", stake]
     if week:
         args += ["--week", week, "--details"]
     run("simulate.py", *args)
@@ -190,16 +226,16 @@ def backfill_lines():
 
 
 MENU = [
-    ("1", "Game-day update", "refresh data, record today's picks (settling old ones), show the slate", game_day),
+    ("1", "Game-day update", "refresh data and lines, record today's picks (every model), show the slate", game_day),
     ("2", "Refresh data", "download this season's results and betting lines from ESPN", refresh),
     ("3", "Predict a matchup", "enter two teams", matchup),
     ("4", "Slate for a date", "every game that day: model pick and spread next to Vegas", slate),
-    ("5", "Top 25", "current Elo rankings", rankings),
-    ("6", "Record predictions", "lock in picks for a date before kickoff", record),
+    ("5", "Top 25", "current rankings", rankings),
+    ("6", "Record predictions", "lock in a model's picks for a date before kickoff", record),
     ("7", "Settle results", "grade finished games in the prediction log", settle),
-    ("8", "Prediction record", "full history of picks, outcomes and bet results", report),
-    ("9", "Backtest", "re-tune parameters and report out-of-sample accuracy", backtest),
-    ("10", "What if I had bet?", "grade flat bets on the model's picks for a past week or season", what_if),
+    ("8", "Prediction record", "full history of picks, outcomes and bet results, per model", report),
+    ("9", "Backtest", "re-tune a model's parameters and report out-of-sample accuracy", backtest),
+    ("10", "What if I had bet?", "grade flat bets on a model's picks for a past week or season", what_if),
     ("11", "Back-fill lines", "fetch closing lines for finished games (needed by option 10)", backfill_lines),
 ]
 ACTIONS = {key: fn for key, _, _, fn in MENU}
@@ -207,7 +243,7 @@ ACTIONS = {key: fn for key, _, _, fn in MENU}
 
 def show_menu():
     print("\n" + "=" * 72)
-    print("  College Football Elo Model")
+    print("  College Football Models")
     print("=" * 72)
     for line in status_lines():
         print(f"  {line}")

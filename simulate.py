@@ -1,14 +1,16 @@
 """
-What if you had bet on the model's picks?
+What if you had bet on a model's picks?
 
 Replays finished games that have a betting line, using the prediction the model would have
-made before each game (its pregame Elo ratings), and grades a flat stake on every pick.
+made before each game (its pregame ratings, replayed in date order), and grades a flat stake
+on every pick.
 
 Usage:
     python simulate.py --season 2026 --week 6            # one week
     python simulate.py --from 2026-10-09 --to 2026-10-11 # a date range (US/Eastern)
     python simulate.py --season 2026                     # season to date, with a week-by-week table
     python simulate.py --season 2024 2025                # the held-out seasons (after fetch_odds.py)
+    python simulate.py --model elo ...                   # choose a registered model (default: elo)
 Options:
     --stake 100     dollars per bet (default 100)
     --edge 3        minimum edge in points for the "confident spread bets" strategy
@@ -18,22 +20,18 @@ Lines come from data/games.csv; run fetch_odds.py first to back-fill lines for p
 """
 import argparse
 import datetime as dt
-import json
-from pathlib import Path
 
 import pandas as pd
 
-from elo import EloModel, load_games
-from track import DEFAULT_SPREAD_ODDS, LOCAL_TZ, american_profit, grade, isnum, picks
+from common import LOCAL_TZ, load_games, load_params
+from models import DEFAULT_MODEL, add_model_argument, get_model
+from track import DEFAULT_SPREAD_ODDS, american_profit, grade, isnum, picks
 
-PARAMS_PATH = Path(__file__).parent / "data" / "model_params.json"
 
-
-def pregame_predictions(games):
+def pregame_predictions(games, model_name=DEFAULT_MODEL):
     """Replay history and return one row per finished game with the model's pregame view
     plus the stored betting line."""
-    params = json.loads(PARAMS_PATH.read_text()) if PARAMS_PATH.exists() else {}
-    pred = EloModel(**params).fit(games)
+    pred = get_model(model_name, **load_params(model_name)).fit(games)
     cols = ["game_id", "home_id", "away_id", "neutral_site", "odds_details", "home_moneyline",
             "away_moneyline", "home_spread_odds", "away_spread_odds", "home_score", "away_score"]
     return pred.merge(games[cols], on="game_id", how="left")
@@ -93,10 +91,11 @@ def line(label, results, stake):
     return f"{label:<42} {rec:>9} ({rate:5.1%})  {profit:+9,.0f} $ on {staked:>8,.0f} $ staked  ROI {profit / staked:+6.1%}"
 
 
-def report(df, stake, edge, details):
+def report(df, stake, edge, details, model_name):
     n = len(df)
-    print(f"{n} finished games with a betting line, {df['date'].min().tz_convert(LOCAL_TZ):%a %b %d} to "
-          f"{df['date'].max().tz_convert(LOCAL_TZ):%a %b %d, %Y}. Flat stake ${stake:,.0f} per bet.\n")
+    print(f"Model: {model_name}. {n} finished games with a betting line, "
+          f"{df['date'].min().tz_convert(LOCAL_TZ):%a %b %d} to {df['date'].max().tz_convert(LOCAL_TZ):%a %b %d, %Y}. "
+          f"Flat stake ${stake:,.0f} per bet.\n")
 
     su = df["pick_correct"].astype(bool)
     vg = df.dropna(subset=["vegas_pick_correct"])["vegas_pick_correct"].astype(bool)
@@ -154,10 +153,11 @@ def main():
     parser.add_argument("--stake", type=float, default=100.0)
     parser.add_argument("--edge", type=float, default=3.0)
     parser.add_argument("--details", action="store_true")
+    add_model_argument(parser)
     args = parser.parse_args()
 
     games = load_games()
-    pred = pregame_predictions(games)
+    pred = pregame_predictions(games, args.model)
     sel = pred.copy()
     if args.season:
         sel = sel[sel["season"].isin(args.season)]
@@ -177,7 +177,7 @@ def main():
         return
     if no_line:
         print(f"({no_line} finished games in the selection have no stored line and are skipped; fetch_odds.py can fill them.)\n")
-    report(graded_rows(sel), args.stake, args.edge, args.details)
+    report(graded_rows(sel), args.stake, args.edge, args.details, args.model)
 
 
 if __name__ == "__main__":
