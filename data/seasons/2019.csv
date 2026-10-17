@@ -700,191 +700,191 @@ game_id,season,season_type,week,date,neutral_site,conference_game,home_id,home_t
 401110850,2019,2,12,2019-11-17T00:00Z,False,True,145,Ole Miss Rebels,37,99,LSU Tigers,58,True,Final,LSU -21.5,21.5,66.0,True,850.0,-1667.0,-110.0,-110.0
 401117544,2019,2,12,2019-11-17T00:00Z,False,True,36,Colorado State Rams,21,2005,Air Force Falcons,38,True,Final,AF -10.5,10.5,63.5,True,295.0,-400.0,-104.0,-116.0
 401117903,2019,2,12,2019-11-17T00:00Z,False,True,58,South Florida Bulls,17,2132,Cincinnati Bearcats,20,True,Final,CIN -12.5,12.5,47.0,True,375.0,-526.0,-110.0,-110.0
-401110853,2019,2,12,2019-11-17T00:30Z,False,True,245,Texas A&M Aggies,30,2579,South Carolina Gamecocks,6,True,Final,,,,False,,,,
-401112082,2019,2,12,2019-11-17T00:30Z,False,True,239,Baylor Bears,31,201,Oklahoma Sooners,34,True,Final,,,,False,,,,
-401112512,2019,2,12,2019-11-17T00:30Z,False,True,152,NC State Wolfpack,20,97,Louisville Cardinals,34,True,Final,,,,False,,,,
-401114161,2019,2,12,2019-11-17T00:30Z,False,True,204,Oregon State Beavers,35,9,Arizona State Sun Devils,34,True,Final,,,,False,,,,
-401121968,2019,2,12,2019-11-17T00:30Z,False,True,2247,Georgia State Panthers,27,2026,Appalachian State Mountaineers,56,True,Final,,,,False,,,,
-401114216,2019,2,12,2019-11-17T01:00Z,False,True,254,Utah Utes,49,26,UCLA Bruins,3,True,Final,,,,False,,,,
-401117545,2019,2,12,2019-11-17T03:15Z,False,True,68,Boise State Broncos,42,167,New Mexico Lobos,9,True,Final,,,,False,,,,
-401114172,2019,2,12,2019-11-17T03:30Z,False,True,2483,Oregon Ducks,34,12,Arizona Wildcats,6,True,Final,,,,False,,,,
-401114181,2019,2,12,2019-11-17T04:00Z,False,True,25,California Golden Bears,17,30,USC Trojans,41,True,Final,,,,False,,,,
-401119305,2019,2,13,2019-11-20T00:30Z,False,True,2459,Northern Illinois Huskies,17,2199,Eastern Michigan Eagles,45,True,Final,,,,False,,,,
-401119306,2019,2,13,2019-11-20T00:30Z,False,True,189,Bowling Green Falcons,24,195,Ohio Bobcats,66,True,Final,,,,False,,,,
-401119307,2019,2,13,2019-11-21T00:30Z,False,True,193,Miami (OH) RedHawks,20,2006,Akron Zips,17,True,Final,,,,False,,,,
-401119308,2019,2,13,2019-11-21T00:30Z,False,True,2084,Buffalo Bulls,49,2649,Toledo Rockets,30,True,Final,,,,False,,,,
-401112513,2019,2,13,2019-11-22T01:00Z,False,True,59,Georgia Tech Yellow Jackets,28,152,NC State Wolfpack,26,True,Final,,,,False,,,,
-401117550,2019,2,13,2019-11-23T02:30Z,False,True,2751,Wyoming Cowboys,17,36,Colorado State Rams,7,True,Final,,,,False,,,,
-401110855,2019,2,13,2019-11-23T17:00Z,False,False,333,Alabama Crimson Tide,66,2717,Western Carolina Catamounts,3,True,Final,,,,False,,,,
-401110856,2019,2,13,2019-11-23T17:00Z,False,False,2,Auburn Tigers,52,2535,Samford Bulldogs,0,True,Final,,,,False,,,,
-401112094,2019,2,13,2019-11-23T17:00Z,False,True,66,Iowa State Cyclones,41,2305,Kansas Jayhawks,31,True,Final,,,,False,,,,
-401112128,2019,2,13,2019-11-23T17:00Z,False,True,277,West Virginia Mountaineers,13,197,Oklahoma State Cowboys,20,True,Final,,,,False,,,,
-401112155,2019,2,13,2019-11-23T17:00Z,False,True,2294,Iowa Hawkeyes,19,356,Illinois Fighting Illini,10,True,Final,,,,False,,,,
-401112220,2019,2,13,2019-11-23T17:00Z,False,True,164,Rutgers Scarlet Knights,0,127,Michigan State Spartans,27,True,Final,,,,False,,,,
-401112236,2019,2,13,2019-11-23T17:00Z,False,True,77,Northwestern Wildcats,22,135,Minnesota Golden Gophers,38,True,Final,,,,False,,,,
-401112256,2019,2,13,2019-11-23T17:00Z,False,True,194,Ohio State Buckeyes,28,213,Penn State Nittany Lions,17,True,Final,,,,False,,,,
-401112520,2019,2,13,2019-11-23T17:00Z,False,False,258,Virginia Cavaliers,55,2335,Liberty Flames,27,True,Final,,,,False,,,,
-401114358,2019,2,13,2019-11-23T17:00Z,False,False,113,Massachusetts Minutemen,24,252,BYU Cougars,56,True,Final,,,,False,,,,
-401117906,2019,2,13,2019-11-23T17:00Z,False,True,2655,Tulane Green Wave,31,2116,UCF Knights,34,True,Final,,,,False,,,,
-401117908,2019,2,13,2019-11-23T17:00Z,False,True,41,UConn Huskies,24,151,East Carolina Pirates,31,True,Final,,,,False,,,,
-401119309,2019,2,13,2019-11-23T17:00Z,False,True,2309,Kent State Golden Flashes,41,2050,Ball State Cardinals,38,True,Final,,,,False,,,,
-401121976,2019,2,13,2019-11-23T19:00Z,False,True,2247,Georgia State Panthers,28,6,South Alabama Jaguars,15,True,Final,,,,False,,,,
-401183793,2019,2,13,2019-11-23T19:00Z,False,True,167,New Mexico Lobos,22,2005,Air Force Falcons,44,True,Final,,,,False,,,,
-401112514,2019,2,13,2019-11-23T19:30Z,False,False,87,Notre Dame Fighting Irish,40,103,Boston College Eagles,7,True,Final,,,,False,,,,
-401121973,2019,2,13,2019-11-23T19:30Z,False,True,2026,Appalachian State Mountaineers,35,326,Texas State Bobcats,13,True,Final,,,,False,,,,
-401121974,2019,2,13,2019-11-23T20:00Z,False,True,2032,Arkansas State Red Wolves,38,290,Georgia Southern Eagles,33,True,Final,,,,False,,,,
-401110857,2019,2,13,2019-11-23T20:30Z,False,True,61,Georgia Bulldogs,19,245,Texas A&M Aggies,13,True,Final,,,,False,,,,
-401110858,2019,2,13,2019-11-23T20:30Z,False,False,96,Kentucky Wildcats,50,2630,UT Martin Skyhawks,7,True,Final,,,,False,,,,
-401110862,2019,2,13,2019-11-23T20:30Z,False,False,238,Vanderbilt Commodores,38,2193,East Tennessee State Buccaneers,0,True,Final,,,,False,,,,
-401112083,2019,2,13,2019-11-23T20:30Z,False,True,239,Baylor Bears,24,251,Texas Longhorns,10,True,Final,,,,False,,,,
-401112167,2019,2,13,2019-11-23T20:30Z,False,True,84,Indiana Hoosiers,14,130,Michigan Wolverines,39,True,Final,,,,False,,,,
-401112210,2019,2,13,2019-11-23T20:30Z,False,True,120,Maryland Terrapins,7,158,Nebraska Cornhuskers,54,True,Final,,,,False,,,,
-401112518,2019,2,13,2019-11-23T20:30Z,False,False,153,North Carolina Tar Heels,56,2382,Mercer Bears,7,True,Final,,,,False,,,,
-401112519,2019,2,13,2019-11-23T20:30Z,False,True,259,Virginia Tech Hokies,28,221,Pittsburgh Panthers,0,True,Final,,,,False,,,,
-401114217,2019,2,13,2019-11-23T20:30Z,False,True,30,USC Trojans,52,26,UCLA Bruins,35,True,Final,,,,False,,,,
-401114313,2019,2,13,2019-11-23T20:30Z,False,True,2429,Charlotte 49ers,24,276,Marshall Thundering Herd,13,True,Final,,,,False,,,,
-401114315,2019,2,13,2019-11-23T20:30Z,False,True,5,UAB Blazers,20,2348,Louisiana Tech Bulldogs,14,True,Final,,,,False,,,,
-401114317,2019,2,13,2019-11-23T20:30Z,False,True,242,Rice Owls,20,249,North Texas Mean Green,14,True,Final,,,,False,,,,
-401114318,2019,2,13,2019-11-23T20:30Z,False,True,2572,Southern Mississippi Golden Eagles,10,98,Western Kentucky Hilltoppers,28,True,Final,,,,False,,,,
-401117911,2019,2,13,2019-11-23T20:30Z,False,True,2426,Navy Midshipmen,35,2567,SMU Mustangs,28,True,Final,,,,False,,,,
-401112263,2019,2,13,2019-11-23T21:00Z,False,True,275,Wisconsin Badgers,45,2509,Purdue Boilermakers,24,True,Final,,,,False,,,,
-401112516,2019,2,13,2019-11-23T21:00Z,False,True,97,Louisville Cardinals,56,183,Syracuse Orange,34,True,Final,,,,False,,,,
-401114182,2019,2,13,2019-11-23T21:00Z,False,True,24,Stanford Cardinal,20,25,California Golden Bears,24,True,Final,,,,False,,,,
-401114319,2019,2,13,2019-11-23T21:00Z,False,False,166,New Mexico State Aggies,44,2638,UTEP Miners,35,True,Final,,,,False,,,,
-401117553,2019,2,13,2019-11-23T21:00Z,False,True,2439,UNLV Rebels,38,23,San José St Spartans,35,True,Final,,,,False,,,,
-401117909,2019,2,13,2019-11-23T21:00Z,False,True,58,South Florida Bulls,10,235,Memphis Tigers,49,True,Final,,,,False,,,,
-401114316,2019,2,13,2019-11-23T21:30Z,False,True,2393,Middle Tennessee Blue Raiders,38,295,Old Dominion Monarchs,17,True,Final,,,,False,,,,
-401121975,2019,2,13,2019-11-23T22:00Z,False,True,2433,UL Monroe Warhawks,45,324,Coastal Carolina Chanticleers,42,True,Final,,,,False,,,,
-401121977,2019,2,13,2019-11-23T22:00Z,False,True,309,Louisiana Ragin' Cajuns,53,2653,Troy Trojans,3,True,Final,,,,False,,,,
-401114314,2019,2,13,2019-11-23T23:00Z,False,True,2636,UTSA Roadrunners,26,2226,Florida Atlantic Owls,40,True,Final,,,,False,,,,
-401110859,2019,2,13,2019-11-24T00:00Z,False,True,99,LSU Tigers,56,8,Arkansas Razorbacks,20,True,Final,,,,False,,,,
-401112113,2019,2,13,2019-11-24T00:00Z,False,True,2641,Texas Tech Red Raiders,27,2306,Kansas State Wildcats,30,True,Final,,,,False,,,,
-401112517,2019,2,13,2019-11-24T00:00Z,False,False,2229,Florida International Panthers,30,2390,Miami Hurricanes,24,True,Final,,,,False,,,,
-401117907,2019,2,13,2019-11-24T00:00Z,False,True,2132,Cincinnati Bearcats,15,218,Temple Owls,13,True,Final,,,,False,,,,
-401110860,2019,2,13,2019-11-24T00:30Z,False,False,344,Mississippi State Bulldogs,45,2000,Abilene Christian Wildcats,7,True,Final,,,,False,,,,
-401110861,2019,2,13,2019-11-24T00:30Z,False,True,142,Missouri Tigers,20,2633,Tennessee Volunteers,24,True,Final,,,,False,,,,
-401112515,2019,2,13,2019-11-24T00:30Z,False,True,154,Wake Forest Demon Deacons,39,150,Duke Blue Devils,27,True,Final,,,,False,,,,
-401114162,2019,2,13,2019-11-24T00:30Z,False,True,9,Arizona State Sun Devils,31,2483,Oregon Ducks,28,True,Final,,,,False,,,,
-401117910,2019,2,13,2019-11-24T00:30Z,False,True,202,Tulsa Golden Hurricane,14,248,Houston Cougars,24,True,Final,,,,False,,,,
-401112120,2019,2,13,2019-11-24T01:00Z,False,True,201,Oklahoma Sooners,28,2628,TCU Horned Frogs,24,True,Final,,,,False,,,,
-401114206,2019,2,13,2019-11-24T02:00Z,False,True,265,Washington State Cougars,54,204,Oregon State Beavers,53,True,Final,,,,False,,,,
-401114173,2019,2,13,2019-11-24T03:00Z,False,True,12,Arizona Wildcats,7,254,Utah Utes,35,True,Final,,,,False,,,,
-401114191,2019,2,13,2019-11-24T03:00Z,False,True,38,Colorado Buffaloes,20,264,Washington Huskies,14,True,Final,,,,False,,,,
-401117549,2019,2,13,2019-11-24T03:30Z,False,True,328,Utah State Aggies,21,68,Boise State Broncos,56,True,Final,,,,False,,,,
-401117551,2019,2,13,2019-11-24T03:30Z,False,True,278,Fresno State Bulldogs,28,2440,Nevada Wolf Pack,35,True,Final,,,,False,,,,
-401117552,2019,2,13,2019-11-24T04:00Z,False,True,62,Hawai'i Rainbow Warriors,14,21,San Diego State Aztecs,11,True,Final,,,,False,,,,
-401119310,2019,2,14,2019-11-26T23:00Z,False,True,2006,Akron Zips,3,195,Ohio Bobcats,52,True,Final,,,,False,,,,
-401119311,2019,2,14,2019-11-27T00:00Z,False,True,2459,Northern Illinois Huskies,17,2711,Western Michigan Broncos,14,True,Final,,,,False,,,,
-401110863,2019,2,14,2019-11-29T00:30Z,False,True,344,Mississippi State Bulldogs,21,145,Ole Miss Rebels,20,True,Final,,,,False,,,,
-401112138,2019,2,14,2019-11-29T17:00Z,False,True,251,Texas Longhorns,49,2641,Texas Tech Red Raiders,24,True,Final,,,,False,,,,
-401112521,2019,2,14,2019-11-29T17:00Z,False,True,258,Virginia Cavaliers,39,259,Virginia Tech Hokies,30,True,Final,,,,False,,,,
-401119312,2019,2,14,2019-11-29T17:00Z,False,True,2084,Buffalo Bulls,49,189,Bowling Green Falcons,7,True,Final,,,,False,,,,
-401119313,2019,2,14,2019-11-29T17:00Z,False,True,2199,Eastern Michigan Eagles,26,2309,Kent State Golden Flashes,34,True,Final,,,,False,,,,
-401119314,2019,2,14,2019-11-29T17:00Z,False,True,2050,Ball State Cardinals,41,193,Miami (OH) RedHawks,27,True,Final,,,,False,,,,
-401119315,2019,2,14,2019-11-29T17:00Z,False,True,2117,Central Michigan Chippewas,49,2649,Toledo Rockets,7,True,Final,,,,False,,,,
-401110864,2019,2,14,2019-11-29T19:30Z,False,True,8,Arkansas Razorbacks,14,142,Missouri Tigers,24,True,Final,,,,False,,,,
-401112200,2019,2,14,2019-11-29T19:30Z,False,True,158,Nebraska Cornhuskers,24,2294,Iowa Hawkeyes,27,True,Final,,,,False,,,,
-401117554,2019,2,14,2019-11-29T20:30Z,False,True,36,Colorado State Rams,24,68,Boise State Broncos,31,True,Final,,,,False,,,,
-401117913,2019,2,14,2019-11-29T20:30Z,False,True,235,Memphis Tigers,34,2132,Cincinnati Bearcats,24,True,Final,,,,False,,,,
-401114232,2019,2,14,2019-11-29T21:00Z,False,True,264,Washington Huskies,31,265,Washington State Cougars,13,True,Final,,,,False,,,,
-401112134,2019,2,14,2019-11-29T21:15Z,False,True,2628,TCU Horned Frogs,17,277,West Virginia Mountaineers,20,True,Final,,,,False,,,,
-401121979,2019,2,14,2019-11-29T22:00Z,False,True,6,South Alabama Jaguars,34,2032,Arkansas State Red Wolves,30,True,Final,,,,False,,,,
-401121978,2019,2,14,2019-11-29T23:00Z,False,True,2653,Troy Trojans,13,2026,Appalachian State Mountaineers,48,True,Final,,,,False,,,,
-401117912,2019,2,14,2019-11-30T01:00Z,False,True,2116,UCF Knights,34,58,South Florida Bulls,7,True,Final,,,,False,,,,
-401110867,2019,2,14,2019-11-30T17:00Z,False,False,59,Georgia Tech Yellow Jackets,7,61,Georgia Bulldogs,52,True,Final,,,,False,,,,
-401110868,2019,2,14,2019-11-30T17:00Z,False,False,96,Kentucky Wildcats,45,97,Louisville Cardinals,13,True,Final,,,,False,,,,
-401110870,2019,2,14,2019-11-30T17:00Z,False,False,2579,South Carolina Gamecocks,3,228,Clemson Tigers,38,True,Final,,,,False,,,,
-401112156,2019,2,14,2019-11-30T17:00Z,False,True,356,Illinois Fighting Illini,10,77,Northwestern Wildcats,29,True,Final,,,,False,,,,
-401112168,2019,2,14,2019-11-30T17:00Z,False,True,2509,Purdue Boilermakers,41,84,Indiana Hoosiers,44,True,Final,,,,False,,,,
-401112228,2019,2,14,2019-11-30T17:00Z,False,True,130,Michigan Wolverines,27,194,Ohio State Buckeyes,56,True,Final,,,,False,,,,
-401114321,2019,2,14,2019-11-30T17:00Z,False,True,276,Marshall Thundering Herd,30,2229,Florida International Panthers,27,True,Final,,,,False,,,,
-401117915,2019,2,14,2019-11-30T17:00Z,False,True,151,East Carolina Pirates,24,202,Tulsa Golden Hurricane,49,True,Final,,,,False,,,,
-401121980,2019,2,14,2019-11-30T17:00Z,False,True,324,Coastal Carolina Chanticleers,24,326,Texas State Bobcats,21,True,Final,,,,False,,,,
-401112525,2019,2,14,2019-11-30T17:30Z,False,True,183,Syracuse Orange,39,154,Wake Forest Demon Deacons,30,True,Final,,,,False,,,,
-401114320,2019,2,14,2019-11-30T19:00Z,False,True,295,Old Dominion Monarchs,22,2429,Charlotte 49ers,38,True,Final,,,,False,,,,
-401114324,2019,2,14,2019-11-30T19:00Z,False,True,98,Western Kentucky Hilltoppers,31,2393,Middle Tennessee Blue Raiders,26,True,Final,,,,False,,,,
-401114346,2019,2,14,2019-11-30T19:00Z,False,False,2335,Liberty Flames,49,166,New Mexico State Aggies,28,True,Final,,,,False,,,,
-401117556,2019,2,14,2019-11-30T19:00Z,False,True,2005,Air Force Falcons,20,2751,Wyoming Cowboys,6,True,Final,,,,False,,,,
-401114326,2019,2,14,2019-11-30T20:00Z,False,True,2638,UTEP Miners,16,242,Rice Owls,30,True,Final,,,,False,,,,
-401117558,2019,2,14,2019-11-30T20:00Z,False,True,2440,Nevada Wolf Pack,30,2439,UNLV Rebels,33,True,Final,,,,False,,,,
-401110865,2019,2,14,2019-11-30T20:30Z,False,True,2,Auburn Tigers,48,333,Alabama Crimson Tide,45,True,Final,,,,False,,,,
-401112084,2019,2,14,2019-11-30T20:30Z,False,True,2305,Kansas Jayhawks,6,239,Baylor Bears,61,True,Final,,,,False,,,,
-401112221,2019,2,14,2019-11-30T20:30Z,False,True,127,Michigan State Spartans,19,120,Maryland Terrapins,16,True,Final,,,,False,,,,
-401112237,2019,2,14,2019-11-30T20:30Z,False,True,135,Minnesota Golden Gophers,17,275,Wisconsin Badgers,38,True,Final,,,,False,,,,
-401112261,2019,2,14,2019-11-30T20:30Z,False,True,213,Penn State Nittany Lions,27,164,Rutgers Scarlet Knights,6,True,Final,,,,False,,,,
-401112522,2019,2,14,2019-11-30T20:30Z,False,True,221,Pittsburgh Panthers,19,103,Boston College Eagles,26,True,Final,,,,False,,,,
-401112523,2019,2,14,2019-11-30T20:30Z,False,True,150,Duke Blue Devils,27,2390,Miami Hurricanes,17,True,Final,,,,False,,,,
-401114322,2019,2,14,2019-11-30T20:30Z,False,True,2226,Florida Atlantic Owls,34,2572,Southern Mississippi Golden Eagles,17,True,Final,,,,False,,,,
-401114323,2019,2,14,2019-11-30T20:30Z,False,True,2348,Louisiana Tech Bulldogs,41,2636,UTSA Roadrunners,27,True,Final,,,,False,,,,
-401117914,2019,2,14,2019-11-30T20:30Z,False,True,218,Temple Owls,49,41,UConn Huskies,17,True,Final,,,,False,,,,
-401110871,2019,2,14,2019-11-30T21:00Z,False,True,2633,Tennessee Volunteers,28,238,Vanderbilt Commodores,10,True,Final,,,,False,,,,
-401114199,2019,2,14,2019-11-30T21:00Z,False,True,2483,Oregon Ducks,24,204,Oregon State Beavers,10,True,Final,,,,False,,,,
-401114212,2019,2,14,2019-11-30T21:00Z,False,False,24,Stanford Cardinal,24,87,Notre Dame Fighting Irish,45,True,Final,,,,False,,,,
-401114325,2019,2,14,2019-11-30T21:00Z,False,True,249,North Texas Mean Green,21,5,UAB Blazers,26,True,Final,,,,False,,,,
-401117555,2019,2,14,2019-11-30T21:00Z,False,True,167,New Mexico Lobos,25,328,Utah State Aggies,38,True,Final,,,,False,,,,
-401117917,2019,2,14,2019-11-30T21:00Z,False,True,2567,SMU Mustangs,37,2655,Tulane Green Wave,20,True,Final,,,,False,,,,
-401121981,2019,2,14,2019-11-30T23:00Z,False,True,290,Georgia Southern Eagles,38,2247,Georgia State Panthers,10,True,Final,,,,False,,,,
-401110869,2019,2,14,2019-12-01T00:00Z,False,True,99,LSU Tigers,50,245,Texas A&M Aggies,7,True,Final,,,,False,,,,
-401112095,2019,2,14,2019-12-01T00:00Z,False,True,2306,Kansas State Wildcats,27,66,Iowa State Cyclones,17,True,Final,,,,False,,,,
-401112524,2019,2,14,2019-12-01T00:00Z,False,True,152,NC State Wolfpack,10,153,North Carolina Tar Heels,41,True,Final,,,,False,,,,
-401117916,2019,2,14,2019-12-01T00:00Z,False,True,248,Houston Cougars,41,2426,Navy Midshipmen,56,True,Final,,,,False,,,,
-401110866,2019,2,14,2019-12-01T00:30Z,False,False,57,Florida Gators,40,52,Florida State Seminoles,17,True,Final,,,,False,,,,
-401114192,2019,2,14,2019-12-01T00:30Z,False,True,254,Utah Utes,45,38,Colorado Buffaloes,15,True,Final,,,,False,,,,
-401121982,2019,2,14,2019-12-01T00:30Z,False,True,309,Louisiana Ragin' Cajuns,31,2433,UL Monroe Warhawks,30,True,Final,,,,False,,,,
-401112121,2019,2,14,2019-12-01T01:00Z,False,True,197,Oklahoma State Cowboys,16,201,Oklahoma Sooners,34,True,Final,,,,False,,,,
-401117218,2019,2,14,2019-12-01T02:00Z,False,False,21,San Diego State Aztecs,13,252,BYU Cougars,3,True,Final,,,,False,,,,
-401114163,2019,2,14,2019-12-01T03:00Z,False,True,9,Arizona State Sun Devils,24,12,Arizona Wildcats,14,True,Final,,,,False,,,,
-401114183,2019,2,14,2019-12-01T03:30Z,False,True,26,UCLA Bruins,18,25,California Golden Bears,28,True,Final,,,,False,,,,
-401117557,2019,2,14,2019-12-01T03:30Z,False,True,23,San José St Spartans,17,278,Fresno State Bulldogs,16,True,Final,,,,False,,,,
-401114334,2019,2,14,2019-12-01T04:59Z,False,False,62,Hawai'i Rainbow Warriors,52,349,Army Black Knights,31,True,Final,,,,False,,,,
-401132973,2019,2,15,2019-12-07T01:00Z,True,False,2483,Oregon Ducks,37,254,Utah Utes,15,True,Final,,,,False,,,,
-401132974,2019,2,15,2019-12-07T17:00Z,True,False,201,Oklahoma Sooners,30,239,Baylor Bears,23,True,Final,,,,False,,,,
-401132982,2019,2,15,2019-12-07T17:00Z,True,False,2117,Central Michigan Chippewas,21,193,Miami (OH) RedHawks,26,True,Final,,,,False,,,,
-401132984,2019,2,15,2019-12-07T17:00Z,False,False,2026,Appalachian State Mountaineers,45,309,Louisiana Ragin' Cajuns,38,True,Final,,,,False,,,,
-401132980,2019,2,15,2019-12-07T18:30Z,False,False,2226,Florida Atlantic Owls,49,5,UAB Blazers,6,True,Final,,,,False,,,,
-401132976,2019,2,15,2019-12-07T20:30Z,False,False,235,Memphis Tigers,29,2132,Cincinnati Bearcats,24,True,Final,,,,False,,,,
-401132979,2019,2,15,2019-12-07T21:00Z,False,False,68,Boise State Broncos,31,62,Hawai'i Rainbow Warriors,10,True,Final,,,,False,,,,
-401132981,2019,2,15,2019-12-07T21:00Z,True,False,99,LSU Tigers,37,61,Georgia Bulldogs,10,True,Final,,,,False,,,,
-401132975,2019,2,15,2019-12-08T00:30Z,True,False,228,Clemson Tigers,62,258,Virginia Cavaliers,17,True,Final,,,,False,,,,
-401132983,2019,2,15,2019-12-08T01:00Z,True,False,275,Wisconsin Badgers,21,194,Ohio State Buckeyes,34,True,Final,,,,False,,,,
-401114335,2019,2,16,2019-12-14T20:00Z,True,False,2426,Navy Midshipmen,31,349,Army Black Knights,7,True,Final,,,,False,,,,
-401135260,2019,3,1,2019-12-20T19:00Z,True,False,2429,Charlotte 49ers,9,2084,Buffalo Bulls,31,True,Final,,,,False,,,,
-401135261,2019,3,1,2019-12-21T00:30Z,True,False,2309,Kent State Golden Flashes,51,328,Utah State Aggies,41,True,Final,,,,False,,,,
-401135263,2019,3,1,2019-12-21T19:00Z,True,False,21,San Diego State Aztecs,48,2117,Central Michigan Chippewas,11,True,Final,,,,False,,,,
-401147693,2019,3,1,2019-12-21T19:30Z,True,False,290,Georgia Southern Eagles,16,2335,Liberty Flames,23,True,Final,,,,False,,,,
-401135264,2019,3,1,2019-12-21T20:30Z,False,False,2226,Florida Atlantic Owls,52,2567,SMU Mustangs,28,True,Final,,,,False,,,,
-401135265,2019,3,1,2019-12-21T22:30Z,True,False,2032,Arkansas State Red Wolves,34,2229,Florida International Panthers,26,True,Final,,,,False,,,,
-401135266,2019,3,1,2019-12-22T00:30Z,True,False,264,Washington Huskies,38,68,Boise State Broncos,7,True,Final,,,,False,,,,
-401135267,2019,3,1,2019-12-22T02:00Z,True,False,5,UAB Blazers,17,2026,Appalachian State Mountaineers,31,True,Final,,,,False,,,,
-401135268,2019,3,1,2019-12-23T19:30Z,True,False,276,Marshall Thundering Herd,25,2116,UCF Knights,48,True,Final,,,,False,,,,
-401135269,2019,3,1,2019-12-25T01:00Z,False,False,62,Hawai'i Rainbow Warriors,38,252,BYU Cougars,34,True,Final,,,,False,,,,
-401135270,2019,3,1,2019-12-26T21:00Z,True,False,2390,Miami Hurricanes,0,2348,Louisiana Tech Bulldogs,14,True,Final,,,,False,,,,
-401135271,2019,3,1,2019-12-27T01:00Z,True,False,2199,Eastern Michigan Eagles,30,221,Pittsburgh Panthers,34,True,Final,,,,False,,,,
-401135272,2019,3,1,2019-12-27T17:00Z,True,False,218,Temple Owls,13,153,North Carolina Tar Heels,55,True,Final,,,,False,,,,
-401135273,2019,3,1,2019-12-27T20:20Z,True,False,154,Wake Forest Demon Deacons,21,127,Michigan State Spartans,27,True,Final,,,,False,,,,
-401135274,2019,3,1,2019-12-27T23:45Z,True,False,245,Texas A&M Aggies,24,197,Oklahoma State Cowboys,21,True,Final,,,,False,,,,
-401136253,2019,3,1,2019-12-28T01:00Z,True,False,2294,Iowa Hawkeyes,49,30,USC Trojans,24,True,Final,,,,False,,,,
-401135275,2019,3,1,2019-12-28T03:15Z,True,False,265,Washington State Cougars,21,2005,Air Force Falcons,31,True,Final,,,,False,,,,
-401135276,2019,3,1,2019-12-28T17:00Z,True,False,66,Iowa State Cyclones,9,87,Notre Dame Fighting Irish,33,True,Final,,,,False,,,,
-401135277,2019,3,1,2019-12-28T17:00Z,True,False,213,Penn State Nittany Lions,53,235,Memphis Tigers,39,True,Final,,,,False,,,,
-401135278,2019,3,1,2019-12-28T21:20Z,True,False,99,LSU Tigers,63,201,Oklahoma Sooners,28,True,Final,,,,False,,,,
-401135279,2019,3,1,2019-12-29T01:20Z,True,False,194,Ohio State Buckeyes,23,228,Clemson Tigers,29,True,Final,,,,False,,,,
-401135280,2019,3,1,2019-12-30T17:30Z,True,False,2711,Western Michigan Broncos,20,98,Western Kentucky Hilltoppers,23,True,Final,,,,False,,,,
-401135281,2019,3,1,2019-12-30T21:00Z,True,False,97,Louisville Cardinals,38,344,Mississippi State Bulldogs,28,True,Final,,,,False,,,,
-401136254,2019,3,1,2019-12-30T21:00Z,True,False,356,Illinois Fighting Illini,20,25,California Golden Bears,35,True,Final,,,,False,,,,
-401135282,2019,3,1,2019-12-31T01:00Z,True,False,258,Virginia Cavaliers,28,57,Florida Gators,36,True,Final,,,,False,,,,
-401135283,2019,3,1,2019-12-31T17:00Z,True,False,96,Kentucky Wildcats,37,259,Virginia Tech Hokies,30,True,Final,,,,False,,,,
-401136255,2019,3,1,2019-12-31T19:00Z,True,False,9,Arizona State Sun Devils,20,52,Florida State Seminoles,14,True,Final,,,,False,,,,
-401135284,2019,3,1,2019-12-31T20:45Z,True,False,2306,Kansas State Wildcats,17,2426,Navy Midshipmen,20,True,Final,,,,False,,,,
-401147695,2019,3,1,2019-12-31T21:30Z,True,False,2247,Georgia State Panthers,17,2751,Wyoming Cowboys,38,True,Final,,,,False,,,,
-401135285,2019,3,1,2020-01-01T00:30Z,True,False,251,Texas Longhorns,38,254,Utah Utes,10,True,Final,,,,False,,,,
-401135286,2019,3,1,2020-01-01T18:00Z,True,False,333,Alabama Crimson Tide,35,130,Michigan Wolverines,16,True,Final,,,,False,,,,
-401135287,2019,3,1,2020-01-01T18:00Z,True,False,2,Auburn Tigers,24,135,Minnesota Golden Gophers,31,True,Final,,,,False,,,,
-401135288,2019,3,1,2020-01-01T22:10Z,True,False,275,Wisconsin Badgers,27,2483,Oregon Ducks,28,True,Final,,,,False,,,,
-401135289,2019,3,1,2020-01-02T01:45Z,True,False,239,Baylor Bears,14,61,Georgia Bulldogs,26,True,Final,,,,False,,,,
-401135290,2019,3,1,2020-01-02T20:00Z,True,False,2132,Cincinnati Bearcats,38,103,Boston College Eagles,6,True,Final,,,,False,,,,
-401135291,2019,3,1,2020-01-03T00:00Z,True,False,2633,Tennessee Volunteers,23,84,Indiana Hoosiers,22,True,Final,,,,False,,,,
-401135292,2019,3,1,2020-01-03T20:30Z,True,False,2440,Nevada Wolf Pack,21,195,Ohio Bobcats,30,True,Final,,,,False,,,,
-401135293,2019,3,1,2020-01-04T16:30Z,True,False,2655,Tulane Green Wave,30,2572,Southern Mississippi Golden Eagles,13,True,Final,,,,False,,,,
-401135294,2019,3,1,2020-01-07T00:30Z,True,False,193,Miami (OH) RedHawks,17,309,Louisiana Ragin' Cajuns,27,True,Final,,,,False,,,,
-401135295,2019,3,1,2020-01-14T01:00Z,True,False,99,LSU Tigers,42,228,Clemson Tigers,25,True,Final,,,,False,,,,
+401110853,2019,2,12,2019-11-17T00:30Z,False,True,245,Texas A&M Aggies,30,2579,South Carolina Gamecocks,6,True,Final,TA&M -10.5,-10.5,47.0,True,-417.0,310.0,-110.0,-110.0
+401112082,2019,2,12,2019-11-17T00:30Z,False,True,239,Baylor Bears,31,201,Oklahoma Sooners,34,True,Final,OU -10.5,10.5,69.0,True,300.0,-400.0,-110.0,-110.0
+401112512,2019,2,12,2019-11-17T00:30Z,False,True,152,NC State Wolfpack,20,97,Louisville Cardinals,34,True,Final,LOU -3.5,3.5,51.0,True,135.0,-167.0,-110.0,-110.0
+401114161,2019,2,12,2019-11-17T00:30Z,False,True,204,Oregon State Beavers,35,9,Arizona State Sun Devils,34,True,Final,ASU -1,1.0,56.0,True,-105.0,-115.0,-102.0,-120.0
+401121968,2019,2,12,2019-11-17T00:30Z,False,True,2247,Georgia State Panthers,27,2026,Appalachian State Mountaineers,56,True,Final,APP -15,15.0,61.0,True,430.0,-625.0,-110.0,-110.0
+401114216,2019,2,12,2019-11-17T01:00Z,False,True,254,Utah Utes,49,26,UCLA Bruins,3,True,Final,UTAH -21,-21.0,52.0,True,-2000.0,950.0,-110.0,-110.0
+401117545,2019,2,12,2019-11-17T03:15Z,False,True,68,Boise State Broncos,42,167,New Mexico Lobos,9,True,Final,BOIS -25.5,-25.5,57.5,True,-5000.0,1500.0,-105.0,-115.0
+401114172,2019,2,12,2019-11-17T03:30Z,False,True,2483,Oregon Ducks,34,12,Arizona Wildcats,6,True,Final,ORE -28,-28.0,68.5,True,-5000.0,1400.0,-108.0,-112.0
+401114181,2019,2,12,2019-11-17T04:00Z,False,True,25,California Golden Bears,17,30,USC Trojans,41,True,Final,USC -4.5,4.5,48.5,True,165.0,-204.0,-110.0,-110.0
+401119305,2019,2,13,2019-11-20T00:30Z,False,True,2459,Northern Illinois Huskies,17,2199,Eastern Michigan Eagles,45,True,Final,NIU -3.5,-3.5,56.0,True,-172.0,140.0,-110.0,-110.0
+401119306,2019,2,13,2019-11-20T00:30Z,False,True,189,Bowling Green Falcons,24,195,Ohio Bobcats,66,True,Final,OHIO -20.5,20.5,55.0,True,700.0,-1250.0,-110.0,-110.0
+401119307,2019,2,13,2019-11-21T00:30Z,False,True,193,Miami (OH) RedHawks,20,2006,Akron Zips,17,True,Final,M-OH -30.5,-30.5,45.0,True,,,-110.0,-110.0
+401119308,2019,2,13,2019-11-21T00:30Z,False,True,2084,Buffalo Bulls,49,2649,Toledo Rockets,30,True,Final,BUF -10,-10.0,52.5,True,-400.0,300.0,-102.0,-119.0
+401112513,2019,2,13,2019-11-22T01:00Z,False,True,59,Georgia Tech Yellow Jackets,28,152,NC State Wolfpack,26,True,Final,NCSU -3,3.0,46.5,True,125.0,-154.0,-115.0,-105.0
+401117550,2019,2,13,2019-11-23T02:30Z,False,True,2751,Wyoming Cowboys,17,36,Colorado State Rams,7,True,Final,WYO -4.5,-4.5,50.5,True,-192.0,155.0,-120.0,-102.0
+401110855,2019,2,13,2019-11-23T17:00Z,False,False,333,Alabama Crimson Tide,66,2717,Western Carolina Catamounts,3,True,Final,ALA -57.5,-57.5,61.5,True,,,-111.0,-111.0
+401110856,2019,2,13,2019-11-23T17:00Z,False,False,2,Auburn Tigers,52,2535,Samford Bulldogs,0,True,Final,AUB -46,-46.0,64.0,True,,,-110.0,-110.0
+401112094,2019,2,13,2019-11-23T17:00Z,False,True,66,Iowa State Cyclones,41,2305,Kansas Jayhawks,31,True,Final,ISU -26.5,-26.5,59.0,True,-3333.0,1200.0,-110.0,-110.0
+401112128,2019,2,13,2019-11-23T17:00Z,False,True,277,West Virginia Mountaineers,13,197,Oklahoma State Cowboys,20,True,Final,OKST -6.5,6.5,55.0,True,190.0,-238.0,-110.0,-110.0
+401112155,2019,2,13,2019-11-23T17:00Z,False,True,2294,Iowa Hawkeyes,19,356,Illinois Fighting Illini,10,True,Final,IOWA -15.5,-15.5,48.0,True,-833.0,540.0,-110.0,-110.0
+401112220,2019,2,13,2019-11-23T17:00Z,False,True,164,Rutgers Scarlet Knights,0,127,Michigan State Spartans,27,True,Final,MSU -20,20.0,,True,,,-110.0,-110.0
+401112236,2019,2,13,2019-11-23T17:00Z,False,True,77,Northwestern Wildcats,22,135,Minnesota Golden Gophers,38,True,Final,MINN -15.5,15.5,40.5,True,700.0,-1250.0,-108.0,-112.0
+401112256,2019,2,13,2019-11-23T17:00Z,False,True,194,Ohio State Buckeyes,28,213,Penn State Nittany Lions,17,True,Final,OSU -20,-20.0,58.0,True,-1111.0,650.0,-102.0,-119.0
+401112520,2019,2,13,2019-11-23T17:00Z,False,False,258,Virginia Cavaliers,55,2335,Liberty Flames,27,True,Final,UVA -16.5,-16.5,58.5,True,-667.0,460.0,-110.0,-110.0
+401114358,2019,2,13,2019-11-23T17:00Z,False,False,113,Massachusetts Minutemen,24,252,BYU Cougars,56,True,Final,BYU -41.5,41.5,69.0,True,,,-110.0,-110.0
+401117906,2019,2,13,2019-11-23T17:00Z,False,True,2655,Tulane Green Wave,31,2116,UCF Knights,34,True,Final,UCF -7,7.0,73.0,True,210.0,-263.0,-110.0,-110.0
+401117908,2019,2,13,2019-11-23T17:00Z,False,True,41,UConn Huskies,24,151,East Carolina Pirates,31,True,Final,ECU -14.5,14.5,64.0,True,400.0,-556.0,-110.0,-110.0
+401119309,2019,2,13,2019-11-23T17:00Z,False,True,2309,Kent State Golden Flashes,41,2050,Ball State Cardinals,38,True,Final,BALL -3,3.0,67.5,True,123.0,-149.0,-110.0,-110.0
+401121976,2019,2,13,2019-11-23T19:00Z,False,True,2247,Georgia State Panthers,28,6,South Alabama Jaguars,15,True,Final,GAST -8.5,-8.5,57.0,True,-345.0,260.0,-110.0,-110.0
+401183793,2019,2,13,2019-11-23T19:00Z,False,True,167,New Mexico Lobos,22,2005,Air Force Falcons,44,True,Final,AF -25,25.0,57.0,True,1400.0,-5000.0,-110.0,-110.0
+401112514,2019,2,13,2019-11-23T19:30Z,False,False,87,Notre Dame Fighting Irish,40,103,Boston College Eagles,7,True,Final,ND -20.5,-20.5,65.5,True,-1250.0,700.0,-110.0,-110.0
+401121973,2019,2,13,2019-11-23T19:30Z,False,True,2026,Appalachian State Mountaineers,35,326,Texas State Bobcats,13,True,Final,APP -27.5,-27.5,50.5,True,,,-120.0,-102.0
+401121974,2019,2,13,2019-11-23T20:00Z,False,True,2032,Arkansas State Red Wolves,38,290,Georgia Southern Eagles,33,True,Final,ARST -1.5,-1.5,52.5,True,-120.0,100.0,-110.0,-110.0
+401110857,2019,2,13,2019-11-23T20:30Z,False,True,61,Georgia Bulldogs,19,245,Texas A&M Aggies,13,True,Final,UGA -12,-12.0,43.5,True,-526.0,380.0,-110.0,-110.0
+401110858,2019,2,13,2019-11-23T20:30Z,False,False,96,Kentucky Wildcats,50,2630,UT Martin Skyhawks,7,True,Final,UK -29.5,-29.5,43.5,True,,,-110.0,-110.0
+401110862,2019,2,13,2019-11-23T20:30Z,False,False,238,Vanderbilt Commodores,38,2193,East Tennessee State Buccaneers,0,True,Final,VAN -20.5,-20.5,42.5,True,-1429.0,850.0,-110.0,-110.0
+401112083,2019,2,13,2019-11-23T20:30Z,False,True,239,Baylor Bears,24,251,Texas Longhorns,10,True,Final,BAY -3.5,-3.5,58.0,True,-179.0,145.0,-120.0,-102.0
+401112167,2019,2,13,2019-11-23T20:30Z,False,True,84,Indiana Hoosiers,14,130,Michigan Wolverines,39,True,Final,MICH -9.5,9.5,54.0,True,285.0,-370.0,100.0,-122.0
+401112210,2019,2,13,2019-11-23T20:30Z,False,True,120,Maryland Terrapins,7,158,Nebraska Cornhuskers,54,True,Final,NEB -6.5,6.5,64.0,True,200.0,-250.0,-106.0,-115.0
+401112518,2019,2,13,2019-11-23T20:30Z,False,False,153,North Carolina Tar Heels,56,2382,Mercer Bears,7,True,Final,,,,True,,,,
+401112519,2019,2,13,2019-11-23T20:30Z,False,True,259,Virginia Tech Hokies,28,221,Pittsburgh Panthers,0,True,Final,VT -3.5,-3.5,43.5,True,-182.0,148.0,-110.0,-110.0
+401114217,2019,2,13,2019-11-23T20:30Z,False,True,30,USC Trojans,52,26,UCLA Bruins,35,True,Final,USC -6,-6.0,67.0,True,-435.0,320.0,-217.0,165.0
+401114313,2019,2,13,2019-11-23T20:30Z,False,True,2429,Charlotte 49ers,24,276,Marshall Thundering Herd,13,True,Final,MRSH -6.5,6.5,56.5,True,188.0,-233.0,-110.0,-110.0
+401114315,2019,2,13,2019-11-23T20:30Z,False,True,5,UAB Blazers,20,2348,Louisiana Tech Bulldogs,14,True,Final,UAB -6.5,-6.5,44.0,True,-233.0,188.0,-106.0,-114.0
+401114317,2019,2,13,2019-11-23T20:30Z,False,True,242,Rice Owls,20,249,North Texas Mean Green,14,True,Final,UNT -6.5,6.5,55.0,True,190.0,-238.0,-110.0,-110.0
+401114318,2019,2,13,2019-11-23T20:30Z,False,True,2572,Southern Mississippi Golden Eagles,10,98,Western Kentucky Hilltoppers,28,True,Final,USM -3.5,-3.5,51.0,True,-175.0,143.0,-110.0,-110.0
+401117911,2019,2,13,2019-11-23T20:30Z,False,True,2426,Navy Midshipmen,35,2567,SMU Mustangs,28,True,Final,NAVY -3.5,-3.5,68.0,True,-164.0,135.0,-103.0,-118.0
+401112263,2019,2,13,2019-11-23T21:00Z,False,True,275,Wisconsin Badgers,45,2509,Purdue Boilermakers,24,True,Final,WIS -25,-25.0,48.0,True,-10000.0,1700.0,-110.0,-110.0
+401112516,2019,2,13,2019-11-23T21:00Z,False,True,97,Louisville Cardinals,56,183,Syracuse Orange,34,True,Final,LOU -7.5,-7.5,65.0,True,-286.0,225.0,-116.0,-105.0
+401114182,2019,2,13,2019-11-23T21:00Z,False,True,24,Stanford Cardinal,20,25,California Golden Bears,24,True,Final,STAN -2.5,-2.5,41.0,True,-119.0,-102.0,106.0,-130.0
+401114319,2019,2,13,2019-11-23T21:00Z,False,False,166,New Mexico State Aggies,44,2638,UTEP Miners,35,True,Final,NMSU -7.5,-7.5,55.5,True,-270.0,215.0,-106.0,-114.0
+401117553,2019,2,13,2019-11-23T21:00Z,False,True,2439,UNLV Rebels,38,23,San José St Spartans,35,True,Final,SJSU -7,7.0,65.5,True,205.0,-263.0,-110.0,-110.0
+401117909,2019,2,13,2019-11-23T21:00Z,False,True,58,South Florida Bulls,10,235,Memphis Tigers,49,True,Final,MEM -14.5,14.5,60.0,True,450.0,-667.0,-110.0,-110.0
+401114316,2019,2,13,2019-11-23T21:30Z,False,True,2393,Middle Tennessee Blue Raiders,38,295,Old Dominion Monarchs,17,True,Final,MTSU -13.5,-13.5,47.0,True,-625.0,430.0,-110.0,-110.0
+401121975,2019,2,13,2019-11-23T22:00Z,False,True,2433,UL Monroe Warhawks,45,324,Coastal Carolina Chanticleers,42,True,Final,ULM -5.5,-5.5,62.5,True,-204.0,165.0,-110.0,-110.0
+401121977,2019,2,13,2019-11-23T22:00Z,False,True,309,Louisiana Ragin' Cajuns,53,2653,Troy Trojans,3,True,Final,UL -11.5,-11.5,74.0,True,-385.0,295.0,-110.0,-110.0
+401114314,2019,2,13,2019-11-23T23:00Z,False,True,2636,UTSA Roadrunners,26,2226,Florida Atlantic Owls,40,True,Final,FAU -21.5,21.5,57.0,True,800.0,-1429.0,-110.0,-110.0
+401110859,2019,2,13,2019-11-24T00:00Z,False,True,99,LSU Tigers,56,8,Arkansas Razorbacks,20,True,Final,LSU -41.5,-41.5,69.0,True,,,-110.0,-110.0
+401112113,2019,2,13,2019-11-24T00:00Z,False,True,2641,Texas Tech Red Raiders,27,2306,Kansas State Wildcats,30,True,Final,TTU -1,-1.0,57.0,True,-105.0,-115.0,100.0,-120.0
+401112517,2019,2,13,2019-11-24T00:00Z,False,False,2229,Florida International Panthers,30,2390,Miami Hurricanes,24,True,Final,MIA -20.5,20.5,50.0,True,900.0,-1667.0,-110.0,-110.0
+401117907,2019,2,13,2019-11-24T00:00Z,False,True,2132,Cincinnati Bearcats,15,218,Temple Owls,13,True,Final,CIN -9,-9.0,44.5,True,-333.0,260.0,-110.0,-110.0
+401110860,2019,2,13,2019-11-24T00:30Z,False,False,344,Mississippi State Bulldogs,45,2000,Abilene Christian Wildcats,7,True,Final,MSST -37,-37.0,57.0,True,,,-110.0,-110.0
+401110861,2019,2,13,2019-11-24T00:30Z,False,True,142,Missouri Tigers,20,2633,Tennessee Volunteers,24,True,Final,MIZ -3.5,-3.5,47.0,True,-179.0,145.0,-110.0,-110.0
+401112515,2019,2,13,2019-11-24T00:30Z,False,True,154,Wake Forest Demon Deacons,39,150,Duke Blue Devils,27,True,Final,WAKE -6.5,-6.5,50.0,True,-263.0,205.0,-110.0,-110.0
+401114162,2019,2,13,2019-11-24T00:30Z,False,True,9,Arizona State Sun Devils,31,2483,Oregon Ducks,28,True,Final,ORE -13.5,13.5,54.0,True,410.0,-588.0,-111.0,-109.0
+401117910,2019,2,13,2019-11-24T00:30Z,False,True,202,Tulsa Golden Hurricane,14,248,Houston Cougars,24,True,Final,TLSA -4.5,-4.5,57.5,True,-189.0,150.0,-110.0,-110.0
+401112120,2019,2,13,2019-11-24T01:00Z,False,True,201,Oklahoma Sooners,28,2628,TCU Horned Frogs,24,True,Final,OU -18,-18.0,65.0,True,-909.0,575.0,-110.0,-110.0
+401114206,2019,2,13,2019-11-24T02:00Z,False,True,265,Washington State Cougars,54,204,Oregon State Beavers,53,True,Final,WSU -10.5,-10.5,77.5,True,-400.0,295.0,-110.0,-110.0
+401114173,2019,2,13,2019-11-24T03:00Z,False,True,12,Arizona Wildcats,7,254,Utah Utes,35,True,Final,UTAH -24,24.0,57.5,True,1400.0,-5000.0,-110.0,-110.0
+401114191,2019,2,13,2019-11-24T03:00Z,False,True,38,Colorado Buffaloes,20,264,Washington Huskies,14,True,Final,WASH -14,14.0,53.5,True,430.0,-625.0,-110.0,-110.0
+401117549,2019,2,13,2019-11-24T03:30Z,False,True,328,Utah State Aggies,21,68,Boise State Broncos,56,True,Final,BOIS -4.5,4.5,53.5,True,163.0,-200.0,-102.0,-119.0
+401117551,2019,2,13,2019-11-24T03:30Z,False,True,278,Fresno State Bulldogs,28,2440,Nevada Wolf Pack,35,True,Final,FRES -12.5,-12.5,51.5,True,-500.0,360.0,-112.0,-108.0
+401117552,2019,2,13,2019-11-24T04:00Z,False,True,62,Hawai'i Rainbow Warriors,14,21,San Diego State Aztecs,11,True,Final,HAW -1.5,-1.5,45.5,True,-132.0,108.0,-120.0,-102.0
+401119310,2019,2,14,2019-11-26T23:00Z,False,True,2006,Akron Zips,3,195,Ohio Bobcats,52,True,Final,OHIO -27.5,27.5,53.0,True,1050.0,-2500.0,-112.0,-108.0
+401119311,2019,2,14,2019-11-27T00:00Z,False,True,2459,Northern Illinois Huskies,17,2711,Western Michigan Broncos,14,True,Final,WMU -10.5,10.5,51.0,True,320.0,-417.0,-115.0,-105.0
+401110863,2019,2,14,2019-11-29T00:30Z,False,True,344,Mississippi State Bulldogs,21,145,Ole Miss Rebels,20,True,Final,MISS -2,2.0,59.0,True,102.0,-123.0,-119.0,-102.0
+401112138,2019,2,14,2019-11-29T17:00Z,False,True,251,Texas Longhorns,49,2641,Texas Tech Red Raiders,24,True,Final,TEX -9,-9.0,63.5,True,-333.0,255.0,-110.0,-110.0
+401112521,2019,2,14,2019-11-29T17:00Z,False,True,258,Virginia Cavaliers,39,259,Virginia Tech Hokies,30,True,Final,VT -1.5,1.5,49.0,True,104.0,-125.0,-110.0,-110.0
+401119312,2019,2,14,2019-11-29T17:00Z,False,True,2084,Buffalo Bulls,49,189,Bowling Green Falcons,7,True,Final,BUF -27.5,-27.5,53.0,True,-10000.0,1700.0,-119.0,-102.0
+401119313,2019,2,14,2019-11-29T17:00Z,False,True,2199,Eastern Michigan Eagles,26,2309,Kent State Golden Flashes,34,True,Final,EMU -3.5,-3.5,68.5,True,-175.0,143.0,-120.0,-102.0
+401119314,2019,2,14,2019-11-29T17:00Z,False,True,2050,Ball State Cardinals,41,193,Miami (OH) RedHawks,27,True,Final,M-OH -2.5,2.5,55.5,True,-167.0,135.0,-204.0,155.0
+401119315,2019,2,14,2019-11-29T17:00Z,False,True,2117,Central Michigan Chippewas,49,2649,Toledo Rockets,7,True,Final,CMU -16.5,-16.5,65.0,True,-588.0,425.0,112.0,-137.0
+401110864,2019,2,14,2019-11-29T19:30Z,False,True,8,Arkansas Razorbacks,14,142,Missouri Tigers,24,True,Final,MIZ -16.5,16.5,53.0,True,440.0,-625.0,-120.0,-102.0
+401112200,2019,2,14,2019-11-29T19:30Z,False,True,158,Nebraska Cornhuskers,24,2294,Iowa Hawkeyes,27,True,Final,IOWA -4.5,4.5,45.5,True,165.0,-204.0,-110.0,-110.0
+401117554,2019,2,14,2019-11-29T20:30Z,False,True,36,Colorado State Rams,24,68,Boise State Broncos,31,True,Final,BOIS -10,10.0,58.5,True,425.0,-588.0,148.0,-189.0
+401117913,2019,2,14,2019-11-29T20:30Z,False,True,235,Memphis Tigers,34,2132,Cincinnati Bearcats,24,True,Final,MEM -13.5,-13.5,59.5,True,-526.0,390.0,-105.0,-115.0
+401114232,2019,2,14,2019-11-29T21:00Z,False,True,264,Washington Huskies,31,265,Washington State Cougars,13,True,Final,WASH -7,-7.0,65.0,True,-263.0,210.0,-111.0,-109.0
+401112134,2019,2,14,2019-11-29T21:15Z,False,True,2628,TCU Horned Frogs,17,277,West Virginia Mountaineers,20,True,Final,TCU -13.5,-13.5,43.0,True,-625.0,430.0,-110.0,-110.0
+401121979,2019,2,14,2019-11-29T22:00Z,False,True,6,South Alabama Jaguars,34,2032,Arkansas State Red Wolves,30,True,Final,ARST -10.5,10.5,53.5,True,310.0,-417.0,-110.0,-110.0
+401121978,2019,2,14,2019-11-29T23:00Z,False,True,2653,Troy Trojans,13,2026,Appalachian State Mountaineers,48,True,Final,APP -11,11.0,64.0,True,295.0,-385.0,-110.0,-110.0
+401117912,2019,2,14,2019-11-30T01:00Z,False,True,2116,UCF Knights,34,58,South Florida Bulls,7,True,Final,UCF -24,-24.0,61.5,True,-2500.0,1100.0,-110.0,-110.0
+401110867,2019,2,14,2019-11-30T17:00Z,False,False,59,Georgia Tech Yellow Jackets,7,61,Georgia Bulldogs,52,True,Final,UGA -28.5,28.5,46.5,True,,,-110.0,-110.0
+401110868,2019,2,14,2019-11-30T17:00Z,False,False,96,Kentucky Wildcats,45,97,Louisville Cardinals,13,True,Final,UK -3.5,-3.5,53.0,True,-175.0,143.0,-110.0,-110.0
+401110870,2019,2,14,2019-11-30T17:00Z,False,False,2579,South Carolina Gamecocks,3,228,Clemson Tigers,38,True,Final,CLEM -27.5,27.5,50.5,True,,,-110.0,-110.0
+401112156,2019,2,14,2019-11-30T17:00Z,False,True,356,Illinois Fighting Illini,10,77,Northwestern Wildcats,29,True,Final,ILL -10.5,-10.5,39.5,True,-244.0,195.0,163.0,-213.0
+401112168,2019,2,14,2019-11-30T17:00Z,False,True,2509,Purdue Boilermakers,41,84,Indiana Hoosiers,44,True,Final,IU -7,7.0,56.5,True,205.0,-263.0,-110.0,-110.0
+401112228,2019,2,14,2019-11-30T17:00Z,False,True,130,Michigan Wolverines,27,194,Ohio State Buckeyes,56,True,Final,OSU -8.5,8.5,53.0,True,245.0,-313.0,-110.0,-110.0
+401114321,2019,2,14,2019-11-30T17:00Z,False,True,276,Marshall Thundering Herd,30,2229,Florida International Panthers,27,True,Final,MRSH -10,-10.0,50.0,True,-385.0,295.0,-110.0,-110.0
+401117915,2019,2,14,2019-11-30T17:00Z,False,True,151,East Carolina Pirates,24,202,Tulsa Golden Hurricane,49,True,Final,TLSA -6.5,6.5,63.0,True,190.0,-238.0,-110.0,-110.0
+401121980,2019,2,14,2019-11-30T17:00Z,False,True,324,Coastal Carolina Chanticleers,24,326,Texas State Bobcats,21,True,Final,CCU -7,-7.0,52.0,True,-263.0,210.0,-110.0,-110.0
+401112525,2019,2,14,2019-11-30T17:30Z,False,True,183,Syracuse Orange,39,154,Wake Forest Demon Deacons,30,True,Final,WAKE -6.5,6.5,68.0,True,180.0,-222.0,-110.0,-110.0
+401114320,2019,2,14,2019-11-30T19:00Z,False,True,295,Old Dominion Monarchs,22,2429,Charlotte 49ers,38,True,Final,CLT -10.5,10.5,51.0,True,320.0,-417.0,-110.0,-110.0
+401114324,2019,2,14,2019-11-30T19:00Z,False,True,98,Western Kentucky Hilltoppers,31,2393,Middle Tennessee Blue Raiders,26,True,Final,WKU -10.5,-10.5,46.5,True,-476.0,360.0,-110.0,-110.0
+401114346,2019,2,14,2019-11-30T19:00Z,False,False,2335,Liberty Flames,49,166,New Mexico State Aggies,28,True,Final,LIB -15,-15.0,66.0,True,-588.0,425.0,-110.0,-110.0
+401117556,2019,2,14,2019-11-30T19:00Z,False,True,2005,Air Force Falcons,20,2751,Wyoming Cowboys,6,True,Final,AF -4.5,-4.5,41.5,True,-667.0,460.0,-370.0,250.0
+401114326,2019,2,14,2019-11-30T20:00Z,False,True,2638,UTEP Miners,16,242,Rice Owls,30,True,Final,RICE -7,7.0,43.0,True,210.0,-263.0,-110.0,-110.0
+401117558,2019,2,14,2019-11-30T20:00Z,False,True,2440,Nevada Wolf Pack,30,2439,UNLV Rebels,33,True,Final,NEV -7,-7.0,51.5,True,-263.0,210.0,-110.0,-110.0
+401110865,2019,2,14,2019-11-30T20:30Z,False,True,2,Auburn Tigers,48,333,Alabama Crimson Tide,45,True,Final,ALA -3.5,3.5,50.5,True,150.0,-185.0,-108.0,-112.0
+401112084,2019,2,14,2019-11-30T20:30Z,False,True,2305,Kansas Jayhawks,6,239,Baylor Bears,61,True,Final,BAY -14,14.0,49.0,True,525.0,-769.0,-110.0,-110.0
+401112221,2019,2,14,2019-11-30T20:30Z,False,True,127,Michigan State Spartans,19,120,Maryland Terrapins,16,True,Final,MSU -21.5,-21.5,46.5,True,-2500.0,1050.0,-110.0,-110.0
+401112237,2019,2,14,2019-11-30T20:30Z,False,True,135,Minnesota Golden Gophers,17,275,Wisconsin Badgers,38,True,Final,WIS -3.5,3.5,45.0,True,140.0,-172.0,-110.0,-110.0
+401112261,2019,2,14,2019-11-30T20:30Z,False,True,213,Penn State Nittany Lions,27,164,Rutgers Scarlet Knights,6,True,Final,PSU -39,-39.0,,True,,,-110.0,-110.0
+401112522,2019,2,14,2019-11-30T20:30Z,False,True,221,Pittsburgh Panthers,19,103,Boston College Eagles,26,True,Final,PITT -8.5,-8.5,51.5,True,-313.0,250.0,-110.0,-110.0
+401112523,2019,2,14,2019-11-30T20:30Z,False,True,150,Duke Blue Devils,27,2390,Miami Hurricanes,17,True,Final,MIA -9.5,9.5,44.0,True,295.0,-385.0,-110.0,-110.0
+401114322,2019,2,14,2019-11-30T20:30Z,False,True,2226,Florida Atlantic Owls,34,2572,Southern Mississippi Golden Eagles,17,True,Final,FAU -9.5,-9.5,57.5,True,-333.0,260.0,-110.0,-110.0
+401114323,2019,2,14,2019-11-30T20:30Z,False,True,2348,Louisiana Tech Bulldogs,41,2636,UTSA Roadrunners,27,True,Final,LT -21,-21.0,57.0,True,-1429.0,750.0,-102.0,-119.0
+401117914,2019,2,14,2019-11-30T20:30Z,False,True,218,Temple Owls,49,41,UConn Huskies,17,True,Final,TEM -27,-27.0,48.0,True,-10000.0,1700.0,-110.0,-110.0
+401110871,2019,2,14,2019-11-30T21:00Z,False,True,2633,Tennessee Volunteers,28,238,Vanderbilt Commodores,10,True,Final,TENN -23,-23.0,48.0,True,-2500.0,1100.0,-110.0,-110.0
+401114199,2019,2,14,2019-11-30T21:00Z,False,True,2483,Oregon Ducks,24,204,Oregon State Beavers,10,True,Final,ORE -20.5,-20.5,65.5,True,-1429.0,800.0,-110.0,-110.0
+401114212,2019,2,14,2019-11-30T21:00Z,False,False,24,Stanford Cardinal,24,87,Notre Dame Fighting Irish,45,True,Final,ND -17,17.0,45.0,True,800.0,-1429.0,-105.0,-115.0
+401114325,2019,2,14,2019-11-30T21:00Z,False,True,249,North Texas Mean Green,21,5,UAB Blazers,26,True,Final,UAB -4,4.0,49.5,True,148.0,-182.0,-110.0,-110.0
+401117555,2019,2,14,2019-11-30T21:00Z,False,True,167,New Mexico Lobos,25,328,Utah State Aggies,38,True,Final,USU -13,13.0,63.0,True,340.0,-455.0,-130.0,106.0
+401117917,2019,2,14,2019-11-30T21:00Z,False,True,2567,SMU Mustangs,37,2655,Tulane Green Wave,20,True,Final,SMU -3,-3.0,70.5,True,-154.0,125.0,-110.0,-110.0
+401121981,2019,2,14,2019-11-30T23:00Z,False,True,290,Georgia Southern Eagles,38,2247,Georgia State Panthers,10,True,Final,GASO -6.5,-6.5,56.5,True,-244.0,195.0,-110.0,-110.0
+401110869,2019,2,14,2019-12-01T00:00Z,False,True,99,LSU Tigers,50,245,Texas A&M Aggies,7,True,Final,LSU -18,-18.0,63.5,True,-1000.0,650.0,-110.0,-110.0
+401112095,2019,2,14,2019-12-01T00:00Z,False,True,2306,Kansas State Wildcats,27,66,Iowa State Cyclones,17,True,Final,ISU -5,5.0,45.0,True,170.0,-213.0,-110.0,-110.0
+401112524,2019,2,14,2019-12-01T00:00Z,False,True,152,NC State Wolfpack,10,153,North Carolina Tar Heels,41,True,Final,UNC -11,11.0,57.5,True,340.0,-455.0,-110.0,-110.0
+401117916,2019,2,14,2019-12-01T00:00Z,False,True,248,Houston Cougars,41,2426,Navy Midshipmen,56,True,Final,NAVY -9,9.0,56.5,True,250.0,-313.0,-110.0,-110.0
+401110866,2019,2,14,2019-12-01T00:30Z,False,False,57,Florida Gators,40,52,Florida State Seminoles,17,True,Final,FLA -17,-17.0,55.5,True,-1000.0,600.0,-110.0,-110.0
+401114192,2019,2,14,2019-12-01T00:30Z,False,True,254,Utah Utes,45,38,Colorado Buffaloes,15,True,Final,UTAH -28,-28.0,49.5,True,,,-110.0,-110.0
+401121982,2019,2,14,2019-12-01T00:30Z,False,True,309,Louisiana Ragin' Cajuns,31,2433,UL Monroe Warhawks,30,True,Final,UL -19.5,-19.5,69.5,True,-909.0,600.0,-110.0,-110.0
+401112121,2019,2,14,2019-12-01T01:00Z,False,True,197,Oklahoma State Cowboys,16,201,Oklahoma Sooners,34,True,Final,OU -13.5,13.5,68.5,True,400.0,-556.0,-110.0,-110.0
+401117218,2019,2,14,2019-12-01T02:00Z,False,False,21,San Diego State Aztecs,13,252,BYU Cougars,3,True,Final,BYU -4,4.0,39.0,True,188.0,-233.0,110.0,-135.0
+401114163,2019,2,14,2019-12-01T03:00Z,False,True,9,Arizona State Sun Devils,24,12,Arizona Wildcats,14,True,Final,ASU -13.5,-13.5,59.5,True,-526.0,390.0,-110.0,-110.0
+401114183,2019,2,14,2019-12-01T03:30Z,False,True,26,UCLA Bruins,18,25,California Golden Bears,28,True,Final,UCLA -1,-1.0,50.5,True,-120.0,100.0,-110.0,-110.0
+401117557,2019,2,14,2019-12-01T03:30Z,False,True,23,San José St Spartans,17,278,Fresno State Bulldogs,16,True,Final,SJSU -2.5,-2.5,60.5,True,-122.0,100.0,-110.0,-110.0
+401114334,2019,2,14,2019-12-01T04:59Z,False,False,62,Hawai'i Rainbow Warriors,52,349,Army Black Knights,31,True,Final,HAW -2,-2.0,54.5,True,-135.0,112.0,-110.0,-110.0
+401132973,2019,2,15,2019-12-07T01:00Z,True,False,2483,Oregon Ducks,37,254,Utah Utes,15,True,Final,UTAH -6.5,6.5,45.5,True,200.0,-250.0,-105.0,-115.0
+401132974,2019,2,15,2019-12-07T17:00Z,True,False,201,Oklahoma Sooners,30,239,Baylor Bears,23,True,Final,OU -9.5,-9.5,66.5,True,-345.0,260.0,-110.0,-110.0
+401132982,2019,2,15,2019-12-07T17:00Z,True,False,2117,Central Michigan Chippewas,21,193,Miami (OH) RedHawks,26,True,Final,CMU -6.5,-6.5,56.5,True,-263.0,210.0,-110.0,-110.0
+401132984,2019,2,15,2019-12-07T17:00Z,False,False,2026,Appalachian State Mountaineers,45,309,Louisiana Ragin' Cajuns,38,True,Final,APP -6,-6.0,57.5,True,-222.0,180.0,-110.0,-110.0
+401132980,2019,2,15,2019-12-07T18:30Z,False,False,2226,Florida Atlantic Owls,49,5,UAB Blazers,6,True,Final,FAU -8.5,-8.5,49.5,True,-313.0,245.0,-110.0,-110.0
+401132976,2019,2,15,2019-12-07T20:30Z,False,False,235,Memphis Tigers,29,2132,Cincinnati Bearcats,24,True,Final,MEM -8.5,-8.5,59.0,True,-313.0,245.0,-110.0,-110.0
+401132979,2019,2,15,2019-12-07T21:00Z,False,False,68,Boise State Broncos,31,62,Hawai'i Rainbow Warriors,10,True,Final,BOIS -14,-14.0,64.5,True,-588.0,425.0,-110.0,-110.0
+401132981,2019,2,15,2019-12-07T21:00Z,True,False,99,LSU Tigers,37,61,Georgia Bulldogs,10,True,Final,LSU -7,-7.0,57.0,True,-278.0,220.0,-119.0,-102.0
+401132975,2019,2,15,2019-12-08T00:30Z,True,False,228,Clemson Tigers,62,258,Virginia Cavaliers,17,True,Final,CLEM -29,-29.0,57.0,True,-3333.0,1200.0,-110.0,-110.0
+401132983,2019,2,15,2019-12-08T01:00Z,True,False,275,Wisconsin Badgers,21,194,Ohio State Buckeyes,34,True,Final,OSU -16.5,16.5,57.5,True,550.0,-833.0,-102.0,-119.0
+401114335,2019,2,16,2019-12-14T20:00Z,True,False,2426,Navy Midshipmen,31,349,Army Black Knights,7,True,Final,NAVY -11,-11.0,42.0,True,-455.0,340.0,-112.0,-108.0
+401135260,2019,3,1,2019-12-20T19:00Z,True,False,2429,Charlotte 49ers,9,2084,Buffalo Bulls,31,True,Final,BUF -7,7.0,51.5,True,200.0,-250.0,-110.0,-110.0
+401135261,2019,3,1,2019-12-21T00:30Z,True,False,2309,Kent State Golden Flashes,51,328,Utah State Aggies,41,True,Final,USU -7,7.0,71.5,True,220.0,-278.0,100.0,-120.0
+401135263,2019,3,1,2019-12-21T19:00Z,True,False,21,San Diego State Aztecs,48,2117,Central Michigan Chippewas,11,True,Final,SDSU -3.5,-3.5,39.5,True,-185.0,150.0,-110.0,-110.0
+401147693,2019,3,1,2019-12-21T19:30Z,True,False,290,Georgia Southern Eagles,16,2335,Liberty Flames,23,True,Final,GASO -5.5,-5.5,58.5,True,-208.0,170.0,-110.0,-110.0
+401135264,2019,3,1,2019-12-21T20:30Z,False,False,2226,Florida Atlantic Owls,52,2567,SMU Mustangs,28,True,Final,SMU -7,7.0,63.5,True,188.0,-233.0,-119.0,-102.0
+401135265,2019,3,1,2019-12-21T22:30Z,True,False,2032,Arkansas State Red Wolves,34,2229,Florida International Panthers,26,True,Final,FIU -1,1.0,60.5,True,-115.0,-105.0,-120.0,100.0
+401135266,2019,3,1,2019-12-22T00:30Z,True,False,264,Washington Huskies,38,68,Boise State Broncos,7,True,Final,WASH -3.5,-3.5,47.5,True,-204.0,165.0,-125.0,102.0
+401135267,2019,3,1,2019-12-22T02:00Z,True,False,5,UAB Blazers,17,2026,Appalachian State Mountaineers,31,True,Final,APP -17,17.0,47.5,True,540.0,-833.0,-114.0,-106.0
+401135268,2019,3,1,2019-12-23T19:30Z,True,False,276,Marshall Thundering Herd,25,2116,UCF Knights,48,True,Final,UCF -15.5,15.5,59.5,True,420.0,-588.0,-110.0,-110.0
+401135269,2019,3,1,2019-12-25T01:00Z,False,False,62,Hawai'i Rainbow Warriors,38,252,BYU Cougars,34,True,Final,HAW -2.5,-2.5,64.5,True,-132.0,108.0,-110.0,-110.0
+401135270,2019,3,1,2019-12-26T21:00Z,True,False,2390,Miami Hurricanes,0,2348,Louisiana Tech Bulldogs,14,True,Final,MIA -7,-7.0,48.5,True,-263.0,210.0,-110.0,-110.0
+401135271,2019,3,1,2019-12-27T01:00Z,True,False,2199,Eastern Michigan Eagles,30,221,Pittsburgh Panthers,34,True,Final,PITT -12,12.0,50.0,True,340.0,-455.0,-110.0,-110.0
+401135272,2019,3,1,2019-12-27T17:00Z,True,False,218,Temple Owls,13,153,North Carolina Tar Heels,55,True,Final,UNC -6,6.0,56.0,True,170.0,-213.0,-110.0,-110.0
+401135273,2019,3,1,2019-12-27T20:20Z,True,False,154,Wake Forest Demon Deacons,21,127,Michigan State Spartans,27,True,Final,MSU -3.5,3.5,51.5,True,143.0,-175.0,-110.0,-110.0
+401135274,2019,3,1,2019-12-27T23:45Z,True,False,245,Texas A&M Aggies,24,197,Oklahoma State Cowboys,21,True,Final,TA&M -4.5,-4.5,55.0,True,-189.0,150.0,-110.0,-110.0
+401136253,2019,3,1,2019-12-28T01:00Z,True,False,2294,Iowa Hawkeyes,49,30,USC Trojans,24,True,Final,USC -1.5,1.5,54.5,True,-105.0,-115.0,-110.0,-110.0
+401135275,2019,3,1,2019-12-28T03:15Z,True,False,265,Washington State Cougars,21,2005,Air Force Falcons,31,True,Final,AF -2.5,2.5,71.0,True,108.0,-132.0,-110.0,-110.0
+401135276,2019,3,1,2019-12-28T17:00Z,True,False,66,Iowa State Cyclones,9,87,Notre Dame Fighting Irish,33,True,Final,ND -3.5,3.5,53.5,True,148.0,-182.0,-110.0,-110.0
+401135277,2019,3,1,2019-12-28T17:00Z,True,False,213,Penn State Nittany Lions,53,235,Memphis Tigers,39,True,Final,PSU -7,-7.0,59.5,True,-250.0,200.0,-110.0,-110.0
+401135278,2019,3,1,2019-12-28T21:20Z,True,False,99,LSU Tigers,63,201,Oklahoma Sooners,28,True,Final,LSU -12.5,-12.5,76.0,True,-417.0,320.0,-110.0,-110.0
+401135279,2019,3,1,2019-12-29T01:20Z,True,False,194,Ohio State Buckeyes,23,228,Clemson Tigers,29,True,Final,CLEM -2.5,2.5,62.5,True,108.0,-132.0,-112.0,-108.0
+401135280,2019,3,1,2019-12-30T17:30Z,True,False,2711,Western Michigan Broncos,20,98,Western Kentucky Hilltoppers,23,True,Final,WKU -3,3.0,56.0,True,120.0,-147.0,-110.0,-110.0
+401135281,2019,3,1,2019-12-30T21:00Z,True,False,97,Louisville Cardinals,38,344,Mississippi State Bulldogs,28,True,Final,MSST -4.5,4.5,64.5,True,155.0,-192.0,-110.0,-110.0
+401136254,2019,3,1,2019-12-30T21:00Z,True,False,356,Illinois Fighting Illini,20,25,California Golden Bears,35,True,Final,CAL -6.5,6.5,47.5,True,200.0,-250.0,-110.0,-110.0
+401135282,2019,3,1,2019-12-31T01:00Z,True,False,258,Virginia Cavaliers,28,57,Florida Gators,36,True,Final,FLA -15.5,15.5,55.0,True,480.0,-714.0,-110.0,-110.0
+401135283,2019,3,1,2019-12-31T17:00Z,True,False,96,Kentucky Wildcats,37,259,Virginia Tech Hokies,30,True,Final,VT -2.5,2.5,46.5,True,110.0,-133.0,-110.0,-110.0
+401136255,2019,3,1,2019-12-31T19:00Z,True,False,9,Arizona State Sun Devils,20,52,Florida State Seminoles,14,True,Final,ASU -3,-3.0,52.0,True,-152.0,125.0,-110.0,-110.0
+401135284,2019,3,1,2019-12-31T20:45Z,True,False,2306,Kansas State Wildcats,17,2426,Navy Midshipmen,20,True,Final,NAVY -1.5,1.5,53.5,True,108.0,-130.0,-110.0,-110.0
+401147695,2019,3,1,2019-12-31T21:30Z,True,False,2247,Georgia State Panthers,17,2751,Wyoming Cowboys,38,True,Final,WYO -7.5,7.5,49.5,True,230.0,-294.0,-111.0,-109.0
+401135285,2019,3,1,2020-01-01T00:30Z,True,False,251,Texas Longhorns,38,254,Utah Utes,10,True,Final,UTAH -6.5,6.5,55.5,True,190.0,-238.0,-109.0,-111.0
+401135286,2019,3,1,2020-01-01T18:00Z,True,False,333,Alabama Crimson Tide,35,130,Michigan Wolverines,16,True,Final,ALA -7.5,-7.5,61.0,True,-286.0,225.0,-110.0,-110.0
+401135287,2019,3,1,2020-01-01T18:00Z,True,False,2,Auburn Tigers,24,135,Minnesota Golden Gophers,31,True,Final,AUB -7.5,-7.5,54.0,True,-270.0,215.0,100.0,-122.0
+401135288,2019,3,1,2020-01-01T22:10Z,True,False,275,Wisconsin Badgers,27,2483,Oregon Ducks,28,True,Final,WIS -3,-3.0,51.5,True,-167.0,135.0,-110.0,-110.0
+401135289,2019,3,1,2020-01-02T01:45Z,True,False,239,Baylor Bears,14,61,Georgia Bulldogs,26,True,Final,UGA -3.5,3.5,43.0,True,143.0,-175.0,-114.0,-106.0
+401135290,2019,3,1,2020-01-02T20:00Z,True,False,2132,Cincinnati Bearcats,38,103,Boston College Eagles,6,True,Final,CIN -7.5,-7.5,53.5,True,-333.0,255.0,-110.0,-110.0
+401135291,2019,3,1,2020-01-03T00:00Z,True,False,2633,Tennessee Volunteers,23,84,Indiana Hoosiers,22,True,Final,TENN -3.5,-3.5,55.0,True,-154.0,125.0,-108.0,-112.0
+401135292,2019,3,1,2020-01-03T20:30Z,True,False,2440,Nevada Wolf Pack,21,195,Ohio Bobcats,30,True,Final,OHIO -10.5,10.5,62.0,True,295.0,-385.0,-111.0,-109.0
+401135293,2019,3,1,2020-01-04T16:30Z,True,False,2655,Tulane Green Wave,30,2572,Southern Mississippi Golden Eagles,13,True,Final,TULN -7,-7.0,56.5,True,-250.0,200.0,-110.0,-110.0
+401135294,2019,3,1,2020-01-07T00:30Z,True,False,193,Miami (OH) RedHawks,17,309,Louisiana Ragin' Cajuns,27,True,Final,UL -14.5,14.5,55.5,True,440.0,-625.0,-110.0,-110.0
+401135295,2019,3,1,2020-01-14T01:00Z,True,False,99,LSU Tigers,42,228,Clemson Tigers,25,True,Final,LSU -4.5,-4.5,66.0,True,-179.0,155.0,-104.0,-116.0

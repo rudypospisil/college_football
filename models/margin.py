@@ -64,6 +64,11 @@ class MarginModel(RatingModel):
     def rating(self, team_id):
         return self.ratings.get(team_id, self.new_team_prior)
 
+    def target(self, done):
+        """What the ratings are fit to for each finished game: the actual margin here.
+        Subclasses can swap in something less noisy (see models/efficiency.py)."""
+        return done["margin"].astype(float).to_numpy()
+
     def post_fit_params(self, pred):
         """The noise level: standard deviation of the margin residuals on the training seasons."""
         resid = pred["margin"] - pred["pred_margin"]
@@ -117,7 +122,7 @@ class MarginModel(RatingModel):
             done["a"] = [index[self.entity(t, season)] for t in done["away_id"]]
             done["margin"] = (done["home_score"] - done["away_score"]).astype(int)
             done["t"] = done["date"].dt.tz_convert("UTC").dt.tz_localize(None)   # naive UTC -> datetime64 arrays
-            y_all = done["margin"].astype(float).to_numpy()
+            y_all = self.target(done)
             if self.cap:
                 y_all = np.clip(y_all, -self.cap, self.cap)
             y_all = y_all - self.hfa * (~done["neutral_site"].astype(bool)).to_numpy()

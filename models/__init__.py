@@ -7,8 +7,10 @@ from common import load_params
 from .elo import EloModel
 from .margin import MarginModel
 from .prior import PriorMarginModel
+from .efficiency import EfficiencyModel
 
-MODELS = {EloModel.name: EloModel, MarginModel.name: MarginModel, PriorMarginModel.name: PriorMarginModel}
+MODELS = {EloModel.name: EloModel, MarginModel.name: MarginModel, PriorMarginModel.name: PriorMarginModel,
+          EfficiencyModel.name: EfficiencyModel}
 DEFAULT_MODEL = EloModel.name
 
 

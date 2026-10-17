@@ -15,6 +15,7 @@ Usage:
 Output in data/cfbd/:
     games_<year>.csv      every game with CFBD team ids, CFBD's own pregame Elo, attendance, venue
     ppa_<year>.csv        per team per game: predicted points added (offense/defense, by down)
+    ppa_clean_<year>.csv  the same with garbage time excluded
     lines_<year>.csv      betting lines, one row per game per sportsbook (2013+)
     recruiting_<year>.csv team recruiting class rank and composite points
     returning_<year>.csv  returning production (share of last season's PPA coming back), 2014+
@@ -35,6 +36,7 @@ DATASETS = {
     #  name        endpoint              params                      first season
     "games":      ("/games",             {"seasonType": "both"},     2010),
     "ppa":        ("/ppa/games",         {"seasonType": "both"},     2010),
+    "ppa_clean":  ("/ppa/games",         {"seasonType": "both", "excludeGarbageTime": "true"}, 2010),
     "lines":      ("/lines",             {"seasonType": "both"},     2013),
     "recruiting": ("/recruiting/teams",  {},                         2010),
     "returning":  ("/player/returning",  {},                         2014),

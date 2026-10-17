@@ -50,6 +50,7 @@ cached files in `data/seasons/` for past seasons.
 | `compare.py` | Every registered model side by side on the held-out seasons, with the Vegas closing line scored the same way. |
 | `fetch_cfbd.py` | Downloads recruiting, returning production, per-game efficiency, lines and games from CollegeFootballData.com (free key in `.env`) and maps ESPN to CFBD team ids. |
 | `models/prior.py` | The margin model with a preseason prior regressed on last season's rating, recruiting, four-class talent and returning production. |
+| `models/efficiency.py` | The prior model fit to a blend of actual margins and efficiency margins from CFBD's predicted points added per play. Registered as `eff`; a documented null result. |
 | `backtest.py` | Grid-searches a model's parameters on 2012-2023, then reports accuracy, Brier score, log loss and calibration on the held-out 2024-2025 seasons. Saves the winning parameters to `data/params/<model>.json`. |
 | `predict.py` | Replays all games to date with a model's saved parameters and prints predictions. |
 | `track.py` | Logs each model's predictions before kickoff, grades them after the games, and summarises the record per model (`data/predictions.csv`). |
@@ -228,6 +229,7 @@ closing line is scored the same way on the 1,799 games that have one.
 | Elo | 73.1% | 0.174 | 0.514 | 13.3 pts | 50.6% |
 | Margin | 74.2% | 0.167 | 0.496 | 12.6 pts | 51.3% |
 | Prior (margin + recruiting/returning prior) | 74.3% | 0.167 | 0.494 | 12.5 pts | 50.2% |
+| Efficiency (prior + 25% PPA blend) | 74.4% | 0.167 | 0.495 | 12.5 pts | 50.2% |
 | Vegas closing line | 75.1% | 0.162 | 0.483 | 11.9 pts | |
 
 Each step closes part of the gap to the market. The margin model takes 0.7 points off Elo's
@@ -242,16 +244,26 @@ Against the spread none of the three clears the 52.4% break-even over 2024-2025,
 efficient market looks like: better calibration does not create an edge. In week 6 of 2026, where
 Elo had its +25% week, the margin model went 28-30 and the prior model 30-28.
 
-Today's Ohio State at Indiana game shows the three models' temperaments: Elo says Indiana by 7,
+**Efficiency numbers did not help.** `models/efficiency.py` fits the same ridge regression to a
+blend of the actual margin and an efficiency margin built from CollegeFootballData's predicted
+points added per play, which explains 74% of the variance in final margins across 12,000 games
+(about 64 points per unit of PPA-per-play difference). The grid search settled on a 25% blend,
+and at that weight the model matches the prior model to the third decimal on held-out Brier,
+log loss and margin error; more weight makes it worse, and excluding garbage time from the PPA
+changes nothing. Once a season of margins is averaged with a sensible prior, the extra signal in
+play-by-play efficiency is offset by what it strips out: turnovers, special teams and finishing
+drives are partly skill. The model stays registered as a fourth entrant in the weekly log.
+
+Today's Ohio State at Indiana game shows the models' temperaments: Elo says Indiana by 7,
 the margin model Indiana by 2, the prior model Ohio State by 2.6, and the market Ohio State by 3.
-All three models' picks for today's 52 games are in the prediction log, so option 8 will show
-the head-to-head record as soon as the games are settled.
+The efficiency model says Ohio State by 2.4. All four models' picks for today's 52 games are in the
+prediction log, so option 8 will show the head-to-head record as soon as the games are settled.
 
 ## CollegeFootballData.com data
 
 `fetch_cfbd.py` downloads season-level datasets from CollegeFootballData.com into `data/cfbd/`:
 every game with CFBD's team ids and its own pregame Elo, per-game predicted points added (an
-efficiency measure), betting lines from several sportsbooks back to 2013, recruiting class
+efficiency measure, with and without garbage time), betting lines from several sportsbooks back to 2013, recruiting class
 rankings, and returning production. It also builds `team_map.csv`, which links ESPN and CFBD
 team ids by matching games on date and score (no name matching).
 

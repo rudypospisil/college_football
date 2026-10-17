@@ -1,0 +1,85 @@
+Model: eff. Loaded 14828 games, 14153 completed, seasons 2010-2026
+Grid search over 48 parameter combinations on seasons 2012-2023 ...
+
+Top 10 parameter sets (training seasons, lower log loss is better):
+     w    lam  half_life    hfa  games  accuracy  brier  log_loss
+0.2500 4.0000   365.0000 2.5000  10221    0.7601 0.1610    0.4861
+0.2500 4.0000   365.0000 3.0000  10221    0.7596 0.1611    0.4862
+0.2500 4.0000   180.0000 2.5000  10221    0.7599 0.1611    0.4864
+0.2500 4.0000   180.0000 3.0000  10221    0.7581 0.1612    0.4865
+0.2500 2.0000   180.0000 2.5000  10221    0.7608 0.1619    0.4877
+0.2500 2.0000   180.0000 3.0000  10221    0.7617 0.1619    0.4878
+0.2500 2.0000   365.0000 2.5000  10221    0.7609 0.1620    0.4880
+0.2500 2.0000   365.0000 3.0000  10221    0.7617 0.1621    0.4882
+0.5000 4.0000   365.0000 2.5000  10221    0.7595 0.1623    0.4897
+0.5000 4.0000   365.0000 3.0000  10221    0.7588 0.1624    0.4899
+
+Chosen parameters: {"w": 0.25, "lam": 4.0, "half_life": 365.0, "hfa": 2.5, "sigma": 16.62}
+
+Model vs. naive baseline (always pick the home team / constant home-win rate):
+                         split  games  accuracy  brier  log_loss  always_home_acc  always_home_brier
+               train 2012-2023  10221    0.7601 0.1610    0.4861           0.6190             0.2358
+TEST 2024-2025 (out of sample)   1853    0.7501 0.1640    0.4871           0.6379             0.2310
+    current season 2026 so far    458    0.8057 0.1353    0.4220           0.7140             0.2042
+
+Out-of-sample results by season:
+          games  accuracy  brier  log_loss
+season                                    
+2024   919.0000    0.7388 0.1686    0.4984
+2025   934.0000    0.7612 0.1594    0.4759
+
+FBS-vs-FBS games only (test seasons): {"games": 1606, "accuracy": 0.7179, "brier": 0.1838, "log_loss": 0.5416}
+
+Calibration on test seasons (predicted home-win probability vs. what happened):
+               games  predicted  actual
+p_home                                 
+(-0.001, 0.1]     23      0.070   0.087
+(0.1, 0.2]        60      0.156   0.183
+(0.2, 0.3]       130      0.251   0.254
+(0.3, 0.4]       187      0.352   0.380
+(0.4, 0.5]       194      0.454   0.392
+(0.5, 0.6]       257      0.551   0.541
+(0.6, 0.7]       250      0.650   0.672
+(0.7, 0.8]       217      0.749   0.816
+(0.8, 0.9]       203      0.853   0.867
+(0.9, 1.0]       332      0.961   0.991
+
+Model vs. Vegas on test-season games with a stored point spread:
+{
+  "games_with_line": 1799,
+  "vegas_accuracy": 0.751,
+  "model_accuracy": 0.7443,
+  "agreement": 0.9066,
+  "model_spread_mae": 12.4921,
+  "vegas_spread_mae": 11.8966
+}
+
+Current top 25 (eff):
+ rank                      team  rating
+    1       Ohio State Buckeyes    26.4
+    2 Notre Dame Fighting Irish    26.0
+    3      Alabama Crimson Tide    24.8
+    4          Georgia Bulldogs    24.7
+    5          Miami Hurricanes    24.1
+    6          Indiana Hoosiers    21.5
+    7           Texas Longhorns    20.7
+    8              Oregon Ducks    19.4
+    9                 Utah Utes    17.3
+   10                LSU Tigers    17.0
+   11           Ole Miss Rebels    14.5
+   12          Oklahoma Sooners    14.1
+   13               USC Trojans    13.9
+   14               BYU Cougars    13.9
+   15      Tennessee Volunteers    13.6
+   16           Missouri Tigers    13.3
+   17    Texas Tech Red Raiders    13.1
+   18          Texas A&M Aggies    12.6
+   19             Iowa Hawkeyes    12.0
+   20           Houston Cougars    11.9
+   21               UCLA Bruins    11.6
+   22            Florida Gators    11.1
+   23       Michigan Wolverines    10.7
+   24      Nebraska Cornhuskers    10.2
+   25  South Carolina Gamecocks     9.7
+
+Saved parameters to /Volumes/RUDY_STUFF/PYTHON/Projects/sports/college_football/data/params/eff.json
