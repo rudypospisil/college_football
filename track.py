@@ -157,7 +157,8 @@ def record(date, model_name=DEFAULT_MODEL, now=None):
         log = new if log.empty else pd.concat([log.astype(object), new.astype(object)], ignore_index=True)
         save_log(log)
     print(f"{date} [{model.name}]: {len(day)} games on the schedule, {len(rows)} new predictions recorded, "
-          f"{int(already.sum())} already in the log, {skipped_started} skipped (started or finished).")
+          f"{int(already.sum())} already in the log, {skipped_started} skipped (started or finished)"
+          + (f", {not_applicable} without an adjustment." if not_applicable else "."))
     if rows:
         show = pd.DataFrame(rows)
         show["kick (ET)"] = pd.to_datetime(show["kickoff"]).dt.tz_convert(LOCAL_TZ).dt.strftime("%H:%M")
