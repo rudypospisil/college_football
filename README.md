@@ -36,6 +36,27 @@ Every option echoes the command line it runs, so the scripts below can also be u
 Re-run `fetch_data.py` each week; it re-downloads only the current season and reuses
 cached files in `data/seasons/` for past seasons.
 
+## Weekly routine
+
+Start the menu with `./run.sh` from the project folder. Times are US/Eastern.
+
+| When | Menu | What it does |
+| --- | --- | --- |
+| Sunday evening | 2, then 6 (date = next Saturday, model `prior`) | Refresh lines (the openers post Sunday) and lock in next week's picks against the opening numbers. These are the picks the closing-line test is about. |
+| Sunday evening | 4 (next Saturday, `prior`) | Read the slate. Games where the model and the opener differ by 3+ points are the only candidates for a real bet; 8+ points is the strong tier. |
+| Through the week | 14 | Enter an injury adjustment when a starter is ruled out, before kickoff. |
+| Saturday morning | 1 | Game-day update: refresh scores and lines, snapshot injuries, record picks for any model not yet logged (Sunday's picks stand), print the slate. |
+| Saturday night or Sunday morning | 2, then 7, then 8 | Refresh, settle every finished game, read the record per model and the overlay section. |
+| Sunday morning | `git add -A && git commit -m "week N" && git push` | Keep the log on GitHub. |
+| Monthly | 13, then 12 | Refresh this season's CFBD data (efficiency, lines) and re-run the model comparison. |
+| Season end | 9 for each model, then 12 | Re-tune parameters with the finished season added, compare again, and re-read the closing line value with `clv.py`. |
+
+What to watch, in order: the Brier score column (is the market model still best, is anything
+closing the gap), the "edge >= 3 points" line in the record summary for the prior model, and the
+closing-line value of Sunday picks. If the market keeps moving toward the Sunday picks by a point
+or more on average over four to six weeks, the edge is still alive. Betting, if ever, is 1% of a
+dedicated bankroll per qualifying game, flat, never on game day.
+
 ## Files
 
 | File | Purpose |
