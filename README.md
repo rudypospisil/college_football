@@ -282,6 +282,24 @@ the margin model Indiana by 2, the prior model Ohio State by 2.6, the market mod
 The efficiency model says Ohio State by 2.4. All six models' picks for today's 52 games are in the
 prediction log, so option 8 will show the head-to-head record as soon as the games are settled.
 
+**How the first live Saturday went (Oct 17, 2026, all 52 games).** Ohio State won 19-15 and covered
+by a point. Across the slate:
+
+| Model | Winners called | Against the spread | $100 a game, spread | Brier |
+| --- | --- | --- | --- | --- |
+| Elo | 35-17 | 23-27-2 | -$583 | 0.210 |
+| Margin | 36-16 | 23-27-2 | -$589 | 0.208 |
+| Prior | 36-16 | 20-30-2 | -$1,160 | 0.204 |
+| Efficiency | 36-16 | 21-29-2 | -$970 | 0.202 |
+| Ensemble | 36-16 | 21-29-2 | -$964 | 0.203 |
+| Market | 39-13 | 23-27-2 | -$579 | 0.194 |
+| Vegas favourite | 39-13 | 23-27-2 | -$609 | |
+
+The order on prediction quality matched the two-season backtest exactly: market, then the
+margin-regression family, then Elo. Against the spread every model lost on an underdog day
+(favourites covered 23 of 52), which is what the replay said to expect. One Saturday decides
+nothing; the log is where the evidence accumulates.
+
 ## CollegeFootballData.com data
 
 `fetch_cfbd.py` downloads season-level datasets from CollegeFootballData.com into `data/cfbd/`:

@@ -502,47 +502,47 @@ game_id,season,season_type,week,date,neutral_site,conference_game,home_id,home_t
 401858494,2026,2,7,2026-10-17T23:30Z,False,True,26,UCLA Bruins,17,275,Wisconsin Badgers,7,True,Final,,,,,,,
 401862804,2026,2,7,2026-10-18T00:00Z,False,True,2636,UTSA Roadrunners,38,2426,Navy Midshipmen,34,True,Final,,,,,,,
 401871091,2026,2,7,2026-10-18T00:00Z,False,True,2433,UL Monroe Warhawks,0,2348,Louisiana Tech Bulldogs,24,True,Final,,,,,,,
-401864523,2026,2,7,2026-10-18T01:00Z,False,True,2638,UTEP Miners,11,23,San José State Spartans,24,False,In Progress,,,,,,,
-401866445,2026,2,7,2026-10-18T02:00Z,False,True,16,Sacramento State Hornets,0,195,Ohio Bobcats,34,False,In Progress,,,,,,,
-401856833,2026,2,7,2026-10-18T02:15Z,False,True,38,Colorado Buffaloes,0,254,Utah Utes,13,False,Halftime,,,,,,,
-401858269,2026,2,7,2026-10-18T02:30Z,False,True,25,California Golden Bears,0,154,Wake Forest Demon Deacons,27,False,In Progress,,,,,,,
-401860904,2026,2,7,2026-10-18T02:30Z,False,True,21,San Diego State Aztecs,16,278,Fresno State Bulldogs,10,False,Halftime,,,,,,,
-401864521,2026,2,7,2026-10-18T02:30Z,False,True,62,Hawai'i Rainbow Warriors,10,167,New Mexico Lobos,0,False,Halftime,,,,,,,
-401858492,2026,2,7,2026-10-18T03:00Z,False,True,2483,Oregon Ducks,0,158,Nebraska Cornhuskers,0,False,In Progress,,,,,,,
-401871055,2026,2,8,2026-10-20T23:00Z,False,True,2229,Florida International Panthers,0,2393,Middle Tennessee Blue Raiders,0,False,Scheduled,FIU -10,-10.0,45.5,-410.0,320.0,-110.0,-110.0
-401871069,2026,2,8,2026-10-20T23:00Z,False,True,48,Delaware Blue Hens,0,2623,Missouri State Bears,0,False,Scheduled,,,,,,,
+401864523,2026,2,7,2026-10-18T01:00Z,False,True,2638,UTEP Miners,11,23,San José State Spartans,24,True,Final,,,,,,,
+401866445,2026,2,7,2026-10-18T02:00Z,False,True,16,Sacramento State Hornets,7,195,Ohio Bobcats,48,True,Final,,,,,,,
+401856833,2026,2,7,2026-10-18T02:15Z,False,True,38,Colorado Buffaloes,24,254,Utah Utes,27,True,Final,,,,,,,
+401858269,2026,2,7,2026-10-18T02:30Z,False,True,25,California Golden Bears,7,154,Wake Forest Demon Deacons,41,True,Final,,,,,,,
+401860904,2026,2,7,2026-10-18T02:30Z,False,True,21,San Diego State Aztecs,26,278,Fresno State Bulldogs,23,True,Final,,,,,,,
+401864521,2026,2,7,2026-10-18T02:30Z,False,True,62,Hawai'i Rainbow Warriors,10,167,New Mexico Lobos,21,True,Final,,,,,,,
+401858492,2026,2,7,2026-10-18T03:00Z,False,True,2483,Oregon Ducks,17,158,Nebraska Cornhuskers,14,True,Final,,,,,,,
+401871055,2026,2,8,2026-10-20T23:00Z,False,True,2229,Florida International Panthers,0,2393,Middle Tennessee Blue Raiders,0,False,Scheduled,FIU -10.5,-10.5,45.5,-440.0,340.0,-110.0,-110.0
+401871069,2026,2,8,2026-10-20T23:00Z,False,True,48,Delaware Blue Hens,0,2623,Missouri State Bears,0,False,Scheduled,DEL -3,-3.0,52.5,-142.0,120.0,-110.0,-110.0
 401871092,2026,2,8,2026-10-20T23:30Z,False,True,276,Marshall Thundering Herd,0,6,South Alabama Jaguars,0,False,Scheduled,USA -3.5,3.5,62.5,136.0,-162.0,-110.0,-110.0
-401871070,2026,2,8,2026-10-22T00:00Z,False,True,2534,Sam Houston Bearkats,0,166,New Mexico State Aggies,0,False,Scheduled,NMSU -2.5,2.5,47.5,114.0,-135.0,-110.0,-110.0
-401869845,2026,2,8,2026-10-22T23:00Z,False,True,2026,App State Mountaineers,0,256,James Madison Dukes,0,False,Scheduled,,,,,,,
-401871056,2026,2,8,2026-10-22T23:00Z,False,True,338,Kennesaw State Owls,0,2335,Liberty Flames,0,False,Scheduled,LIB -8.5,8.5,47.5,270.0,-340.0,-110.0,-110.0
-401862807,2026,2,8,2026-10-22T23:30Z,False,True,235,Memphis Tigers,0,151,East Carolina Pirates,0,False,Scheduled,,,,,,,
-401858271,2026,2,8,2026-10-23T23:00Z,False,True,258,Virginia Cavaliers,0,150,Duke Blue Devils,0,False,Scheduled,,,,,,,
-401861965,2026,2,8,2026-10-23T23:00Z,False,False,41,UConn Huskies,0,113,Massachusetts Minutemen,0,False,Scheduled,,,,,,,
-401862808,2026,2,8,2026-10-24T00:30Z,False,True,202,Tulsa Golden Hurricane,0,349,Army Black Knights,0,False,Scheduled,,,,,,,
-401864525,2026,2,8,2026-10-24T01:00Z,False,True,2751,Wyoming Cowboys,0,2005,Air Force Falcons,0,False,Scheduled,,,,,,,
-401858272,2026,2,8,2026-10-24T02:30Z,False,True,24,Stanford Cardinal,0,152,NC State Wolfpack,0,False,Scheduled,,,,,,,
+401871070,2026,2,8,2026-10-22T00:00Z,False,True,2534,Sam Houston Bearkats,0,166,New Mexico State Aggies,0,False,Scheduled,NMSU -2.5,2.5,46.5,110.0,-130.0,-110.0,-110.0
+401869845,2026,2,8,2026-10-22T23:00Z,False,True,2026,App State Mountaineers,0,256,James Madison Dukes,0,False,Scheduled,JMU -10.5,10.5,57.5,330.0,-425.0,-110.0,-110.0
+401871056,2026,2,8,2026-10-22T23:00Z,False,True,338,Kennesaw State Owls,0,2335,Liberty Flames,0,False,Scheduled,LIB -9.5,9.5,47.5,275.0,-345.0,-110.0,-110.0
+401862807,2026,2,8,2026-10-22T23:30Z,False,True,235,Memphis Tigers,0,151,East Carolina Pirates,0,False,Scheduled,MEM -9.5,-9.5,53.5,-395.0,310.0,-115.0,-105.0
+401858271,2026,2,8,2026-10-23T23:00Z,False,True,258,Virginia Cavaliers,0,150,Duke Blue Devils,0,False,Scheduled,UVA -2.5,-2.5,48.5,-130.0,110.0,-110.0,-110.0
+401861965,2026,2,8,2026-10-23T23:00Z,False,False,41,UConn Huskies,0,113,Massachusetts Minutemen,0,False,Scheduled,CONN -15.5,-15.5,49.5,-850.0,575.0,-115.0,-105.0
+401862808,2026,2,8,2026-10-24T00:30Z,False,True,202,Tulsa Golden Hurricane,0,349,Army Black Knights,0,False,Scheduled,TLSA -1.5,-1.5,50.5,-112.0,-108.0,-105.0,-115.0
+401864525,2026,2,8,2026-10-24T01:00Z,False,True,2751,Wyoming Cowboys,0,2005,Air Force Falcons,0,False,Scheduled,AF -6.5,6.5,42.5,195.0,-238.0,-115.0,-105.0
+401858272,2026,2,8,2026-10-24T02:30Z,False,True,24,Stanford Cardinal,0,152,NC State Wolfpack,0,False,Scheduled,NCSU -7.5,7.5,55.5,225.0,-278.0,-115.0,-105.0
 401856834,2026,2,8,2026-10-24T04:00Z,False,True,2305,Kansas Jayhawks,0,239,Baylor Bears,0,False,Scheduled,,,,,,,
 401856835,2026,2,8,2026-10-24T04:00Z,False,True,2116,UCF Knights,0,252,BYU Cougars,0,False,Scheduled,BYU -7.5,7.5,45.5,250.0,-310.0,-110.0,-110.0
 401856836,2026,2,8,2026-10-24T04:00Z,False,True,197,Oklahoma State Cowboys,0,38,Colorado Buffaloes,0,False,Scheduled,,,,,,,
 401856837,2026,2,8,2026-10-24T04:00Z,False,True,254,Utah Utes,0,248,Houston Cougars,0,False,Scheduled,,,,,,,
-401856838,2026,2,8,2026-10-24T04:00Z,False,True,12,Arizona Wildcats,0,66,Iowa State Cyclones,0,False,Scheduled,,,,,,,
+401856838,2026,2,8,2026-10-24T04:00Z,False,True,12,Arizona Wildcats,0,66,Iowa State Cyclones,0,False,Scheduled,ARIZ -10,-10.0,50.5,-380.0,300.0,-105.0,-115.0
 401856839,2026,2,8,2026-10-24T04:00Z,False,True,9,Arizona State Sun Devils,0,2306,Kansas State Wildcats,0,False,Scheduled,,,,,,,
-401856840,2026,2,8,2026-10-24T04:00Z,False,True,2132,Cincinnati Bearcats,0,2641,Texas Tech Red Raiders,0,False,Scheduled,,,,,,,
-401858276,2026,2,8,2026-10-24T04:00Z,False,True,228,Clemson Tigers,0,259,Virginia Tech Hokies,0,False,Scheduled,,,,,,,
+401856840,2026,2,8,2026-10-24T04:00Z,False,True,2132,Cincinnati Bearcats,0,2641,Texas Tech Red Raiders,0,False,Scheduled,TTU -11.5,11.5,56.5,330.0,-425.0,-110.0,-110.0
+401858276,2026,2,8,2026-10-24T04:00Z,False,True,228,Clemson Tigers,0,259,Virginia Tech Hokies,0,False,Scheduled,VT -1.5,1.5,49.5,-108.0,-112.0,-115.0,-105.0
 401858495,2026,2,8,2026-10-24T04:00Z,False,True,356,Illinois Fighting Illini,0,2483,Oregon Ducks,0,False,Scheduled,,,,,,,
 401858497,2026,2,8,2026-10-24T04:00Z,False,True,135,Minnesota Golden Gophers,0,2294,Iowa Hawkeyes,0,False,Scheduled,IOWA -4.5,4.5,42.5,154.0,-185.0,-110.0,-110.0
-401858499,2026,2,8,2026-10-24T04:00Z,False,True,26,UCLA Bruins,0,127,Michigan State Spartans,0,False,Scheduled,,,,,,,
-401856728,2026,2,8,2026-10-24T16:00Z,False,True,2,Auburn Tigers,0,99,LSU Tigers,0,False,Scheduled,,,,,,,
+401858499,2026,2,8,2026-10-24T04:00Z,False,True,26,UCLA Bruins,0,127,Michigan State Spartans,0,False,Scheduled,UCLA -13.5,-13.5,47.5,-535.0,400.0,-110.0,-110.0
+401856728,2026,2,8,2026-10-24T16:00Z,False,True,2,Auburn Tigers,0,99,LSU Tigers,0,False,Scheduled,LSU -5.5,5.5,50.5,180.0,-218.0,-110.0,-110.0
 401856841,2026,2,8,2026-10-24T16:00Z,False,True,2628,TCU Horned Frogs,0,277,West Virginia Mountaineers,0,False,Scheduled,,,,,,,
 401858270,2026,2,8,2026-10-24T16:00Z,False,True,2567,SMU Mustangs,0,25,California Golden Bears,0,False,Scheduled,,,,,,,
 401858274,2026,2,8,2026-10-24T16:00Z,False,True,2390,Miami Hurricanes,0,221,Pittsburgh Panthers,0,False,Scheduled,MIA -24.5,-24.5,53.5,-3600.0,1500.0,-110.0,-110.0
 401858496,2026,2,8,2026-10-24T16:00Z,False,True,130,Michigan Wolverines,0,84,Indiana Hoosiers,0,False,Scheduled,IU -8.5,8.5,43.5,275.0,-345.0,-110.0,-110.0
-401858498,2026,2,8,2026-10-24T16:00Z,False,True,77,Northwestern Wildcats,0,164,Rutgers Scarlet Knights,0,False,Scheduled,,,,,,,
+401858498,2026,2,8,2026-10-24T16:00Z,False,True,77,Northwestern Wildcats,0,164,Rutgers Scarlet Knights,0,False,Scheduled,NU -16.5,-16.5,58.5,-1000.0,650.0,-115.0,-105.0
 401862809,2026,2,8,2026-10-24T16:00Z,False,True,2226,Florida Atlantic Owls,0,242,Rice Owls,0,False,Scheduled,,,,,,,
 401866450,2026,2,8,2026-10-24T16:00Z,False,True,2649,Toledo Rockets,0,2711,Western Michigan Broncos,0,False,Scheduled,,,,,,,
 401866446,2026,2,8,2026-10-24T17:00Z,False,True,2309,Kent State Golden Flashes,0,2006,Akron Zips,0,False,Scheduled,,,,,,,
 401866476,2026,2,8,2026-10-24T17:00Z,False,True,2117,Central Michigan Chippewas,0,193,Miami (OH) RedHawks,0,False,Scheduled,,,,,,,
-401856727,2026,2,8,2026-10-24T19:30Z,False,True,333,Alabama Crimson Tide,0,245,Texas A&M Aggies,0,False,Scheduled,,,,,,,
+401856727,2026,2,8,2026-10-24T19:30Z,False,True,333,Alabama Crimson Tide,0,245,Texas A&M Aggies,0,False,Scheduled,ALA -15.5,-15.5,51.5,-675.0,490.0,-110.0,-110.0
 401856730,2026,2,8,2026-10-24T19:30Z,False,True,344,Mississippi State Bulldogs,0,201,Oklahoma Sooners,0,False,Scheduled,,,,,,,
 401856731,2026,2,8,2026-10-24T19:30Z,False,True,2579,South Carolina Gamecocks,0,2633,Tennessee Volunteers,0,False,Scheduled,TENN -3.5,3.5,51.5,130.0,-155.0,-115.0,-105.0
 401858273,2026,2,8,2026-10-24T19:30Z,False,True,59,Georgia Tech Yellow Jackets,0,103,Boston College Eagles,0,False,Scheduled,,,,,,,
@@ -558,10 +558,10 @@ game_id,season,season_type,week,date,neutral_site,conference_game,home_id,home_t
 401860907,2026,2,8,2026-10-24T22:00Z,False,True,265,Washington State Cougars,0,68,Boise State Broncos,0,False,Scheduled,,,,,,,
 401860905,2026,2,8,2026-10-24T22:30Z,False,True,36,Colorado State Rams,0,21,San Diego State Aztecs,0,False,Scheduled,,,,,,,
 401869935,2026,2,8,2026-10-24T23:00Z,False,True,2032,Arkansas State Red Wolves,0,2247,Georgia State Panthers,0,False,Scheduled,,,,,,,
-401856729,2026,2,8,2026-10-24T23:30Z,False,True,96,Kentucky Wildcats,0,238,Vanderbilt Commodores,0,False,Scheduled,,,,,,,
-401856732,2026,2,8,2026-10-24T23:30Z,False,True,251,Texas Longhorns,0,145,Ole Miss Rebels,0,False,Scheduled,,,,,,,
+401856729,2026,2,8,2026-10-24T23:30Z,False,True,96,Kentucky Wildcats,0,238,Vanderbilt Commodores,0,False,Scheduled,UK -11.5,-11.5,51.5,-470.0,360.0,-110.0,-110.0
+401856732,2026,2,8,2026-10-24T23:30Z,False,True,251,Texas Longhorns,0,145,Ole Miss Rebels,0,False,Scheduled,TEX -3,-3.0,53.5,-155.0,130.0,-115.0,-105.0
 401858275,2026,2,8,2026-10-24T23:30Z,False,True,153,North Carolina Tar Heels,0,183,Syracuse Orange,0,False,Scheduled,,,,,,,
-401858500,2026,2,8,2026-10-24T23:30Z,False,True,275,Wisconsin Badgers,0,30,USC Trojans,0,False,Scheduled,,,,,,,
+401858500,2026,2,8,2026-10-24T23:30Z,False,True,275,Wisconsin Badgers,0,30,USC Trojans,0,False,Scheduled,USC -2.5,2.5,52.5,110.0,-130.0,-110.0,-110.0
 401860906,2026,2,8,2026-10-24T23:30Z,False,True,326,Texas State Bobcats,0,328,Utah State Aggies,0,False,Scheduled,,,,,,,
 401862811,2026,2,8,2026-10-25T00:00Z,False,True,2655,Tulane Green Wave,0,2636,UTSA Roadrunners,0,False,Scheduled,,,,,,,
 401864527,2026,2,8,2026-10-25T02:00Z,False,True,167,New Mexico Lobos,0,2449,North Dakota State Bison,0,False,Scheduled,,,,,,,
