@@ -42,19 +42,19 @@ Start the menu with `./run.sh` from the project folder. Times are US/Eastern.
 
 | When | Menu | What it does |
 | --- | --- | --- |
-| Sunday evening | 2, then 6 (date = next Saturday, model `prior`) | Refresh lines (the openers post Sunday) and lock in next week's picks against the opening numbers. These are the picks the closing-line test is about. |
-| Sunday evening | 4 (next Saturday, `prior`) | Read the slate. Games where the model and the opener differ by 3+ points are the only candidates for a real bet; 8+ points is the strong tier. |
+| Sunday evening | 15 | Sunday picks: refreshes the openers (they post Sunday), previews next Saturday's games where the prior model is 3+ points off the line, locks them in on your say-so, and prints the slate. These are the picks the closing-line test is about; 8+ points is the strong tier. |
 | Through the week | 14 | Enter an injury adjustment when a starter is ruled out, before kickoff. |
 | Saturday morning | 1 | Game-day update: refresh scores and lines, snapshot injuries, record picks for any model not yet logged (Sunday's picks stand), print the slate. |
-| Saturday night or Sunday morning | 2, then 7, then 8 | Refresh, settle every finished game, read the record per model and the overlay section. |
+| Saturday night or Sunday morning | 7, then 8 | Settle: refreshes scores and closing lines, grades every finished game; then read the record per model, the closing line value lines and the overlay section. |
 | Sunday morning | `git add -A && git commit -m "week N" && git push` | Keep the log on GitHub. |
 | Monthly | 13, then 12 | Refresh this season's CFBD data (efficiency, lines) and re-run the model comparison. |
 | Season end | 9 for each model, then 12 | Re-tune parameters with the finished season added, compare again, and re-read the closing line value with `clv.py`. |
 
 What to watch, in order: the Brier score column (is the market model still best, is anything
 closing the gap), the "edge >= 3 points" line in the record summary for the prior model, and the
-closing-line value of Sunday picks. If the market keeps moving toward the Sunday picks by a point
-or more on average over four to six weeks, the edge is still alive. Betting, if ever, is 1% of a
+"Closing line value, early picks" line, which the settle step computes from the line stored when
+the pick was made and the closing line at kickoff. If the market keeps moving toward the Sunday
+picks by a point or more on average over four to six weeks, the edge is still alive. Betting, if ever, is 1% of a
 dedicated bankroll per qualifying game, flat, never on game day.
 
 ## Files
@@ -187,7 +187,9 @@ Rules that keep the record honest:
   recorded prediction is never overwritten. The Vegas line is captured at the same moment.
 * Each row stores the model's name and the parameters that produced it, so the record survives
   retuning and several models can be compared on the same games.
-* Grading uses the line that was recorded, not the closing line.
+* Grading uses the line that was recorded, not the closing line. The closing line is stored
+  separately at settle time, and the difference between the two, in the direction of the pick, is
+  the row's closing line value.
 
 What gets graded for each game:
 
@@ -200,6 +202,9 @@ What gets graded for each game:
 * **Moneyline bet**: one unit on the model's favourite at the recorded moneyline price,
   when ESPN published one.
 * **Brier score** for the win probability, so calibration can be checked as the log grows.
+* **Closing line value**: how far the closing spread moved toward the side the pick took, in
+  points. The summary reports it separately for picks made 24+ hours before kickoff (Sunday
+  picks) and game-day picks; only the former can show an edge.
 
 The summary reports the straight-up record, the against-the-spread record and return on
 investment for all bets and for bets with an edge of at least 3 points, and the moneyline

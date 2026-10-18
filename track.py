@@ -3,7 +3,8 @@ Keep a historical record of each model's predictions and how they turned out.
 
 Usage:
     python track.py record                 # lock in predictions for today's scheduled games
-    python track.py record --date 2026-10-18 --model elo
+    python track.py record --date 2026-10-24 --model prior --min-edge 3   # Sunday: only games 3+ pts off the opener
+    python track.py record --date 2026-10-24 --model prior --min-edge 3 --dry-run
     python track.py settle                 # after the games: fill in scores and grade every pick
     python track.py report                 # print the whole log plus a summary (per model)
 
@@ -44,6 +45,7 @@ COLUMNS = [
     "settled", "home_score", "away_score", "actual_home_margin", "winner",
     "pick_correct", "vegas_pick_correct", "brier",
     "spread_result", "spread_profit", "moneyline_odds", "moneyline_result", "moneyline_profit",
+    "closing_spread", "clv",
 ]
 LEGACY_COLUMNS = {"elo_away": "rating_away", "elo_home": "rating_home"}   # log files written before models/
 
@@ -130,7 +132,9 @@ def build_row(model, g, now):
     }
 
 
-def record(date, model_name=DEFAULT_MODEL, now=None):
+def record(date, model_name=DEFAULT_MODEL, now=None, min_edge=0.0, dry_run=False):
+    """Lock in picks for every scheduled game on `date` (or, with min_edge, only the games where
+    the model disagrees with the stored line by at least that many points)."""
     now = now or pd.Timestamp.now(tz="UTC")
     age_hours = (dt.datetime.now().timestamp() - GAMES_CSV.stat().st_mtime) / 3600
     if age_hours > 6:
@@ -149,15 +153,22 @@ def record(date, model_name=DEFAULT_MODEL, now=None):
     not_applicable = len(day) - skipped_started - len(future)
     already = future["game_id"].isin(log.loc[log["model"] == model.name, "game_id"])
     rows = [build_row(model, g, now) for g in future[~already].sort_values("date").itertuples(index=False)]
+    below_edge = 0
+    if min_edge > 0:
+        kept = [r for r in rows if r["spread_edge"] is not None and r["spread_edge"] >= min_edge]
+        below_edge = len(rows) - len(kept)
+        rows = kept
 
-    if rows:
+    if rows and not dry_run:
         new = pd.DataFrame(rows, columns=COLUMNS)
         # Object dtype for the merge: the log mixes numbers, text and blanks, and it is
         # re-read from CSV on every run anyway.
         log = new if log.empty else pd.concat([log.astype(object), new.astype(object)], ignore_index=True)
         save_log(log)
-    print(f"{date} [{model.name}]: {len(day)} games on the schedule, {len(rows)} new predictions recorded, "
+    verb = "would be recorded (dry run)" if dry_run else "new predictions recorded"
+    print(f"{date} [{model.name}]: {len(day)} games on the schedule, {len(rows)} {verb}, "
           f"{int(already.sum())} already in the log, {skipped_started} skipped (started or finished)"
+          + (f", {below_edge} below the {min_edge:g}-point edge or without a line" if min_edge > 0 else "")
           + (f", {not_applicable} without an adjustment." if not_applicable else "."))
     if rows:
         show = pd.DataFrame(rows)
@@ -173,7 +184,16 @@ def record(date, model_name=DEFAULT_MODEL, now=None):
 
 
 # ------------------------------------------------------------------------------ settle
-def grade(row, home_score, away_score):
+def closing_line_value(row, closing_spread):
+    """Points the closing line moved toward the side we took: positive means we beat the close.
+    Spreads are from the home team's perspective."""
+    if not isinstance(row["spread_pick"], str) or not isnum(row["vegas_home_spread"]) or not isnum(closing_spread):
+        return None
+    side = 1.0 if row["spread_pick"] == row["home_team"] else -1.0
+    return round((float(row["vegas_home_spread"]) - float(closing_spread)) * side, 1)
+
+
+def grade(row, home_score, away_score, closing_spread=None):
     """Fill in the outcome columns for one recorded prediction."""
     margin = int(home_score) - int(away_score)
     home_won = margin > 0
@@ -186,6 +206,8 @@ def grade(row, home_score, away_score):
         "brier": round((float(row["p_home"]) - (1.0 if home_won else 0.0)) ** 2, 4),
         "spread_result": None, "spread_profit": None,
         "moneyline_odds": None, "moneyline_result": None, "moneyline_profit": None,
+        "closing_spread": float(closing_spread) if isnum(closing_spread) else None,
+        "clv": closing_line_value(row, closing_spread),
     }
 
     if isinstance(row["spread_pick"], str) and isnum(row["vegas_home_spread"]):
@@ -222,10 +244,16 @@ def settle_frame(log, games):
     for idx, row in pending.iterrows():
         if row["game_id"] in finished.index:
             g = finished.loc[row["game_id"]]
-            for col, val in grade(row, g["home_score"], g["away_score"]).items():
+            for col, val in grade(row, g["home_score"], g["away_score"], g["odds_spread"]).items():
                 log.at[idx, col] = val
             n += 1
-    if n:
+    # Rows settled before the closing-line columns existed: fill them from the stored line.
+    missing = (log["settled"] == True) & log["closing_spread"].isna() & log["game_id"].isin(finished.index)
+    for idx, row in log[missing].iterrows():
+        closing = finished.at[row["game_id"], "odds_spread"]
+        log.at[idx, "closing_spread"] = float(closing) if isnum(closing) else None
+        log.at[idx, "clv"] = closing_line_value(row, closing)
+    if n or missing.any():
         save_log(log)
     return log, n
 
@@ -273,6 +301,14 @@ def summary_block(log):
             print(f"  edge >= {EDGE_THRESHOLD:.0f} points: {bet_line(strong, 'spread_profit', 'spread_result')}")
     if done["moneyline_result"].notna().any():
         print(f"Moneyline bets:      {bet_line(done, 'moneyline_profit', 'moneyline_result')}")
+    clv = done.dropna(subset=["clv"]).copy()
+    if len(clv):
+        lead = (pd.to_datetime(clv["kickoff"], utc=True) - pd.to_datetime(clv["recorded_at"], utc=True)) >= pd.Timedelta(hours=24)
+        for label, part in (("early picks (24h+ before kickoff)", clv[lead]), ("game-day picks", clv[~lead])):
+            if len(part):
+                c = part["clv"].astype(float)
+                print(f"Closing line value, {label:<33} {len(part):3d} bets: mean {c.mean():+.2f} pts, "
+                      f"close moved toward us {(c > 0).mean():.0%}, away {(c < 0).mean():.0%}, unchanged {(c == 0).mean():.0%}")
 
 
 def summary(log):
@@ -350,6 +386,9 @@ def main():
     sub = parser.add_subparsers(dest="command", required=True)
     rec = sub.add_parser("record", help="log predictions for scheduled games")
     rec.add_argument("--date", help="YYYY-MM-DD in US/Eastern (default: today)")
+    rec.add_argument("--min-edge", type=float, default=0.0,
+                     help="only record games where the model disagrees with the stored line by at least this many points")
+    rec.add_argument("--dry-run", action="store_true", help="show what would be recorded without saving")
     add_model_argument(rec)
     sub.add_parser("settle", help="grade logged games that have finished")
     sub.add_parser("report", help="print the log and summary")
@@ -357,7 +396,7 @@ def main():
 
     if args.command == "record":
         date = dt.date.fromisoformat(args.date) if args.date else pd.Timestamp.now(tz=LOCAL_TZ).date()
-        record(date, args.model)
+        record(date, args.model, min_edge=args.min_edge, dry_run=args.dry_run)
     elif args.command == "settle":
         settle()
     elif args.command == "report":

@@ -182,13 +182,38 @@ def rankings():
         run("predict.py", "--rankings", "--model", choose_model())
 
 
+def next_saturday():
+    d = dt.date.today()
+    return (d + dt.timedelta(days=(5 - d.weekday()) % 7)).isoformat()
+
+
 def record():
     if need_data():
-        run("track.py", "record", "--date", ask("Date (YYYY-MM-DD)", today()), "--model", choose_model())
+        date = ask("Date (YYYY-MM-DD)", today())
+        model = choose_model()
+        edge = ask("Minimum edge in points (blank = record every game)")
+        run("track.py", "record", "--date", date, "--model", model, *(["--min-edge", edge] if edge else []))
+
+
+def sunday_picks():
+    """Sunday routine: refresh lines, lock in next Saturday's qualifying picks against the openers."""
+    if not need_data():
+        return
+    date = ask("Game date (YYYY-MM-DD)", next_saturday())
+    edge = ask("Minimum edge in points", "3")
+    model = choose_model() if len(model_names()) > 1 and ask("Use the prior model? (Y/n)", "y").lower().startswith("n") else "prior"
+    ok = run("fetch_data.py")
+    ok = ok and run("track.py", "record", "--date", date, "--model", model, "--min-edge", edge, "--dry-run")
+    if ok and ask("Lock these in? (y/N)", "n").lower().startswith("y"):
+        run("track.py", "record", "--date", date, "--model", model, "--min-edge", edge)
+    run("predict.py", "--date", date, "--model", model)
 
 
 def settle():
+    """Refresh scores, pull closing lines for finished games (needed for closing line value), settle."""
     if need_data():
+        ok = run("fetch_data.py")
+        ok = ok and run("fetch_odds.py", "--seasons", str(current_season()))
         run("track.py", "settle")
 
 
@@ -265,7 +290,7 @@ MENU = [
     ("4", "Slate for a date", "every game that day: model pick and spread next to Vegas", slate),
     ("5", "Top 25", "current rankings", rankings),
     ("6", "Record predictions", "lock in a model's picks for a date before kickoff", record),
-    ("7", "Settle results", "grade finished games in the prediction log", settle),
+    ("7", "Settle results", "refresh scores and closing lines, then grade finished games in the log", settle),
     ("8", "Prediction record", "full history of picks, outcomes and bet results, per model", report),
     ("9", "Backtest", "re-tune a model's parameters and report out-of-sample accuracy", backtest),
     ("10", "What if I had bet?", "grade flat bets on a model's picks for a past week or season", what_if),
@@ -273,6 +298,7 @@ MENU = [
     ("12", "Compare models", "accuracy, Brier, log loss and margin error for every model vs. Vegas", compare),
     ("13", "CFBD refresh", "re-download this season's CollegeFootballData sets (recruiting, efficiency, lines)", cfbd_refresh),
     ("14", "Injury adjustment", "enter points for an injury or news item; locks in the overlay model's pick", adjustment),
+    ("15", "Sunday picks", "refresh the openers and lock in next Saturday's games where the model is 3+ points off the line", sunday_picks),
 ]
 ACTIONS = {key: fn for key, _, _, fn in MENU}
 
