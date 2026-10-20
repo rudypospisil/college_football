@@ -7,6 +7,7 @@ Usage:
     python track.py record --date 2026-10-24 --model prior --min-edge 3 --dry-run
     python track.py settle                 # after the games: fill in scores and grade every pick
     python track.py report                 # print the whole log plus a summary (per model)
+    python track.py pending --stake 50     # this week's picks: line then vs now, still bettable?, stake, payout
 
 The log is data/predictions.csv. A game is only recorded while it is still scheduled and
 kickoff is in the future, a recorded prediction is never overwritten, and the Vegas line and
@@ -381,6 +382,49 @@ def report():
     overlay_report(log)
 
 
+def pending(model_name=DEFAULT_MODEL, min_edge=3.0, stake=50.0):
+    """Unsettled picks for one model: the line they were recorded at, today's line, whether the
+    model's disagreement still clears `min_edge` at today's line, and what a flat `stake` pays."""
+    log = load_log()
+    games = load_games().set_index("game_id")
+    p = log[(log["model"] == model_name) & (log["settled"] != True)].copy()
+    if p.empty:
+        print(f"No pending picks for the {model_name} model.")
+        return
+    rows = []
+    for r in p.itertuples(index=False):
+        if not isinstance(r.spread_pick, str):
+            continue
+        bet_home = r.spread_pick == r.home_team
+        now = games.at[r.game_id, "odds_spread"] if r.game_id in games.index else None
+        line_then = float(r.vegas_home_spread)
+        edge_now = (float(r.model_home_margin) + float(now)) * (1 if bet_home else -1) if isnum(now) else None
+        price = r.home_spread_odds if bet_home else r.away_spread_odds
+        price = float(price) if isnum(price) else float(DEFAULT_SPREAD_ODDS)
+
+        def fmt(spread):
+            if not isnum(spread):
+                return "none"
+            s = float(spread) if bet_home else -float(spread)
+            return f"{s:+g}"
+        rows.append({
+            "kick (ET)": pd.to_datetime(r.kickoff).tz_convert(LOCAL_TZ).strftime("%a %H:%M"),
+            "pick": r.spread_pick.rsplit(" ", 1)[0], "vs": (r.away_team if bet_home else r.home_team).rsplit(" ", 1)[0],
+            "recorded": pd.to_datetime(r.recorded_at).tz_convert(LOCAL_TZ).strftime("%a %H:%M"),
+            "line then": fmt(line_then), "line now": fmt(now),
+            "edge now": round(edge_now, 1) if edge_now is not None else None,
+            "bet?": "yes" if edge_now is not None and edge_now >= min_edge else "no",
+            "price": int(price), "stake $": round(stake), "to win $": round(stake * american_profit(price), 2),
+        })
+    show = pd.DataFrame(rows).sort_values(["bet?", "edge now"], ascending=[False, False])
+    pd.set_option("display.width", 220)
+    print(f"Pending picks, {model_name} model, bettable when the disagreement at today's line is >= {min_edge:g} points:\n")
+    print(show.to_string(index=False))
+    ok = show[show["bet?"] == "yes"]
+    print(f"\n{len(ok)} of {len(show)} still clear the bar. Flat ${stake:,.0f} each: ${ok['stake $'].sum():,.0f} in play, "
+          f"${ok['to win $'].sum():,.2f} if every one wins, about ${(0.54 * ok['to win $'].sum() - 0.46 * ok['stake $'].sum()):,.0f} expected at a 54% cover rate.")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = parser.add_subparsers(dest="command", required=True)
@@ -392,6 +436,11 @@ def main():
     add_model_argument(rec)
     sub.add_parser("settle", help="grade logged games that have finished")
     sub.add_parser("report", help="print the log and summary")
+    pen = sub.add_parser("pending", help="unsettled picks with today's line, whether they still clear the edge, stake and payout")
+    pen.add_argument("--min-edge", type=float, default=3.0)
+    pen.add_argument("--stake", type=float, default=50.0, help="flat dollars per bet (1%% of a dedicated bankroll is the rule)")
+    add_model_argument(pen)
+    pen.set_defaults(model="prior")          # the betting rule is about the prior model's picks
     args = parser.parse_args()
 
     if args.command == "record":
@@ -401,6 +450,8 @@ def main():
         settle()
     elif args.command == "report":
         report()
+    elif args.command == "pending":
+        pending(args.model, args.min_edge, args.stake)
 
 
 if __name__ == "__main__":

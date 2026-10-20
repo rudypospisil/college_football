@@ -268,6 +268,15 @@ def adjustment():
     run("adjust.py", *args) and run("adjust.py", "list", "--date", date)
 
 
+def pending_picks():
+    """This week's recorded picks against today's lines, with stake and payout."""
+    if not need_data():
+        return
+    stake = ask("Flat stake per bet in dollars (1% of your bankroll)", "50")
+    edge = ask("Minimum edge in points to still count as a bet", "3")
+    run("fetch_data.py") and run("track.py", "pending", "--model", "prior", "--min-edge", edge, "--stake", stake)
+
+
 def compare():
     """Every registered model, side by side, on the held-out seasons and the current one."""
     if need_data():
@@ -299,6 +308,7 @@ MENU = [
     ("13", "CFBD refresh", "re-download this season's CollegeFootballData sets (recruiting, efficiency, lines)", cfbd_refresh),
     ("14", "Injury adjustment", "enter points for an injury or news item; locks in the overlay model's pick", adjustment),
     ("15", "Sunday picks", "refresh the openers and lock in next Saturday's games where the model is 3+ points off the line", sunday_picks),
+    ("16", "Pending picks", "this week's picks vs today's lines: still bettable?, stake and payout", pending_picks),
 ]
 ACTIONS = {key: fn for key, _, _, fn in MENU}
 

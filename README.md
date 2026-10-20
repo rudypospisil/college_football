@@ -44,6 +44,7 @@ Start the menu with `./run.sh` from the project folder. Times are US/Eastern.
 | --- | --- | --- |
 | Sunday evening | 15 | Sunday picks: refreshes the openers (they post Sunday), previews next Saturday's games where the prior model is 3+ points off the line, locks them in on your say-so, and prints the slate. These are the picks the closing-line test is about; 8+ points is the strong tier. |
 | Through the week | 14 | Enter an injury adjustment when a starter is ruled out, before kickoff. |
+| Any time | 16 | Pending picks: this week's recorded picks against today's lines, whether each still clears the 3-point bar, and the stake and payout at a flat amount you set. Lines that have moved past the bar are skips, not bets at the new number. |
 | Saturday morning | 1 | Game-day update: refresh scores and lines, snapshot injuries, record picks for any model not yet logged (Sunday's picks stand), print the slate. |
 | Saturday night or Sunday morning | 7, then 8 | Settle: refreshes scores and closing lines, grades every finished game; then read the record per model, the closing line value lines and the overlay section. |
 | Sunday morning | `git add -A && git commit -m "week N" && git push` | Keep the log on GitHub. |
@@ -79,7 +80,7 @@ dedicated bankroll per qualifying game, flat, never on game day.
 | `models/overlay.py`, `adjust.py` | Injury overlay (`overlay`): the prior model plus point adjustments entered before kickoff; graded against the prior model on the adjusted games. |
 | `backtest.py` | Grid-searches a model's parameters on 2012-2023, then reports accuracy, Brier score, log loss and calibration on the held-out 2024-2025 seasons. Saves the winning parameters to `data/params/<model>.json`. |
 | `predict.py` | Replays all games to date with a model's saved parameters and prints predictions. |
-| `track.py` | Logs each model's predictions before kickoff, grades them after the games, and summarises the record per model (`data/predictions.csv`). |
+| `track.py` | Logs each model's predictions before kickoff, grades them after the games (including closing line value), summarises the record per model, and lists pending picks against today's lines (`data/predictions.csv`). |
 | `fetch_odds.py` | Back-fills closing lines, moneylines and spread prices for finished games from ESPN's per-game odds endpoint. |
 | `simulate.py` | Replays past games with the model's pregame predictions and grades flat bets on its picks against the stored lines. |
 
