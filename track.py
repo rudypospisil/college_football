@@ -28,9 +28,11 @@ import json
 import numpy as np
 import pandas as pd
 
-from common import GAMES_CSV, LOCAL_TZ, LOG_PATH, load_games
+from common import GAMES_CSV, LOCAL_TZ, LOG_PATH, load_games, write_csv
 from models import DEFAULT_MODEL, add_model_argument
 from predict import load_model
+
+SKIPS_PATH = LOG_PATH.with_name("skips.csv")   # games left out at lock-in after the quarterback check
 
 DEFAULT_SPREAD_ODDS = -110      # used when ESPN did not publish a spread price
 EDGE_THRESHOLD = 3.0            # "confident" spread bets: model and Vegas differ by >= 3 points
@@ -133,9 +135,11 @@ def build_row(model, g, now):
     }
 
 
-def record(date, model_name=DEFAULT_MODEL, now=None, min_edge=0.0, dry_run=False):
+def record(date, model_name=DEFAULT_MODEL, now=None, min_edge=0.0, dry_run=False, skip=(), skip_reason="pre-lock check"):
     """Lock in picks for every scheduled game on `date` (or, with min_edge, only the games where
-    the model disagrees with the stored line by at least that many points)."""
+    the model disagrees with the stored line by at least that many points). Games involving a team
+    named in `skip` are left out (the quarterback check: the model does not know a starter is out);
+    what they would have been is written to data/skips.csv so the skip rule can be graded later."""
     now = now or pd.Timestamp.now(tz="UTC")
     age_hours = (dt.datetime.now().timestamp() - GAMES_CSV.stat().st_mtime) / 3600
     if age_hours > 6:
@@ -159,6 +163,21 @@ def record(date, model_name=DEFAULT_MODEL, now=None, min_edge=0.0, dry_run=False
         kept = [r for r in rows if r["spread_edge"] is not None and r["spread_edge"] >= min_edge]
         below_edge = len(rows) - len(kept)
         rows = kept
+    left_out = []
+    pats = [s.strip().lower() for s in skip if s and s.strip()]
+    if pats:
+        def hit(r):
+            return any(p in r["home_team"].lower() or p in r["away_team"].lower() for p in pats)
+        left_out = [r for r in rows if hit(r)]
+        rows = [r for r in rows if not hit(r)]
+        if left_out and not dry_run:
+            cols = ["game_id", "model", "kickoff", "recorded_at", "away_team", "home_team", "spread_pick",
+                    "spread_edge", "vegas_home_spread", "model_home_margin"]
+            out = pd.DataFrame(left_out)[cols]
+            out["reason"] = skip_reason
+            if SKIPS_PATH.exists():
+                out = pd.concat([pd.read_csv(SKIPS_PATH, dtype=str).astype(object), out.astype(object)], ignore_index=True)
+            write_csv(out, SKIPS_PATH)
 
     if rows and not dry_run:
         new = pd.DataFrame(rows, columns=COLUMNS)
@@ -170,7 +189,10 @@ def record(date, model_name=DEFAULT_MODEL, now=None, min_edge=0.0, dry_run=False
     print(f"{date} [{model.name}]: {len(day)} games on the schedule, {len(rows)} {verb}, "
           f"{int(already.sum())} already in the log, {skipped_started} skipped (started or finished)"
           + (f", {below_edge} below the {min_edge:g}-point edge or without a line" if min_edge > 0 else "")
-          + (f", {not_applicable} without an adjustment." if not_applicable else "."))
+          + (f", {not_applicable} without an adjustment." if not_applicable else ".")
+          + (f" Left out by request ({skip_reason}): "
+             + "; ".join(f"{r['away_team']} at {r['home_team']} (would be {r['spread_pick']}, edge {r['spread_edge']})"
+                         for r in left_out) if left_out else ""))
     if rows:
         show = pd.DataFrame(rows)
         show["kick (ET)"] = pd.to_datetime(show["kickoff"]).dt.tz_convert(LOCAL_TZ).dt.strftime("%H:%M")
@@ -433,6 +455,10 @@ def main():
     rec.add_argument("--min-edge", type=float, default=0.0,
                      help="only record games where the model disagrees with the stored line by at least this many points")
     rec.add_argument("--dry-run", action="store_true", help="show what would be recorded without saving")
+    rec.add_argument("--skip", nargs="*", default=[], metavar="TEAM",
+                     help="leave out games involving these teams (case-insensitive substring), e.g. after the "
+                          "quarterback check finds a starter out that the model does not know about")
+    rec.add_argument("--skip-reason", default="quarterback check", help="why the --skip games are left out (logged to data/skips.csv)")
     add_model_argument(rec)
     sub.add_parser("settle", help="grade logged games that have finished")
     sub.add_parser("report", help="print the log and summary")
@@ -445,7 +471,7 @@ def main():
 
     if args.command == "record":
         date = dt.date.fromisoformat(args.date) if args.date else pd.Timestamp.now(tz=LOCAL_TZ).date()
-        record(date, args.model, min_edge=args.min_edge, dry_run=args.dry_run)
+        record(date, args.model, min_edge=args.min_edge, dry_run=args.dry_run, skip=args.skip, skip_reason=args.skip_reason)
     elif args.command == "settle":
         settle()
     elif args.command == "report":

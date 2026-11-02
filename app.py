@@ -205,7 +205,14 @@ def sunday_picks():
     ok = run("fetch_data.py")
     ok = ok and run("track.py", "record", "--date", date, "--model", model, "--min-edge", edge, "--dry-run")
     if ok and ask("Lock these in? (y/N)", "n").lower().startswith("y"):
-        run("track.py", "record", "--date", date, "--model", model, "--min-edge", edge)
+        print("\nQuarterback check: for each game above, is either team missing its starting quarterback (or several\n"
+              "starters) in a way the ratings cannot know yet? Name those teams and they are left out and logged to\n"
+              "data/skips.csv; the rest are locked in. Use a distinctive name (\"Texas Longhorns\", not \"Texas\").")
+        skip = [s.strip() for s in ask("Teams to leave out (comma-separated, blank for none)", "").split(",") if s.strip()]
+        args = ["record", "--date", date, "--model", model, "--min-edge", edge]
+        if skip:
+            args += ["--skip", *skip, "--skip-reason", ask("Why (one line, logged with the skips)", "quarterback check")]
+        run("track.py", *args)
     run("predict.py", "--date", date, "--model", model)
 
 
