@@ -177,6 +177,9 @@ def record(date, model_name=DEFAULT_MODEL, now=None, min_edge=0.0, dry_run=False
             out["reason"] = skip_reason
             if SKIPS_PATH.exists():
                 out = pd.concat([pd.read_csv(SKIPS_PATH, dtype=str).astype(object), out.astype(object)], ignore_index=True)
+            out["game_id"] = out["game_id"].astype(str)
+            # A game skipped again on a later pass keeps its first row (the line it was first left out at).
+            out = out.drop_duplicates(subset=["game_id", "model"], keep="first")
             write_csv(out, SKIPS_PATH)
 
     if rows and not dry_run:
