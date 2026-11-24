@@ -154,7 +154,8 @@ def record(date, model_name=DEFAULT_MODEL, now=None, min_edge=0.0, dry_run=False
     day = games[local_date(games["date"]) == date]
     future = day[(day["date"] > now) & (~day["completed"]) & (day["status"] == "Scheduled")]
     skipped_started = len(day) - len(future)
-    future = future[[model.applies_to(gid) for gid in future["game_id"]]]   # the overlay: adjusted games only
+    if len(future):   # an empty list would select zero columns, not zero rows
+        future = future[[model.applies_to(gid) for gid in future["game_id"]]]   # the overlay: adjusted games only
     not_applicable = len(day) - skipped_started - len(future)
     already = future["game_id"].isin(log.loc[log["model"] == model.name, "game_id"])
     rows = [build_row(model, g, now) for g in future[~already].sort_values("date").itertuples(index=False)]
